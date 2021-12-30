@@ -11,7 +11,7 @@ import SOTabBar
 class CustomTabBar: SOTabBarController {
     override func loadView() {
         super.loadView()
-        SOTabBarSetting.tabBarTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        SOTabBarSetting.tabBarTintColor = .clear 
         SOTabBarSetting.tabBarCircleSize = CGSize(width: 60, height: 60)
        // SOTabBarSetting.tabBarSizeImage = CGSize(width: 50.0, height: 50.0)
     }

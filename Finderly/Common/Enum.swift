@@ -48,3 +48,8 @@ enum Images{
     static let check = UIImage(named: "checkMail")
     static let uncheck = UIImage(named: "cut")
 }
+enum constantsVaribales{
+    static let homeTVArry = ["Today's recommended","Top 10 business sector","Individual business"]
+    static let  catoImageArry = ["Rental","Resturents","Schools","Bars","Salons","Barbars","Shoes Store","GasStation","Automotives","Health"]
+    static let catoHeadingArry = ["Rentals","Resturents","Schools","Bars","Salons","Barbers","Shoe Stores","Gas Stations","Automotives","Health Care"]
+}

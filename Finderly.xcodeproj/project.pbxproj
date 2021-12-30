@@ -31,6 +31,9 @@
 		5E9BD8D2277C20A20043DF52 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9BD8CE277C20A20043DF52 /* Extensions.swift */; };
 		5E9BD8D3277C20A20043DF52 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9BD8CF277C20A20043DF52 /* Enum.swift */; };
 		5E9BD8D4277C20A20043DF52 /* Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9BD8D0277C20A20043DF52 /* Proxy.swift */; };
+		5EF7EA0D277D79F900200C35 /* HomeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */; };
+		5EF7EA10277D7B4300200C35 /* HomeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */; };
+		5EF7EA12277DA3E300200C35 /* CategoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		5E9BD8CE277C20A20043DF52 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5E9BD8CF277C20A20043DF52 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		5E9BD8D0277C20A20043DF52 /* Proxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proxy.swift; sourceTree = "<group>"; };
+		5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCVCell.swift; sourceTree = "<group>"; };
+		5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVCell.swift; sourceTree = "<group>"; };
+		5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVCell.swift; sourceTree = "<group>"; };
 		F919AA71C9C294DB767EC57A /* Pods_Finderly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finderly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +147,8 @@
 				5E9BD8C5277C20670043DF52 /* SignUpVC.swift */,
 				5E9BD8C4277C20670043DF52 /* UploadProfileVC.swift */,
 				5E5ED6FF277C318D00F2FB59 /* ProfileSuccessPopUpVC.swift */,
+				5EF7EA0E277D7B2200200C35 /* TableView Cell */,
+				5EF7EA0B277D79D400200C35 /* CollectionView Cell */,
 				5E7FEF75277C7D640038189F /* Custom Tab Bar */,
 				5E9BD8BE277C20130043DF52 /* Info.plist */,
 			);
@@ -156,6 +164,23 @@
 				5E9BD8D0277C20A20043DF52 /* Proxy.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		5EF7EA0B277D79D400200C35 /* CollectionView Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */,
+				5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */,
+			);
+			path = "CollectionView Cell";
+			sourceTree = "<group>";
+		};
+		5EF7EA0E277D7B2200200C35 /* TableView Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */,
+			);
+			path = "TableView Cell";
 			sourceTree = "<group>";
 		};
 		923B429995CEC0EFF7C125A9 /* Frameworks */ = {
@@ -286,15 +311,18 @@
 			files = (
 				5E9BD8CA277C20680043DF52 /* OtpVC.swift in Sources */,
 				5E7FEF7F277C81B30038189F /* NotificationVC.swift in Sources */,
+				5EF7EA0D277D79F900200C35 /* HomeCVCell.swift in Sources */,
 				5E9BD8D2277C20A20043DF52 /* Extensions.swift in Sources */,
 				5E7FEF7B277C81890038189F /* CategoriesVC.swift in Sources */,
 				5E7FEF81277C81BF0038189F /* ProfileVC.swift in Sources */,
+				5EF7EA12277DA3E300200C35 /* CategoryCVCell.swift in Sources */,
 				5E9BD8CB277C20680043DF52 /* LoginVC.swift in Sources */,
 				5E9BD8B1277C20100043DF52 /* AppDelegate.swift in Sources */,
 				5E9BD8C9277C20680043DF52 /* SignUpVC.swift in Sources */,
 				5E7FEF83277C834C0038189F /* CustomTabBar.swift in Sources */,
 				5E9BD8D4277C20A20043DF52 /* Proxy.swift in Sources */,
 				5E9BD8C8277C20680043DF52 /* UploadProfileVC.swift in Sources */,
+				5EF7EA10277D7B4300200C35 /* HomeTVCell.swift in Sources */,
 				5E9BD8D3277C20A20043DF52 /* Enum.swift in Sources */,
 				5E7FEF7D277C81A30038189F /* HookedVC.swift in Sources */,
 				5E7FEF79277C817C0038189F /* HomeVC.swift in Sources */,
