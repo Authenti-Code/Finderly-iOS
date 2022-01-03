@@ -31,5 +31,11 @@ extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width / 2.10, height: 180)
        }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 1{
+            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "RestaurantVCID", isAnimate: true, currentViewController: self)
+        }else{
+            print("Hello")
+        }
+    }
 }

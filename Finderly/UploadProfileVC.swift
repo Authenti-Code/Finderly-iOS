@@ -18,13 +18,16 @@ class UploadProfileVC: UIViewController {
     @IBAction func chooseFromGalleryBtnAcn(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileSuccessPopUpVCID") as! ProfileSuccessPopUpVC
         vc.delegateObj = self
+        vc.comingFromProfile = true
         self.present(vc, animated: true, completion: nil)
     }
 }
 extension UploadProfileVC: profilePopUp{
-    func removePopUp(text: String) {
+    func removePopUp1(text: String) {
         Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CustomTabBarID", isAnimate: true, currentViewController: self)
     }
-    
+    func removePopUp2(text: String) {
+        self.navigationController?.backToViewController(viewController: LoginVC.self)
+    }
     
 }

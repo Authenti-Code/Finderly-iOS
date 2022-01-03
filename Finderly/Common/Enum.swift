@@ -52,4 +52,6 @@ enum constantsVaribales{
     static let homeTVArry = ["Today's recommended","Top 10 business sector","Individual business"]
     static let  catoImageArry = ["Rental","Resturents","Schools","Bars","Salons","Barbars","Shoes Store","GasStation","Automotives","Health"]
     static let catoHeadingArry = ["Rentals","Resturents","Schools","Bars","Salons","Barbers","Shoe Stores","Gas Stations","Automotives","Health Care"]
+    static let profileLabelAry = ["Notification","About us","Contact us","Privacy policy"]
+    static let profileImgAry = ["notification-icon","about-icon","phone-icon","privacy-icon"]
 }

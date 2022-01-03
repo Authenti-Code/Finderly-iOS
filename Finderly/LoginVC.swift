@@ -39,10 +39,15 @@ class LoginVC: UIViewController {
     }
     //MARK:--> Button Actions
     @IBAction func btnLoginAction(_ sender: Any) {
+        
     }
     @IBAction func btnGoogleInAction(_ sender: Any){
     }
     @IBAction func btnAppleInAction(_ sender: Any){
+    }
+    @IBAction func forgotPasswordBtnAcn(_ sender: Any) {
+        let nav = storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordVCID")
+        self.navigationController?.pushViewController(nav!, animated: true)
     }
     //MARK--> Button Actions
     @IBAction func btnSignUpAction(_ sender: Any){

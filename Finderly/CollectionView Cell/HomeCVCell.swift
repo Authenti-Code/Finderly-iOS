@@ -20,5 +20,6 @@ class HomeCVCell: UICollectionViewCell {
     @IBOutlet weak var oMainView: UIView!
     @IBOutlet weak var oLocationLabel: UILabel!
     
-    
+    //MARK:-> Hooked Cell's Outlet
+    @IBOutlet weak var oHookedMainView: UIView!
 }
