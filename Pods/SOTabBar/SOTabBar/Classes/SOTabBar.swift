@@ -31,7 +31,7 @@ public class SOTabBar: UIView {
         let stackView = UIStackView(arrangedSubviews: [])
         stackView.axis = .horizontal
         stackView.spacing = 0
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.clipsToBounds = true
         stackView.translatesAutoresizingMaskIntoConstraints = false

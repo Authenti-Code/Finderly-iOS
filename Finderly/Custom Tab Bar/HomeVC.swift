@@ -43,7 +43,18 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = oListingTableView.dequeueReusableCell(withIdentifier: "HomeTVCell") as! HomeTVCell
         cell.oHeadingLabel.text = constantsVaribales.homeTVArry[indexPath.row]
+        cell.oSeeAllBtn.tag = indexPath.row
+        cell.oSeeAllBtn.addTarget(self, action: #selector(connected(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
         return cell
+    }
+    @objc func connected(sender: UIButton){
+        let buttonTag = sender.tag
+        if buttonTag == 0{
+            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "TodayRecommededVCID", isAnimate: true, currentViewController: self)
+        }else{
+            print("Hello")
+        }
+
     }
 }

@@ -20,4 +20,6 @@ public struct SOTabBarSetting {
     public static var tabBarSizeSelectedImage: CGFloat = 50
     public static var tabBarAnimationDurationTime: Double = 0.4
     
+    
+    
 }

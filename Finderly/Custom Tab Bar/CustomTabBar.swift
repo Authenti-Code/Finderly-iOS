@@ -9,15 +9,18 @@ import UIKit
 import SOTabBar
 
 class CustomTabBar: SOTabBarController {
+    let fontSize: CGFloat = 12
     override func loadView() {
         super.loadView()
         SOTabBarSetting.tabBarTintColor = .clear 
         SOTabBarSetting.tabBarCircleSize = CGSize(width: 60, height: 60)
-       // SOTabBarSetting.tabBarSizeImage = CGSize(width: 50.0, height: 50.0)
+       // SOTabBarSetting.tabBarItemtintSize = UIFont(name: "Montserrat Bold 700", size: 12)!
+        
+        
+       
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.delegate = self
         let homeStoryboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVCID")
         let chatStoryboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoriesVCID")
@@ -33,9 +36,12 @@ class CustomTabBar: SOTabBarController {
            
         viewControllers = [homeStoryboard, chatStoryboard,sleepStoryboard,musicStoryboard,meStoryboard]
     }
-    
+//    override class func awakeFromNib() {
+//        super.awakeFromNib()
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat Bold 700", size: 10)!], for: .normal)
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat Bold 700", size: 10)!], for: .selected)
+//    }
 }
-
 
 extension CustomTabBar: SOTabBarControllerDelegate {
     func tabBarController(_ tabBarController: SOTabBarController, didSelect viewController: UIViewController) {

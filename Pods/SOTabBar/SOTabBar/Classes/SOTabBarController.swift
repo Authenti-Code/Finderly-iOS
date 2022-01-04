@@ -91,6 +91,7 @@ open class SOTabBarController: UIViewController, SOTabBarDelegate {
         containerView.addSubview(vc.view)
         vc.didMove(toParent: self)
         
+        
     }
     
 }

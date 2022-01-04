@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2122B5AFD0195B5AF2231D70 /* Pods_Finderly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F919AA71C9C294DB767EC57A /* Pods_Finderly.framework */; };
+		5E5B348C2784205C0005A4CA /* TodayRecommededVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */; };
+		5E5B348E2784228E0005A4CA /* RecommendedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B348D2784228E0005A4CA /* RecommendedTVCell.swift */; };
+		5E5B3490278451360005A4CA /* BusinessDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B348F278451360005A4CA /* BusinessDetailVC.swift */; };
 		5E5ED6FB277C25B200F2FB59 /* Montserrat Regular 400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E5ED6F7277C25B200F2FB59 /* Montserrat Regular 400.ttf */; };
 		5E5ED6FC277C25B200F2FB59 /* Montserrat Bold 700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E5ED6F8277C25B200F2FB59 /* Montserrat Bold 700.ttf */; };
 		5E5ED6FD277C25B200F2FB59 /* Montserrat Medium 500.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E5ED6F9277C25B200F2FB59 /* Montserrat Medium 500.ttf */; };
@@ -46,6 +49,9 @@
 /* Begin PBXFileReference section */
 		01ECDAEB390AC05F15FCE957 /* Pods-Finderly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finderly.debug.xcconfig"; path = "Target Support Files/Pods-Finderly/Pods-Finderly.debug.xcconfig"; sourceTree = "<group>"; };
 		528F2FFBE10B5F8DD9983881 /* Pods-Finderly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finderly.release.xcconfig"; path = "Target Support Files/Pods-Finderly/Pods-Finderly.release.xcconfig"; sourceTree = "<group>"; };
+		5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRecommededVC.swift; sourceTree = "<group>"; };
+		5E5B348D2784228E0005A4CA /* RecommendedTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTVCell.swift; sourceTree = "<group>"; };
+		5E5B348F278451360005A4CA /* BusinessDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailVC.swift; sourceTree = "<group>"; };
 		5E5ED6F7277C25B200F2FB59 /* Montserrat Regular 400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat Regular 400.ttf"; sourceTree = "<group>"; };
 		5E5ED6F8277C25B200F2FB59 /* Montserrat Bold 700.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat Bold 700.ttf"; sourceTree = "<group>"; };
 		5E5ED6F9277C25B200F2FB59 /* Montserrat Medium 500.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat Medium 500.ttf"; sourceTree = "<group>"; };
@@ -166,6 +172,8 @@
 				5E5ED6FF277C318D00F2FB59 /* ProfileSuccessPopUpVC.swift */,
 				5EBF7029278329FC0083DFBC /* EditProfileVC.swift */,
 				5EBF702B278334170083DFBC /* RestaurantVC.swift */,
+				5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */,
+				5E5B348F278451360005A4CA /* BusinessDetailVC.swift */,
 				5EF7EA0E277D7B2200200C35 /* TableView Cell */,
 				5EF7EA0B277D79D400200C35 /* CollectionView Cell */,
 				5E7FEF75277C7D640038189F /* Custom Tab Bar */,
@@ -200,6 +208,7 @@
 				5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */,
 				5EBF70252782E3A40083DFBC /* NotificationTVCell.swift */,
 				5EBF7027278317BD0083DFBC /* ProfileTVCell.swift */,
+				5E5B348D2784228E0005A4CA /* RecommendedTVCell.swift */,
 			);
 			path = "TableView Cell";
 			sourceTree = "<group>";
@@ -330,9 +339,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5B3490278451360005A4CA /* BusinessDetailVC.swift in Sources */,
 				5E9BD8CA277C20680043DF52 /* OtpVC.swift in Sources */,
 				5E7FEF7F277C81B30038189F /* NotificationVC.swift in Sources */,
 				5EF7EA0D277D79F900200C35 /* HomeCVCell.swift in Sources */,
+				5E5B348E2784228E0005A4CA /* RecommendedTVCell.swift in Sources */,
 				5E9BD8D2277C20A20043DF52 /* Extensions.swift in Sources */,
 				5E7FEF7B277C81890038189F /* CategoriesVC.swift in Sources */,
 				5E7FEF81277C81BF0038189F /* ProfileVC.swift in Sources */,
@@ -342,6 +353,7 @@
 				5E9BD8C9277C20680043DF52 /* SignUpVC.swift in Sources */,
 				5E7FEF83277C834C0038189F /* CustomTabBar.swift in Sources */,
 				5E9BD8D4277C20A20043DF52 /* Proxy.swift in Sources */,
+				5E5B348C2784205C0005A4CA /* TodayRecommededVC.swift in Sources */,
 				5E9BD8C8277C20680043DF52 /* UploadProfileVC.swift in Sources */,
 				5EF7EA10277D7B4300200C35 /* HomeTVCell.swift in Sources */,
 				5EBF70202782BFE20083DFBC /* ForgotPasswordVC.swift in Sources */,

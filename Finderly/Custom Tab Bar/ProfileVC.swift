@@ -45,6 +45,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource{
         let cell = oProfileTableView.dequeueReusableCell(withIdentifier: "ProfileTVCell") as! ProfileTVCell
         cell.oHeadingLabel.text = constantsVaribales.profileLabelAry[indexPath.row]
         cell.oImageView.image = UIImage(named: constantsVaribales.profileImgAry[indexPath.row])
+        cell.selectionStyle = .none
         if indexPath.row == 0{
             cell.oNotifySwitch.isHidden = false
         }else{
