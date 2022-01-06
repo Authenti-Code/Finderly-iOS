@@ -188,3 +188,18 @@ extension UINavigationController {
         }
     }
 }
+extension UIView {
+    //ROUNDED CORNER TOP VIEW
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        if #available(iOS 11.0, *) {
+            self.clipsToBounds = true
+            self.layer.cornerRadius = radius
+            self.layer.maskedCorners = CACornerMask(rawValue: corners.rawValue)
+        } else {
+            let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            self.layer.mask = mask
+        }
+    }
+}

@@ -19,8 +19,6 @@ class RestaurantVC: UIViewController {
     @IBAction func backBtnAcn(_ sender: Any) {
         self.pop()
     }
-    
-
 }
 extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -39,5 +37,7 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width / 2.12, height: 220)
        }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "BusinessDetailVCID", isAnimate: true, currentViewController: self)
+    }
 }

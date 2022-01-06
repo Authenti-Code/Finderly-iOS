@@ -22,6 +22,9 @@
 		5E7FEF7F277C81B30038189F /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEF7E277C81B30038189F /* NotificationVC.swift */; };
 		5E7FEF81277C81BF0038189F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEF80277C81BF0038189F /* ProfileVC.swift */; };
 		5E7FEF83277C834C0038189F /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FEF82277C834C0038189F /* CustomTabBar.swift */; };
+		5E8787262786B21700C2385F /* BusinessDetailCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8787252786B21700C2385F /* BusinessDetailCVCell.swift */; };
+		5E8787282786C6A100C2385F /* SpecializationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8787272786C6A100C2385F /* SpecializationVC.swift */; };
+		5E87872A2786D08100C2385F /* RatingBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8787292786D08100C2385F /* RatingBusinessVC.swift */; };
 		5E9BD8B1277C20100043DF52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9BD8B0277C20100043DF52 /* AppDelegate.swift */; };
 		5E9BD8B8277C20100043DF52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9BD8B6277C20100043DF52 /* Main.storyboard */; };
 		5E9BD8BA277C20130043DF52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E9BD8B9277C20130043DF52 /* Assets.xcassets */; };
@@ -63,6 +66,9 @@
 		5E7FEF7E277C81B30038189F /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		5E7FEF80277C81BF0038189F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		5E7FEF82277C834C0038189F /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		5E8787252786B21700C2385F /* BusinessDetailCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailCVCell.swift; sourceTree = "<group>"; };
+		5E8787272786C6A100C2385F /* SpecializationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecializationVC.swift; sourceTree = "<group>"; };
+		5E8787292786D08100C2385F /* RatingBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBusinessVC.swift; sourceTree = "<group>"; };
 		5E9BD8AD277C20100043DF52 /* Finderly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finderly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9BD8B0277C20100043DF52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E9BD8B7277C20100043DF52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 				5EBF702B278334170083DFBC /* RestaurantVC.swift */,
 				5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */,
 				5E5B348F278451360005A4CA /* BusinessDetailVC.swift */,
+				5E8787272786C6A100C2385F /* SpecializationVC.swift */,
+				5E8787292786D08100C2385F /* RatingBusinessVC.swift */,
 				5EF7EA0E277D7B2200200C35 /* TableView Cell */,
 				5EF7EA0B277D79D400200C35 /* CollectionView Cell */,
 				5E7FEF75277C7D640038189F /* Custom Tab Bar */,
@@ -198,6 +206,7 @@
 			children = (
 				5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */,
 				5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */,
+				5E8787252786B21700C2385F /* BusinessDetailCVCell.swift */,
 			);
 			path = "CollectionView Cell";
 			sourceTree = "<group>";
@@ -352,6 +361,7 @@
 				5E9BD8B1277C20100043DF52 /* AppDelegate.swift in Sources */,
 				5E9BD8C9277C20680043DF52 /* SignUpVC.swift in Sources */,
 				5E7FEF83277C834C0038189F /* CustomTabBar.swift in Sources */,
+				5E8787282786C6A100C2385F /* SpecializationVC.swift in Sources */,
 				5E9BD8D4277C20A20043DF52 /* Proxy.swift in Sources */,
 				5E5B348C2784205C0005A4CA /* TodayRecommededVC.swift in Sources */,
 				5E9BD8C8277C20680043DF52 /* UploadProfileVC.swift in Sources */,
@@ -364,6 +374,8 @@
 				5E9BD8D3277C20A20043DF52 /* Enum.swift in Sources */,
 				5EBF70262782E3A40083DFBC /* NotificationTVCell.swift in Sources */,
 				5EBF702A278329FC0083DFBC /* EditProfileVC.swift in Sources */,
+				5E8787262786B21700C2385F /* BusinessDetailCVCell.swift in Sources */,
+				5E87872A2786D08100C2385F /* RatingBusinessVC.swift in Sources */,
 				5E7FEF7D277C81A30038189F /* HookedVC.swift in Sources */,
 				5E7FEF79277C817C0038189F /* HomeVC.swift in Sources */,
 				5E9BD8D1277C20A20043DF52 /* constants.swift in Sources */,

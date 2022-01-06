@@ -54,4 +54,6 @@ enum constantsVaribales{
     static let catoHeadingArry = ["Rentals","Resturents","Schools","Bars","Salons","Barbers","Shoe Stores","Gas Stations","Automotives","Health Care"]
     static let profileLabelAry = ["Notification","About us","Contact us","Privacy policy"]
     static let profileImgAry = ["notification-icon","about-icon","phone-icon","privacy-icon"]
+    static let businessDetailLablAry = ["Braids","Weave","Natural Haircoloring"]
+    static let specializationLabelAry = ["Braids","Weave","Natural Haircoloring","Lace Fronts","Weddings","Cutting","Wigs","Crochet","Locs","Extensions"]
 }
