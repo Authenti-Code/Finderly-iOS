@@ -18,6 +18,9 @@ class OtpVC: UIViewController {
     @IBOutlet weak var otpVw3: UIView!
     @IBOutlet weak var otpVw4: UIView!
     
+    let userModelObj = UserDataModel()
+    var sentOtp = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         otpbox1?.delegate = self
@@ -29,6 +32,9 @@ class OtpVC: UIViewController {
         otpVw2.backgroundColor = appcolor.backgroundShadow
         otpVw3.backgroundColor = appcolor.backgroundShadow
         otpVw4.backgroundColor = appcolor.backgroundShadow
+        
+        sentOtp = "\(userModelObj.otp!)"
+        print("Sent Otp:->",sentOtp)
  
         //view shadow
         self.otpVw1.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
@@ -82,5 +88,10 @@ extension OtpVC: UITextFieldDelegate{
             return false
         }
         return true
+    }
+}
+extension OtpVC{
+    func otpverifyApi(){
+        
     }
 }

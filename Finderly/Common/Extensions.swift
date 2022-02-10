@@ -203,3 +203,157 @@ extension UIView {
         }
     }
 }
+public extension String
+{
+    var html2AttributedString: NSAttributedString? {
+        do {
+            return try NSAttributedString(data: Data(utf8),
+                                          options: [.documentType: NSAttributedString.DocumentType.html,
+                                                    .characterEncoding: String.Encoding.utf8.rawValue],
+                                          documentAttributes: nil)
+        } catch {
+            print("error: ", error)
+            return nil
+        }
+    }
+    var youtubeID: String?
+    {
+        let pattern = "((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)"
+        
+        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let range = NSRange(location: 0, length: count)
+        
+        guard let result = regex?.firstMatch(in: self, options: [], range: range) else {
+            return nil
+        }
+        
+        return (self as NSString).substring(with: result.range)
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
+    //var length: Int { return self.count }
+    
+    func toURL() -> URL? {
+        return URL(string: self)
+    }
+    
+    func encodeQueryString() -> String
+    {
+        return self.replacingOccurrences(of: "'", with: "''", options:.regularExpression)
+    }
+    func encodedURLString() -> String
+    {
+        let escapedString = self.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+        return escapedString ?? self
+    }
+    func encodedNameString() -> String
+    {
+        
+        /*
+         
+         String newUrl = finalUrl.replaceAll(" ", "%20");
+         newUrl = newUrl.replaceAll("\\r", "");
+         newUrl = newUrl.replaceAll("\\t", "");
+         newUrl = newUrl.replaceAll("\\n\\n", "%20");
+         newUrl = newUrl.replaceAll("\\n", "%20");
+         newUrl = newUrl.replaceAll("\\|", "%7C");
+         newUrl = newUrl.replaceAll("\\+", "%2B");
+         
+         newUrl = newUrl.replaceAll("\\#", "%23");
+         
+         */
+        
+        let allowedCharacterSet = (CharacterSet(charactersIn: "@#$*^&+= ").inverted)
+        
+        let escapedString = self.addingPercentEncoding(withAllowedCharacters:allowedCharacterSet)
+        
+        return escapedString ?? self
+    }
+    
+    func encodeString() -> String
+    {
+        var str = self
+        str = str.replacingOccurrences(of: " ", with: "%20")
+        str = str.replacingOccurrences(of: "\\r", with: "")
+        str = str.replacingOccurrences(of: "\\t", with: "")
+        str = str.replacingOccurrences(of: "\\n\\n", with: "%20")
+        str = str.replacingOccurrences(of: "\\n", with: "%20")
+        str = str.replacingOccurrences(of: "\\|", with: "%7C")
+        str = str.replacingOccurrences(of: "\\+", with: "%2B")
+        str = str.replacingOccurrences(of: "\\#", with: "%23")
+        
+        return str
+    }
+    
+    
+    func hexStringToUIColor () -> UIColor {
+        let hex = self
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}
+extension String {
+
+    var isAlphanumeric: Bool {
+        return !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
+    }
+    
+    var isNumeric : Bool {
+        return NumberFormatter().number(from: self) != nil
+    }
+    
+    var showCommaPrice : String {
+        if self != "" {
+            let priceStr = String(format: "%.2f", Double(self)!)
+            return priceStr.replacingOccurrences(of: ".", with: ",")
+        } else {
+            return ""
+        }
+    }
+    
+    var isNumericOfPrice: Bool {
+        guard self.count > 0 else { return false }
+        let nums: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ",", "."]
+        return Set(self).isSubset(of: nums)
+    }
+    
+    func strikeThrough() -> NSAttributedString {
+        let attributeString = NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,value: 1,range: NSRange(location: 0, length: attributeString.length))
+        return attributeString
+    }
+    
+    func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
+    }
+    
+    func size(OfFont font: UIFont) -> CGSize {
+        return (self as NSString).size(withAttributes: [NSAttributedString.Key.font: font])
+    }
+    
+    var isValidName: Bool {
+        let RegEx = "^[a-zA-Z ]*$"
+        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
+        return Test.evaluate(with: self)
+    }
+}

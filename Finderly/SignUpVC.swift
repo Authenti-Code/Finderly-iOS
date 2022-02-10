@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SignUpVC: UIViewController {
     //MARK:--> IBOutlets
@@ -62,7 +63,10 @@ class SignUpVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnSignUpAction(_ sender: Any){
-        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "OtpVC", isAnimate: true, currentViewController: self)
+        signupApi {
+            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "OtpVC", isAnimate: true, currentViewController: self)
+        }
+        
     }
     @IBAction func btnShowHidePswrdAction(_ sender: Any) {
         if securedPswrd == true{
@@ -128,4 +132,32 @@ extension SignUpVC: UITextFieldDelegate{
         }
     }
 }
-
+extension SignUpVC{
+    func signupApi(completion:@escaping() -> Void){
+        SVProgressHUD.show()
+        let signupDetail = "\(Apis.KServerUrl)\(Apis.kRegister)"
+        let kUrl = signupDetail.encodedURLString()
+        let param = ["user_name": otxtfldUsrName.text ?? "","country_code": "789798","mobile_number": otxtfldPhone.text ?? "","email": otxtfldMail.text ?? "","password": otxtfldPswrd.text ?? "","c_password": otxtfldCnfrmPswrd.text ?? "","device_id": AppInfo.DeviceId,"device_token":"firebasetoken","device_type":"IOS"]
+        WebProxy.shared.postData(kUrl, params: param, showIndicator: true, methodType: .post) {(JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    if let dataDict = JSON["data"] as? NSDictionary{
+                        print("DataDict:",dataDict)
+                        let userDataObj = UserDataModel()
+                        userDataObj.userInfo(dataDict: dataDict)
+                        SVProgressHUD.dismiss()
+                    }
+                    completion()
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(AppAlert.otpVerify)
+                }else{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(AppAlert.emailTaken)
+                }
+            }else{
+                SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+}

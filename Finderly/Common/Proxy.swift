@@ -116,24 +116,24 @@ class Proxy {
     func popNaviagtion(isAnimate:Bool , currentViewController: UIViewController) {
         currentViewController.navigationController?.popViewController(animated: isAnimate)
     }
-    //MARK:- Open Setting Of App
-    //    func openSettingApp() {
-    //        let settingAlert = UIAlertController(title: AppAlerts.titleValue.connectionProblem, message: AppAlerts.titleValue.checkInternet, preferredStyle: UIAlertController.Style.alert)
-    //        let okAction = UIAlertAction(title: AppAlerts.titleValue.cancel, style: UIAlertAction.Style.default, handler: nil)
-    //        settingAlert.addAction(okAction)
-    //        let openSetting = UIAlertAction(title: AppAlerts.titleValue.setting, style:UIAlertAction.Style.default, handler:{ (action: UIAlertAction!) in
-    //            let url:URL = URL(string: UIApplication.openSettingsURLString)!
-    //            if #available(iOS 10, *) {
-    //                UIApplication.shared.open(url, options: [:], completionHandler: {
-    //                                            (success) in })
-    //            } else {
-    //                guard UIApplication.shared.openURL(url) else {
-    //                    Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.pleaseReviewyournetworksettings)
-    //                    return
-    //                }
-    //            }
-    //        })
-    //        settingAlert.addAction(openSetting)
-    //        UIApplication.shared.keyWindow?.rootViewController?.present(settingAlert, animated: true, completion: nil)
-    //    }
+   // MARK:- Open Setting Of App
+        func openSettingApp() {
+            let settingAlert = UIAlertController(title: AppAlerts.titleValue.connectionProblem, message: AppAlerts.titleValue.checkInternet, preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: AppAlerts.titleValue.cancel, style: UIAlertAction.Style.default, handler: nil)
+            settingAlert.addAction(okAction)
+            let openSetting = UIAlertAction(title: AppAlerts.titleValue.setting, style:UIAlertAction.Style.default, handler:{ (action: UIAlertAction!) in
+                let url:URL = URL(string: UIApplication.openSettingsURLString)!
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: {
+                                                (success) in })
+                } else {
+                    guard UIApplication.shared.openURL(url) else {
+                        Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.pleaseReviewyournetworksettings)
+                        return
+                    }
+                }
+            })
+            settingAlert.addAction(openSetting)
+            UIApplication.shared.keyWindow?.rootViewController?.present(settingAlert, animated: true, completion: nil)
+        }
 }

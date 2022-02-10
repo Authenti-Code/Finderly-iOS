@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aXI-EM-j6J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aXI-EM-j6J">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -68,7 +67,7 @@ access your account</string>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="abc@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzV-HH-0UE">
                                                                 <rect key="frame" x="20" y="20" width="299" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                             </textField>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TeQ-b1-iGc">
                                                                 <rect key="frame" x="324" y="17.5" width="25" height="25"/>
@@ -922,7 +921,7 @@ UGxlYXNlIGNyZWF0ZSBhbiBhY2NvdW50IGZvciALY29udGludWUgdXNpbmcgYXBwLg
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYs-Ie-33y">
                                                                 <rect key="frame" x="20" y="20" width="299" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zw9-kk-qkj">
                                                                 <rect key="frame" x="324" y="17.5" width="25" height="25"/>
@@ -948,7 +947,7 @@ UGxlYXNlIGNyZWF0ZSBhbiBhY2NvdW50IGZvciALY29udGludWUgdXNpbmcgYXBwLg
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="abc@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mpH-dQ-YHb">
                                                                 <rect key="frame" x="20" y="20" width="299" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                             </textField>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Evg-lW-5ym">
                                                                 <rect key="frame" x="324" y="17.5" width="25" height="25"/>
@@ -2120,7 +2119,7 @@ dummy text.</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationTVCell" rowHeight="86" id="AoJ-Y4-4xK" customClass="NotificationTVCell" customModule="Finderly" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="365" height="86"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="365" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AoJ-Y4-4xK" id="cUM-tI-G6y">
                                             <rect key="frame" x="0.0" y="0.0" width="365" height="86"/>
@@ -2311,7 +2310,7 @@ dummy text.</string>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeTVCell" rowHeight="306" id="gAD-ds-EBu" customClass="HomeTVCell" customModule="Finderly" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="306"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="306"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gAD-ds-EBu" id="nVL-f8-GtT">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="306"/>
@@ -2706,7 +2705,7 @@ text of the.</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeTVCell" rowHeight="306" id="adi-w1-arX" customClass="HomeTVCell" customModule="Finderly" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="306"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="306"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="adi-w1-arX" id="qGw-S2-sEO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="306"/>
@@ -3116,7 +3115,7 @@ text of the.</string>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileTVCell" rowHeight="66" id="tCh-AJ-351" customClass="ProfileTVCell" customModule="Finderly" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="44.5" width="325" height="66"/>
+                                                                <rect key="frame" x="0.0" y="24.5" width="325" height="66"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tCh-AJ-351" id="t8g-q5-uig">
                                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="66"/>
@@ -3806,7 +3805,7 @@ VG9kYXkncyALcmVjb21tZW5kZWQgA
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecommendedTVCell" rowHeight="265" id="lco-Lg-9mZ" customClass="RecommendedTVCell" customModule="Finderly" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="265"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="265"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lco-Lg-9mZ" id="E41-yu-fPw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>

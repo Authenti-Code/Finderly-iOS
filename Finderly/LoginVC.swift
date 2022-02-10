@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class LoginVC: UIViewController {
     //MARK:--> IBOutlets
@@ -19,26 +20,33 @@ class LoginVC: UIViewController {
     @IBOutlet weak var oGoogleVw: UIView!
     @IBOutlet weak var oAppleVw: UIView!
     var securedPswrd = true
+    //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadViewData()
     }
     //MARK:-> Load View
     func loadViewData(){
-        //view shadow
+        //MARK:-> View Shadow
         self.oMailVw.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oPasswordVw.applyShadowWithCornerRadius(color:appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oAppleVw.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oGoogleVw.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
-        //set default image
+        //MARK:-> Set Default Image
         oimgVwPswrd.image = Images.hidePswrd
         oimgVwMail.image = Images.imgEmpty
         otxtfldPswrd.isSecureTextEntry = true
-        
         otxtfldMail.delegate = self
     }
     //MARK:--> Button Actions
     @IBAction func btnLoginAction(_ sender: Any) {
+        if otxtfldMail.text?.isEmpty == true{
+            Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.email)
+        } else if otxtfldPswrd.text?.isEmpty == true{
+            Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.password)
+        } else{
+            loginApi()
+        }
         
     }
     @IBAction func btnGoogleInAction(_ sender: Any){
@@ -49,7 +57,6 @@ class LoginVC: UIViewController {
         let nav = storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordVCID")
         self.navigationController?.pushViewController(nav!, animated: true)
     }
-    //MARK--> Button Actions
     @IBAction func btnSignUpAction(_ sender: Any){
         let nav = storyboard?.instantiateViewController(withIdentifier: "SignUpVC")
         self.navigationController?.pushViewController(nav!, animated: true)
@@ -66,7 +73,7 @@ class LoginVC: UIViewController {
         }
     }
 }
-//UITextFiled Delegate
+//MARK:-> UITextFiled Delegate
 extension LoginVC: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == otxtfldMail{
@@ -79,4 +86,32 @@ extension LoginVC: UITextFieldDelegate{
         }
     }
 }
-
+extension LoginVC{
+    func loginApi(){
+        let loginDetal = "\(Apis.KServerUrl)\(Apis.kLogin)"
+        let kURL = loginDetal.encodedURLString()
+        let param = [
+            "email": otxtfldMail.text ?? "",
+            "password": otxtfldPswrd.text ?? "",
+            "device_id": AppInfo.DeviceId,
+            "device_token": "firebaseToken",
+            "device_type":  "IOS"
+        ] as [String:String]
+        SVProgressHUD.show()
+        WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) {
+            [self] (JSON, isSuccess, message) in
+            if isSuccess {
+                SVProgressHUD.dismiss()
+                if JSON["success"] as? String == "true"{
+                    if let dataDict = JSON["data"] as? NSDictionary {
+                        print("DataDict:",dataDict)
+                        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CustomTabBarID", isAnimate: true, currentViewController: self)
+                    }
+                }else{
+                    
+                    Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.loginFailed)
+                }
+            }
+        }
+    }
+}

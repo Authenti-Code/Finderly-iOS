@@ -23,4 +23,6 @@ enum AppAlert{
     static let phone = "Please enter valid phone number"
     static let passwrd = "Please enter valid password"
     static let confirmPswrd = "Please enter valid password"
+    static let otpVerify = "Enter OTP for verify."
+    static let emailTaken = "Email has taken already"
 }

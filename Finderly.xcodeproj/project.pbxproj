@@ -44,6 +44,10 @@
 		5EBF7028278317BD0083DFBC /* ProfileTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBF7027278317BD0083DFBC /* ProfileTVCell.swift */; };
 		5EBF702A278329FC0083DFBC /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBF7029278329FC0083DFBC /* EditProfileVC.swift */; };
 		5EBF702C278334180083DFBC /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBF702B278334170083DFBC /* RestaurantVC.swift */; };
+		5EDB3F8C27B4DBFE007914D8 /* ApiClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB3F8B27B4DBFE007914D8 /* ApiClass.swift */; };
+		5EDB3F8E27B4DE24007914D8 /* WebProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB3F8D27B4DE24007914D8 /* WebProxy.swift */; };
+		5EDB3F9027B4DE62007914D8 /* AppAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB3F8F27B4DE62007914D8 /* AppAlert.swift */; };
+		5EDB3F9327B4E8A5007914D8 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB3F9227B4E8A5007914D8 /* UserDataModel.swift */; };
 		5EF7EA0D277D79F900200C35 /* HomeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */; };
 		5EF7EA10277D7B4300200C35 /* HomeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */; };
 		5EF7EA12277DA3E300200C35 /* CategoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */; };
@@ -90,6 +94,10 @@
 		5EBF7027278317BD0083DFBC /* ProfileTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTVCell.swift; sourceTree = "<group>"; };
 		5EBF7029278329FC0083DFBC /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		5EBF702B278334170083DFBC /* RestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVC.swift; sourceTree = "<group>"; };
+		5EDB3F8B27B4DBFE007914D8 /* ApiClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClass.swift; sourceTree = "<group>"; };
+		5EDB3F8D27B4DE24007914D8 /* WebProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebProxy.swift; sourceTree = "<group>"; };
+		5EDB3F8F27B4DE62007914D8 /* AppAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlert.swift; sourceTree = "<group>"; };
+		5EDB3F9227B4E8A5007914D8 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCVCell.swift; sourceTree = "<group>"; };
 		5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVCell.swift; sourceTree = "<group>"; };
 		5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVCell.swift; sourceTree = "<group>"; };
@@ -169,6 +177,7 @@
 				5E9BD8BB277C20130043DF52 /* LaunchScreen.storyboard */,
 				5E9BD8B9277C20130043DF52 /* Assets.xcassets */,
 				5E9BD8C7277C20680043DF52 /* LoginVC.swift */,
+				5EDB3F9127B4E895007914D8 /* Model Class */,
 				5EBF701F2782BFE20083DFBC /* ForgotPasswordVC.swift */,
 				5EBF70212782C7B10083DFBC /* VerificationOtpVC.swift */,
 				5EBF70232782CC970083DFBC /* CreateNewPasswordVC.swift */,
@@ -197,8 +206,19 @@
 				5E9BD8CF277C20A20043DF52 /* Enum.swift */,
 				5E9BD8CE277C20A20043DF52 /* Extensions.swift */,
 				5E9BD8D0277C20A20043DF52 /* Proxy.swift */,
+				5EDB3F8B27B4DBFE007914D8 /* ApiClass.swift */,
+				5EDB3F8D27B4DE24007914D8 /* WebProxy.swift */,
+				5EDB3F8F27B4DE62007914D8 /* AppAlert.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		5EDB3F9127B4E895007914D8 /* Model Class */ = {
+			isa = PBXGroup;
+			children = (
+				5EDB3F9227B4E8A5007914D8 /* UserDataModel.swift */,
+			);
+			path = "Model Class";
 			sourceTree = "<group>";
 		};
 		5EF7EA0B277D79D400200C35 /* CollectionView Cell */ = {
@@ -351,9 +371,11 @@
 				5E5B3490278451360005A4CA /* BusinessDetailVC.swift in Sources */,
 				5E9BD8CA277C20680043DF52 /* OtpVC.swift in Sources */,
 				5E7FEF7F277C81B30038189F /* NotificationVC.swift in Sources */,
+				5EDB3F9027B4DE62007914D8 /* AppAlert.swift in Sources */,
 				5EF7EA0D277D79F900200C35 /* HomeCVCell.swift in Sources */,
 				5E5B348E2784228E0005A4CA /* RecommendedTVCell.swift in Sources */,
 				5E9BD8D2277C20A20043DF52 /* Extensions.swift in Sources */,
+				5EDB3F8C27B4DBFE007914D8 /* ApiClass.swift in Sources */,
 				5E7FEF7B277C81890038189F /* CategoriesVC.swift in Sources */,
 				5E7FEF81277C81BF0038189F /* ProfileVC.swift in Sources */,
 				5EF7EA12277DA3E300200C35 /* CategoryCVCell.swift in Sources */,
@@ -370,12 +392,14 @@
 				5EBF70222782C7B10083DFBC /* VerificationOtpVC.swift in Sources */,
 				5EBF70242782CC980083DFBC /* CreateNewPasswordVC.swift in Sources */,
 				5EBF702C278334180083DFBC /* RestaurantVC.swift in Sources */,
+				5EDB3F9327B4E8A5007914D8 /* UserDataModel.swift in Sources */,
 				5EBF7028278317BD0083DFBC /* ProfileTVCell.swift in Sources */,
 				5E9BD8D3277C20A20043DF52 /* Enum.swift in Sources */,
 				5EBF70262782E3A40083DFBC /* NotificationTVCell.swift in Sources */,
 				5EBF702A278329FC0083DFBC /* EditProfileVC.swift in Sources */,
 				5E8787262786B21700C2385F /* BusinessDetailCVCell.swift in Sources */,
 				5E87872A2786D08100C2385F /* RatingBusinessVC.swift in Sources */,
+				5EDB3F8E27B4DE24007914D8 /* WebProxy.swift in Sources */,
 				5E7FEF7D277C81A30038189F /* HookedVC.swift in Sources */,
 				5E7FEF79277C817C0038189F /* HomeVC.swift in Sources */,
 				5E9BD8D1277C20A20043DF52 /* constants.swift in Sources */,

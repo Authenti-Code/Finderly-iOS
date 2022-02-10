@@ -9,5 +9,11 @@ target 'Finderly' do
 pod 'IQKeyboardManagerSwift'
 pod 'Alamofire'
 pod 'SOTabBar'
+pod 'SDWebImage'
+pod 'Firebase/Messaging'
+pod 'Firebase'
+pod 'BRYXBanner'
+pod 'SVProgressHUD'
+pod 'Toaster'
 
 end
