@@ -23,6 +23,9 @@ enum Apis{
     static let KServerUrl = "https://finderly.authenticode.biz/api/"
     static let kLogin = "login"
     static let kRegister = "register"
+    static let verifyOtp = "signupStep2Verification"
+    static let kForgortPasswordOtp = "xyz"
+    static let kProfileUpload = "updateProfile"
 }
 //MARK:- App Header
 func headers() ->  [String:String] {

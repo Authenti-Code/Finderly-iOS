@@ -10,6 +10,7 @@ import IQKeyboardManagerSwift
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+let Home = UserDefaults.standard.bool(forKey: "logged_in")
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,22 +22,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // FalSignlback on earlier versions
         }
+        if Home == true{
+            RootControllerProxy.shared.rootWithDrawer("CustomTabBarID")
+        }else{
+            RootControllerProxy.shared.rootWithDrawer("LoginVCID")
+        }
         IQKeyboardManager.shared.resignFirstResponder()
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarTintColor = appcolor.backgroundShadow
         //set root
-        rootWithoutDrawer()
         return true
     }
-    //root to controller
-    func rootWithoutDrawer() {
-        let blankController = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
-        var homeNavController:UINavigationController = UINavigationController()
-        homeNavController = UINavigationController.init(rootViewController: blankController)
-        homeNavController.isNavigationBarHidden = true
-        UIApplication.shared.windows.first?.rootViewController = homeNavController
-        UIApplication.shared.windows.first?.makeKeyAndVisible()
-    }
+//    //root to controller
+//    func rootWithoutDrawer() {
+//        let blankController = storyboardMain.instantiateViewController(withIdentifier: "LoginVCID")
+//        var homeNavController:UINavigationController = UINavigationController()
+//        homeNavController = UINavigationController.init(rootViewController: blankController)
+//        homeNavController.isNavigationBarHidden = true
+//        UIApplication.shared.windows.first?.rootViewController = homeNavController
+//        UIApplication.shared.windows.first?.makeKeyAndVisible()
+//    }
 }
 

@@ -26,7 +26,7 @@
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginVC" customModule="Finderly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVCID" id="BYZ-38-t0r" customClass="LoginVC" customModule="Finderly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1442,6 +1442,7 @@ codes sent to you</string>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnContinueAction:" destination="wMo-pE-vzX" eventType="touchUpInside" id="gLd-Ku-SNF"/>
+                                    <action selector="cameraBtnAcn:" destination="1h2-lF-tAp" eventType="touchUpInside" id="xsc-iQ-Onp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeD-RT-hcr">
@@ -1499,6 +1500,8 @@ codes sent to you</string>
                     </view>
                     <size key="freeformSize" width="375" height="750"/>
                     <connections>
+                        <outlet property="oGalleryBtn" destination="VeD-RT-hcr" id="1NQ-lo-kOi"/>
+                        <outlet property="oTakePhotoBtn" destination="eBT-tn-0gF" id="nlL-dh-7kv"/>
                         <outlet property="ousrImgVw" destination="REL-l4-KBu" id="0uX-e0-HxI"/>
                     </connections>
                 </viewController>

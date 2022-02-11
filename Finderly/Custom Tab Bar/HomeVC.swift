@@ -19,6 +19,7 @@ class HomeVC: UIViewController {
         oBannerCollectionView.dataSource = self
         oListingTableView.delegate = self
         oListingTableView.dataSource = self
+        UserDefaults.standard.set(true, forKey: "logged_in")
     }
 
 }

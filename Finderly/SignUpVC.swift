@@ -144,6 +144,7 @@ extension SignUpVC{
                     if let dataDict = JSON["data"] as? NSDictionary{
                         print("DataDict:",dataDict)
                         let userDataObj = UserDataModel()
+                        userDataObj.fromSignUp = true
                         userDataObj.userInfo(dataDict: dataDict)
                         SVProgressHUD.dismiss()
                     }

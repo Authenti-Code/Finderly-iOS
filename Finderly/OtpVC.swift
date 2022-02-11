@@ -19,6 +19,7 @@ class OtpVC: UIViewController {
     @IBOutlet weak var otpVw4: UIView!
     
     let userModelObj = UserDataModel()
+    var otpVerifyVMObj = OtpVerifyVM()
     var sentOtp = String()
     
     override func viewDidLoad() {
@@ -33,7 +34,7 @@ class OtpVC: UIViewController {
         otpVw3.backgroundColor = appcolor.backgroundShadow
         otpVw4.backgroundColor = appcolor.backgroundShadow
         
-        sentOtp = "\(userModelObj.otp!)"
+        sentOtp = "\(userModelObj.otp ?? 0)"
         print("Sent Otp:->",sentOtp)
  
         //view shadow
@@ -47,7 +48,20 @@ class OtpVC: UIViewController {
         Proxy.shared.popNaviagtion(isAnimate: true, currentViewController: self)
     }
     @IBAction func btnContinueAction(_ sender: Any){
-        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "UploadProfileVC", isAnimate: true, currentViewController: self)
+        if otpbox1.text?.trimmed().isEmpty == false && otpbox2.text?.trimmed().isEmpty == false && otpbox3.text?.trimmed().isEmpty == false && otpbox4.text?.trimmed().isEmpty == false{
+            otpVerifyVMObj.hitSendOtpVerifyMethod(otp: "\(otpbox1.text ?? "")\(otpbox2.text ?? "")\(otpbox3.text ?? "")\(otpbox4.text ?? "")"){
+                if self.otpVerifyVMObj.controllerForgotSelected == true{
+//                    let nav = storyboardMain.instantiateViewController(withIdentifier: "ResetPasswordVC") as! ResetPasswordVC
+//                    nav.mailStr = self.otpVerifyVMObj.mailString
+//                    self.navigationController?.pushViewController(nav, animated: true)
+                } else{
+                    Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "UploadProfileVC", isAnimate: true, currentViewController: self)
+                }
+            }
+           
+        }else{
+            Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.validOtp)
+        }
     }
 }
 //TextField Delegate
@@ -90,8 +104,4 @@ extension OtpVC: UITextFieldDelegate{
         return true
     }
 }
-extension OtpVC{
-    func otpverifyApi(){
-        
-    }
-}
+

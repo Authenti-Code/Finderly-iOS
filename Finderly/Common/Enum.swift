@@ -57,3 +57,11 @@ enum constantsVaribales{
     static let businessDetailLablAry = ["Braids","Weave","Natural Haircoloring"]
     static let specializationLabelAry = ["Braids","Weave","Natural Haircoloring","Lace Fronts","Weddings","Cutting","Wigs","Crochet","Locs","Extensions"]
 }
+enum constants{
+    static let gallery = "Choose For Gallery"
+    static let camera = "Take Photo"
+    static let gallerEdit = "Edit"
+    static let camContinue = "Continue"
+    static let userLibrary = "Choose From Library"
+    static let userCamera = "Take A Photo"
+}

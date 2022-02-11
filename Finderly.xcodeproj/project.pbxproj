@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2122B5AFD0195B5AF2231D70 /* Pods_Finderly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F919AA71C9C294DB767EC57A /* Pods_Finderly.framework */; };
+		5E2F6A0D27B63E6000207695 /* OtpVerifyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F6A0C27B63E6000207695 /* OtpVerifyVM.swift */; };
+		5E2F6A0F27B67C7900207695 /* RootControllerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F6A0E27B67C7900207695 /* RootControllerProxy.swift */; };
 		5E5B348C2784205C0005A4CA /* TodayRecommededVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */; };
 		5E5B348E2784228E0005A4CA /* RecommendedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B348D2784228E0005A4CA /* RecommendedTVCell.swift */; };
 		5E5B3490278451360005A4CA /* BusinessDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B348F278451360005A4CA /* BusinessDetailVC.swift */; };
@@ -56,6 +58,8 @@
 /* Begin PBXFileReference section */
 		01ECDAEB390AC05F15FCE957 /* Pods-Finderly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finderly.debug.xcconfig"; path = "Target Support Files/Pods-Finderly/Pods-Finderly.debug.xcconfig"; sourceTree = "<group>"; };
 		528F2FFBE10B5F8DD9983881 /* Pods-Finderly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finderly.release.xcconfig"; path = "Target Support Files/Pods-Finderly/Pods-Finderly.release.xcconfig"; sourceTree = "<group>"; };
+		5E2F6A0C27B63E6000207695 /* OtpVerifyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpVerifyVM.swift; sourceTree = "<group>"; };
+		5E2F6A0E27B67C7900207695 /* RootControllerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootControllerProxy.swift; sourceTree = "<group>"; };
 		5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRecommededVC.swift; sourceTree = "<group>"; };
 		5E5B348D2784228E0005A4CA /* RecommendedTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTVCell.swift; sourceTree = "<group>"; };
 		5E5B348F278451360005A4CA /* BusinessDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailVC.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				5E9BD8D0277C20A20043DF52 /* Proxy.swift */,
 				5EDB3F8B27B4DBFE007914D8 /* ApiClass.swift */,
 				5EDB3F8D27B4DE24007914D8 /* WebProxy.swift */,
+				5E2F6A0E27B67C7900207695 /* RootControllerProxy.swift */,
 				5EDB3F8F27B4DE62007914D8 /* AppAlert.swift */,
 			);
 			path = Common;
@@ -217,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				5EDB3F9227B4E8A5007914D8 /* UserDataModel.swift */,
+				5E2F6A0C27B63E6000207695 /* OtpVerifyVM.swift */,
 			);
 			path = "Model Class";
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				5E9BD8C9277C20680043DF52 /* SignUpVC.swift in Sources */,
 				5E7FEF83277C834C0038189F /* CustomTabBar.swift in Sources */,
 				5E8787282786C6A100C2385F /* SpecializationVC.swift in Sources */,
+				5E2F6A0F27B67C7900207695 /* RootControllerProxy.swift in Sources */,
 				5E9BD8D4277C20A20043DF52 /* Proxy.swift in Sources */,
 				5E5B348C2784205C0005A4CA /* TodayRecommededVC.swift in Sources */,
 				5E9BD8C8277C20680043DF52 /* UploadProfileVC.swift in Sources */,
@@ -393,6 +400,7 @@
 				5EBF70242782CC980083DFBC /* CreateNewPasswordVC.swift in Sources */,
 				5EBF702C278334180083DFBC /* RestaurantVC.swift in Sources */,
 				5EDB3F9327B4E8A5007914D8 /* UserDataModel.swift in Sources */,
+				5E2F6A0D27B63E6000207695 /* OtpVerifyVM.swift in Sources */,
 				5EBF7028278317BD0083DFBC /* ProfileTVCell.swift in Sources */,
 				5E9BD8D3277C20A20043DF52 /* Enum.swift in Sources */,
 				5EBF70262782E3A40083DFBC /* NotificationTVCell.swift in Sources */,

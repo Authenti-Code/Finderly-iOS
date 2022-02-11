@@ -105,10 +105,16 @@ extension LoginVC{
                 if JSON["success"] as? String == "true"{
                     if let dataDict = JSON["data"] as? NSDictionary {
                         print("DataDict:",dataDict)
-                        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CustomTabBarID", isAnimate: true, currentViewController: self)
+                        let signUpSteps = (dataDict["signup_step"] as? String)!
+                        if signUpSteps == "1"{
+                            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "OtpVC", isAnimate: true, currentViewController: self)
+                        }else if signUpSteps == "2"{
+                            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "UploadProfileVC", isAnimate: true, currentViewController: self)
+                        }else if signUpSteps == "3"{
+                            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CustomTabBarID", isAnimate: true, currentViewController: self)
+                        }
                     }
                 }else{
-                    
                     Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.loginFailed)
                 }
             }
