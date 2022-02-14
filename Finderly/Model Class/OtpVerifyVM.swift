@@ -17,19 +17,13 @@ class OtpVerifyVM {
         SVProgressHUD.show()
         var param = [String: String]()
         var verifyOtpUrl = ""
-        if controllerForgotSelected == true {
-            verifyOtpUrl = "\(Apis.KServerUrl)\(Apis.kForgortPasswordOtp)"
-            param = [
-                "otp":  "\(otp)",
-                "email":  "\(mailString ?? "")"
-            ]
-        } else{
+        
             verifyOtpUrl = "\(Apis.KServerUrl)\(Apis.verifyOtp)"
             param = [
                 "otp":  "\(otp)"
             ]
             print("Param:\(param)")
-        }
+        
         let kURL = verifyOtpUrl.encodedURLString()
         print("kURL:->\(kURL)")
         WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in

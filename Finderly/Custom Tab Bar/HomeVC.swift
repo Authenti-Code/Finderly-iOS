@@ -21,7 +21,10 @@ class HomeVC: UIViewController {
         oListingTableView.dataSource = self
         UserDefaults.standard.set(true, forKey: "logged_in")
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 }
 //MARK:-> Extension for collection view delagate and datasource method
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{

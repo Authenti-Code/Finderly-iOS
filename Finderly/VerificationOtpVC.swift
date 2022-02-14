@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class VerificationOtpVC: UIViewController {
 
@@ -18,6 +19,8 @@ class VerificationOtpVC: UIViewController {
     @IBOutlet weak var otpVw2: UIView!
     @IBOutlet weak var otpVw3: UIView!
     @IBOutlet weak var otpVw4: UIView!
+    //MARK:-> VAriables
+    var email = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         otpbox1?.delegate = self
@@ -30,7 +33,7 @@ class VerificationOtpVC: UIViewController {
         otpVw3.backgroundColor = appcolor.backgroundShadow
         otpVw4.backgroundColor = appcolor.backgroundShadow
  
-        //view shadow
+        //MARK:-> view shadow
         self.otpVw1.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.otpVw2.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.otpVw3.applyShadowWithCornerRadius(color:appcolor.backgroundShadow  , opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
@@ -41,7 +44,13 @@ class VerificationOtpVC: UIViewController {
         self.pop()
     }
     @IBAction func verifyBtnAcn(_ sender: Any){
-        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CreateNewPasswordVCID", isAnimate: true, currentViewController: self)
+        if otpbox1.text?.trimmed().isEmpty == false && otpbox2.text?.trimmed().isEmpty == false && otpbox3.text?.trimmed().isEmpty == false && otpbox4.text?.trimmed().isEmpty == false{
+            verifyForgotOtp(otp: "\(otpbox1.text ?? "")\(otpbox2.text ?? "")\(otpbox3.text ?? "")\(otpbox4.text ?? "")"){
+                Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CreateNewPasswordVCID", isAnimate: true, currentViewController: self)
+            }
+        }else{
+            Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.validOtp)
+        }
     }
 }
 //TextField Delegate
@@ -82,5 +91,33 @@ extension VerificationOtpVC: UITextFieldDelegate{
             return false
         }
         return true
+    }
+}
+extension VerificationOtpVC{
+    func verifyForgotOtp(otp: String, completion:@escaping() -> Void){
+        SVProgressHUD.show()
+        var param = [String: String]()
+        var verifyOtpUrl = ""
+            verifyOtpUrl = "\(Apis.KServerUrl)\(Apis.kForgotVerifyOtp)"
+            param = ["otp":"\(otp)",
+                     "email":"\(email)"]
+            print("Param:\(param)")
+        let kURL = verifyOtpUrl.encodedURLString()
+        print("kURL:->\(kURL)")
+        WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    SVProgressHUD.dismiss()
+                    completion()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
     }
 }

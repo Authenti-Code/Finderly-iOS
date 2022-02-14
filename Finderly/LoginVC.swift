@@ -25,6 +25,10 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         loadViewData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     //MARK:-> Load View
     func loadViewData(){
         //MARK:-> View Shadow

@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set root
         return true
     }
-//    //root to controller
+    //MARK:-> Root to controller
 //    func rootWithoutDrawer() {
 //        let blankController = storyboardMain.instantiateViewController(withIdentifier: "LoginVCID")
 //        var homeNavController:UINavigationController = UINavigationController()
