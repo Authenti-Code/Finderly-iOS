@@ -25,8 +25,10 @@ enum Apis{
     static let kRegister = "register"
     static let verifyOtp = "signupStep2Verification"
     static let kForgortPassword = "forgotPassword"
-    static let kProfileUpload = "updateProfile"
+    static let kProfileUpload = "signupStep3Verification"
     static let kForgotVerifyOtp = "forgotPasswordOtpVerification"
+    static let kCreateNewPassword = "resetPassword"
+    static let kResendOtp = "resendOTP"
 }
 //MARK:- App Header
 func headers() ->  [String:String] {

@@ -43,10 +43,15 @@ class VerificationOtpVC: UIViewController {
     @IBAction func btnBackAction(_ sender: Any){
         self.pop()
     }
+    @IBAction func resendOtpBtnAcn(_ sender: Any) {
+        resendForgotOtpApi()
+    }
     @IBAction func verifyBtnAcn(_ sender: Any){
         if otpbox1.text?.trimmed().isEmpty == false && otpbox2.text?.trimmed().isEmpty == false && otpbox3.text?.trimmed().isEmpty == false && otpbox4.text?.trimmed().isEmpty == false{
             verifyForgotOtp(otp: "\(otpbox1.text ?? "")\(otpbox2.text ?? "")\(otpbox3.text ?? "")\(otpbox4.text ?? "")"){
-                Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CreateNewPasswordVCID", isAnimate: true, currentViewController: self)
+                let vc = storyboardMain.instantiateViewController(withIdentifier: "CreateNewPasswordVCID") as! CreateNewPasswordVC
+                vc.email = self.email
+                self.navigationController?.pushViewController(vc,animated: true)
             }
         }else{
             Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.validOtp)
@@ -109,6 +114,32 @@ extension VerificationOtpVC{
                 if JSON["success"] as? String == "true"{
                     SVProgressHUD.dismiss()
                     completion()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+}
+extension VerificationOtpVC{
+    func resendForgotOtpApi(){
+        SVProgressHUD.show()
+        var param = [String: String]()
+        var verifyOtpUrl = ""
+            verifyOtpUrl = "\(Apis.KServerUrl)\(Apis.kForgortPassword)"
+            param = ["email":"\(email)"]
+            print("Param:\(param)")
+        let kURL = verifyOtpUrl.encodedURLString()
+        print("kURL:->\(kURL)")
+        WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     SVProgressHUD.dismiss()

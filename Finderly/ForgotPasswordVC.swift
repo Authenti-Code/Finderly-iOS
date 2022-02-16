@@ -16,7 +16,6 @@ class ForgotPasswordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadItem()
-        
     }
     func loadItem(){
         self.oMailView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
@@ -33,7 +32,6 @@ class ForgotPasswordVC: UIViewController {
                 return
             }
     }
-
 }
     func sendOtp(){
         let vc = storyboardMain.instantiateViewController(withIdentifier: "VerificationOtpVCID") as! VerificationOtpVC

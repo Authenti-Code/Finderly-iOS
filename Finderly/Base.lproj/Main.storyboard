@@ -592,7 +592,7 @@ in your email address.</string>
                                     <color key="titleColor" red="0.27058823529999998" green="0.79215686269999996" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnSignUpAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cfe-bw-9qg"/>
+                                    <action selector="resendOtpBtnAcn:" destination="J07-ks-1qu" eventType="touchUpInside" id="fWX-9Y-xcy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGH-UI-dIK">
@@ -1281,7 +1281,7 @@ codes sent to you</string>
                                                     <color key="titleColor" red="0.27058823529999998" green="0.79215686269999996" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="btnSignUpAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a9R-zr-djV"/>
+                                                    <action selector="resendOtpBtnAcn:" destination="wMo-pE-vzX" eventType="touchUpInside" id="zSr-2w-hoj"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfG-lu-fQB">

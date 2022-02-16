@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class CreateNewPasswordVC: UIViewController {
 
@@ -18,6 +19,7 @@ class CreateNewPasswordVC: UIViewController {
     @IBOutlet weak var oConfirmEyeImgVw: UIImageView!
     @IBOutlet weak var oConfirmEyeBtn: UIButton!
     var securedPswrd = true
+    var email: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadItem()
@@ -57,10 +59,12 @@ class CreateNewPasswordVC: UIViewController {
         self.pop()
     }
     @IBAction func updatePassBtnAcn(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileSuccessPopUpVCID") as! ProfileSuccessPopUpVC
-        vc.delegateObj = self
-        vc.comingFromProfile = false
-        self.present(vc, animated: true, completion: nil)
+        createNewPasswordApi {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileSuccessPopUpVCID") as! ProfileSuccessPopUpVC
+            vc.delegateObj = self
+            vc.comingFromProfile = false
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 }
 extension CreateNewPasswordVC: profilePopUp{
@@ -70,6 +74,31 @@ extension CreateNewPasswordVC: profilePopUp{
     func removePopUp2(text: String) {
         self.navigationController?.backToViewController(viewController: LoginVC.self)
     }
-    
 }
-
+extension CreateNewPasswordVC{
+    func createNewPasswordApi(completion:@escaping() -> Void){
+        SVProgressHUD.show()
+        var param = [String: String]()
+        var updatePass = ""
+        updatePass = "\(Apis.KServerUrl)\(Apis.kCreateNewPassword)"
+        param = ["email":"\(email ?? "")","password": oPasswordTF.text ?? "","c_password": oConfirmTF.text ?? ""]
+            print("Param:\(param)")
+        let kURL = updatePass.encodedURLString()
+        print("kURL:->\(kURL)")
+        WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    SVProgressHUD.dismiss()
+                    completion()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+}

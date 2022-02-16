@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class OtpVC: UIViewController {
     //Add all outlet in your code.
@@ -46,6 +47,9 @@ class OtpVC: UIViewController {
     //MARK:--> Button Actions
     @IBAction func btnBackAction(_ sender: Any){
         Proxy.shared.popNaviagtion(isAnimate: true, currentViewController: self)
+    }
+    @IBAction func resendOtpBtnAcn(_ sender: Any) {
+        resendOtpApi()
     }
     @IBAction func btnContinueAction(_ sender: Any){
         if otpbox1.text?.trimmed().isEmpty == false && otpbox2.text?.trimmed().isEmpty == false && otpbox3.text?.trimmed().isEmpty == false && otpbox4.text?.trimmed().isEmpty == false{
@@ -104,4 +108,29 @@ extension OtpVC: UITextFieldDelegate{
         return true
     }
 }
-
+extension OtpVC{
+    func resendOtpApi(){
+        SVProgressHUD.show()
+        var param = [String: String]()
+        var updatePass = ""
+        updatePass = "\(Apis.KServerUrl)\(Apis.kResendOtp)"
+        param = ["":""]
+            print("Param:\(param)")
+        let kURL = updatePass.encodedURLString()
+        print("kURL:->\(kURL)")
+        WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+}

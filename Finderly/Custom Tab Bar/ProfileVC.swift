@@ -29,8 +29,8 @@ class ProfileVC: UIViewController {
         Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "EditProfileVCID", isAnimate: true, currentViewController: self)
     }
     @IBAction func logoutBtnAcn(_ sender: Any) {
-        UserDefaults.standard.removeObject(forKey: "logged_in")
         self.navigationController?.backToViewController(viewController: LoginVC.self)
+        UserDefaults.standard.set(false, forKey: "logged_in")
     }
 }
 //MARK:-> Extension for table view delegate and protocol method.
