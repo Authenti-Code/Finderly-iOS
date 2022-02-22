@@ -20,6 +20,7 @@ class CreateNewPasswordVC: UIViewController {
     @IBOutlet weak var oConfirmEyeBtn: UIButton!
     var securedPswrd = true
     var email: String?
+    var validator:Validators!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadItem()
@@ -30,6 +31,7 @@ class CreateNewPasswordVC: UIViewController {
         oConfirmEyeImgVw.image = Images.hidePswrd
         oPasswordTF.isSecureTextEntry = true
         oConfirmTF.isSecureTextEntry = true
+        self.validator = Validators()
         self.oPasswordView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oConfirmPassView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
     }
@@ -59,11 +61,18 @@ class CreateNewPasswordVC: UIViewController {
         self.pop()
     }
     @IBAction func updatePassBtnAcn(_ sender: Any) {
+        guard  validator.validators(TF1: self.oPasswordTF,fieldName: "password") == false || validator.validators(TF1: self.oConfirmTF,fieldName: "confirm password") == false || validator.validatorConfromPassword(TF1: self.oPasswordTF, TF2: self.oConfirmTF,fieldName: "correct password") == false   else {
+            if self.oPasswordTF.text?.count ?? 0 < 8{
+                NotificationAlert().NotificationAlert(titles: constants.password)
+                return
+            }
         createNewPasswordApi {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileSuccessPopUpVCID") as! ProfileSuccessPopUpVC
             vc.delegateObj = self
             vc.comingFromProfile = false
             self.present(vc, animated: true, completion: nil)
+        }
+            return
         }
     }
 }

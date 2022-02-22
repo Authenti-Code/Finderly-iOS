@@ -49,7 +49,7 @@ enum Images{
     static let uncheck = UIImage(named: "cut")
 }
 enum constantsVaribales{
-    static let homeTVArry = ["Today's recommended","Top 10 business sector","Individual business"]
+    static let homeTVArry = ["Businessess1","Businessess2","Businessess3"]
     static let  catoImageArry = ["Rental","Resturents","Schools","Bars","Salons","Barbars","Shoes Store","GasStation","Automotives","Health"]
     static let catoHeadingArry = ["Rentals","Resturents","Schools","Bars","Salons","Barbers","Shoe Stores","Gas Stations","Automotives","Health Care"]
     static let profileLabelAry = ["Notification","About us","Contact us","Privacy policy"]
@@ -64,4 +64,5 @@ enum constants{
     static let camContinue = "Continue"
     static let userLibrary = "Choose From Library"
     static let userCamera = "Take A Photo"
+    static let password = "Password should be minimum of 8 character!"
 }

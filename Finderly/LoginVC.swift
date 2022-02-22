@@ -38,9 +38,9 @@ class LoginVC: UIViewController {
         self.oGoogleVw.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         //MARK:-> Set Default Image
         oimgVwPswrd.image = Images.hidePswrd
-        oimgVwMail.image = Images.imgEmpty
+        //oimgVwMail.image = Images.imgEmpty
         otxtfldPswrd.isSecureTextEntry = true
-        otxtfldMail.delegate = self
+        //otxtfldMail.delegate = self
     }
     //MARK:--> Button Actions
     @IBAction func btnLoginAction(_ sender: Any) {
@@ -78,18 +78,18 @@ class LoginVC: UIViewController {
     }
 }
 //MARK:-> UITextFiled Delegate
-extension LoginVC: UITextFieldDelegate{
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == otxtfldMail{
-            if !Proxy.shared.isValidEmail(otxtfldMail.text!) && otxtfldMail.text?.isBlank == true{
-                oimgVwMail.image = Images.uncheck
-                Proxy.shared.displayStatusCodeAlert(AppAlert.mail)
-            } else{
-                oimgVwMail.image = Images.check
-            }
-        }
-    }
-}
+//extension LoginVC: UITextFieldDelegate{
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if textField == otxtfldMail{
+//            if !Proxy.shared.isValidEmail(otxtfldMail.text!) && otxtfldMail.text?.isBlank == true{
+//                //oimgVwMail.image = Images.uncheck
+//                Proxy.shared.displayStatusCodeAlert(AppAlert.mail)
+//            } else{
+//                //oimgVwMail.image = Images.check
+//            }
+//        }
+//    }
+//}
 extension LoginVC{
     func loginApi(){
         let loginDetal = "\(Apis.KServerUrl)\(Apis.kLogin)"
@@ -108,6 +108,8 @@ extension LoginVC{
                 SVProgressHUD.dismiss()
                 if JSON["success"] as? String == "true"{
                     if let dataDict = JSON["data"] as? NSDictionary {
+                        let userDataObj = UserDataModel()
+                        userDataObj.userInfo(dataDict: dataDict)
                         print("DataDict:",dataDict)
                         let signUpSteps = (dataDict["signup_step"] as? String)!
                         if signUpSteps == "1"{

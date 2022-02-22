@@ -29,6 +29,9 @@ enum Apis{
     static let kForgotVerifyOtp = "forgotPasswordOtpVerification"
     static let kCreateNewPassword = "resetPassword"
     static let kResendOtp = "resendOTP"
+    static let kHome = "home"
+    static let kCategory = "getCategorie"
+    static let kGetCategoryBusinessLists = "getbusinessCategory"
 }
 //MARK:- App Header
 func headers() ->  [String:String] {

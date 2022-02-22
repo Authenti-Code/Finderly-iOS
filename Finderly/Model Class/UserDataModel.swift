@@ -23,3 +23,49 @@ class UserDataModel {
         }
     }
 }
+class HomeDataBusinessModel {
+    var image,businessName,phoneNumber,location: String?
+    var id,categoryId: Int?
+    func businessData(dataDict: NSDictionary){
+        image = dataDict["business_image"] as? String ?? ""
+        businessName = dataDict["business_name"] as? String ?? ""
+        phoneNumber = dataDict["phone_number"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        id = dataDict["id"] as? Int ?? 0
+        categoryId = dataDict["category_id"] as? Int ?? 0
+    }
+}
+class BannerModel{
+    var bannerImage: String?
+    var id: Int?
+    
+    func bannerData(dataDict: NSDictionary){
+        id = dataDict["id"] as? Int ?? 0
+        bannerImage = dataDict["banner"] as? String ?? ""
+        print("Image:--->",bannerImage as Any)
+    }
+}
+class CategoryModel{
+    var name,imageIcon,status: String?
+    var id: Int?
+    func categoryData(dataDict: NSDictionary){
+        name = dataDict["name"] as? String ?? ""
+        imageIcon = dataDict["icon"] as? String ?? ""
+        status = dataDict[""] as? String ?? ""
+        id = dataDict["id"] as? Int ?? 0
+    }
+}
+class ResturantModel{
+    var name,imageIcon,phoneNumber,location: String?
+    var id,categoryId: Int?
+    func resturanr(dataDict: NSDictionary){
+        id = dataDict["id"] as? Int ?? 0
+        name = dataDict["business_name"] as? String ?? ""
+        phoneNumber = dataDict["phone_number"] as? String ?? ""
+        imageIcon = dataDict["business_icon"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        categoryId = dataDict["category_id"] as? Int ?? 0
+        
+        
+    }
+}

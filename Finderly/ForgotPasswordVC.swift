@@ -17,9 +17,16 @@ class ForgotPasswordVC: UIViewController {
         super.viewDidLoad()
         loadItem()
     }
+    //MARK:-> Custom Function
+    func sendOtp(){
+        let vc = storyboardMain.instantiateViewController(withIdentifier: "VerificationOtpVCID") as! VerificationOtpVC
+        vc.email = oMailTextField.text!
+        navigationController?.pushViewController(vc,animated: true)
+    }
     func loadItem(){
         self.oMailView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
     }
+    //MARK:-> Button Actions
     @IBAction func backBtnAcn(_ sender: Any) {
         self.pop()
     }
@@ -33,12 +40,8 @@ class ForgotPasswordVC: UIViewController {
             }
     }
 }
-    func sendOtp(){
-        let vc = storyboardMain.instantiateViewController(withIdentifier: "VerificationOtpVCID") as! VerificationOtpVC
-        vc.email = oMailTextField.text!
-        navigationController?.pushViewController(vc,animated: true)
-    }
 }
+//MARK:-> Extension For Forgot Password Api
 extension ForgotPasswordVC{
     func forgotPasswordApi(completion:@escaping() -> Void)  {
         SVProgressHUD.show()

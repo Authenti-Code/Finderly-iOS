@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2122B5AFD0195B5AF2231D70 /* Pods_Finderly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F919AA71C9C294DB767EC57A /* Pods_Finderly.framework */; };
+		5E1DE65527C518060090013C /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1DE65427C518060090013C /* Validators.swift */; };
+		5E1DE65727C5184B0090013C /* NotificationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1DE65627C5184B0090013C /* NotificationAlert.swift */; };
+		5E1DE65927C518BE0090013C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1DE65827C518BE0090013C /* String.swift */; };
 		5E2F6A0D27B63E6000207695 /* OtpVerifyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F6A0C27B63E6000207695 /* OtpVerifyVM.swift */; };
 		5E2F6A0F27B67C7900207695 /* RootControllerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F6A0E27B67C7900207695 /* RootControllerProxy.swift */; };
 		5E5B348C2784205C0005A4CA /* TodayRecommededVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */; };
@@ -58,6 +61,9 @@
 /* Begin PBXFileReference section */
 		01ECDAEB390AC05F15FCE957 /* Pods-Finderly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finderly.debug.xcconfig"; path = "Target Support Files/Pods-Finderly/Pods-Finderly.debug.xcconfig"; sourceTree = "<group>"; };
 		528F2FFBE10B5F8DD9983881 /* Pods-Finderly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finderly.release.xcconfig"; path = "Target Support Files/Pods-Finderly/Pods-Finderly.release.xcconfig"; sourceTree = "<group>"; };
+		5E1DE65427C518060090013C /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		5E1DE65627C5184B0090013C /* NotificationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlert.swift; sourceTree = "<group>"; };
+		5E1DE65827C518BE0090013C /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5E2F6A0C27B63E6000207695 /* OtpVerifyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpVerifyVM.swift; sourceTree = "<group>"; };
 		5E2F6A0E27B67C7900207695 /* RootControllerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootControllerProxy.swift; sourceTree = "<group>"; };
 		5E5B348B2784205C0005A4CA /* TodayRecommededVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRecommededVC.swift; sourceTree = "<group>"; };
@@ -210,8 +216,11 @@
 				5E9BD8CF277C20A20043DF52 /* Enum.swift */,
 				5E9BD8CE277C20A20043DF52 /* Extensions.swift */,
 				5E9BD8D0277C20A20043DF52 /* Proxy.swift */,
+				5E1DE65827C518BE0090013C /* String.swift */,
 				5EDB3F8B27B4DBFE007914D8 /* ApiClass.swift */,
 				5EDB3F8D27B4DE24007914D8 /* WebProxy.swift */,
+				5E1DE65427C518060090013C /* Validators.swift */,
+				5E1DE65627C5184B0090013C /* NotificationAlert.swift */,
 				5E2F6A0E27B67C7900207695 /* RootControllerProxy.swift */,
 				5EDB3F8F27B4DE62007914D8 /* AppAlert.swift */,
 			);
@@ -376,6 +385,7 @@
 			files = (
 				5E5B3490278451360005A4CA /* BusinessDetailVC.swift in Sources */,
 				5E9BD8CA277C20680043DF52 /* OtpVC.swift in Sources */,
+				5E1DE65927C518BE0090013C /* String.swift in Sources */,
 				5E7FEF7F277C81B30038189F /* NotificationVC.swift in Sources */,
 				5EDB3F9027B4DE62007914D8 /* AppAlert.swift in Sources */,
 				5EF7EA0D277D79F900200C35 /* HomeCVCell.swift in Sources */,
@@ -385,6 +395,7 @@
 				5E7FEF7B277C81890038189F /* CategoriesVC.swift in Sources */,
 				5E7FEF81277C81BF0038189F /* ProfileVC.swift in Sources */,
 				5EF7EA12277DA3E300200C35 /* CategoryCVCell.swift in Sources */,
+				5E1DE65527C518060090013C /* Validators.swift in Sources */,
 				5E9BD8CB277C20680043DF52 /* LoginVC.swift in Sources */,
 				5E9BD8B1277C20100043DF52 /* AppDelegate.swift in Sources */,
 				5E9BD8C9277C20680043DF52 /* SignUpVC.swift in Sources */,
@@ -406,6 +417,7 @@
 				5EBF70262782E3A40083DFBC /* NotificationTVCell.swift in Sources */,
 				5EBF702A278329FC0083DFBC /* EditProfileVC.swift in Sources */,
 				5E8787262786B21700C2385F /* BusinessDetailCVCell.swift in Sources */,
+				5E1DE65727C5184B0090013C /* NotificationAlert.swift in Sources */,
 				5E87872A2786D08100C2385F /* RatingBusinessVC.swift in Sources */,
 				5EDB3F8E27B4DE24007914D8 /* WebProxy.swift in Sources */,
 				5E7FEF7D277C81A30038189F /* HookedVC.swift in Sources */,
@@ -569,7 +581,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Authenticode.Finderly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -589,7 +601,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Authenticode.Finderly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
