@@ -34,14 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set root
         return true
     }
-    //MARK:-> Root to controller
-//    func rootWithoutDrawer() {
-//        let blankController = storyboardMain.instantiateViewController(withIdentifier: "LoginVCID")
-//        var homeNavController:UINavigationController = UINavigationController()
-//        homeNavController = UINavigationController.init(rootViewController: blankController)
-//        homeNavController.isNavigationBarHidden = true
-//        UIApplication.shared.windows.first?.rootViewController = homeNavController
-//        UIApplication.shared.windows.first?.makeKeyAndVisible()
-//    }
+ 
 }
 

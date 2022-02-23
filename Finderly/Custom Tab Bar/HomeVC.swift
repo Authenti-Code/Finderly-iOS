@@ -99,7 +99,7 @@ extension HomeVC{
                     if let dataDict = JSON["data"] as? NSDictionary{
                         self.homeBusinessAry.removeAll()
                         self.bannerModelAry.removeAll()
-                        if let newData = dataDict["businessess1"] as? NSArray{
+                        if let newData = dataDict["individual_business"] as? NSArray{
                             for i in 0..<newData.count{
                                 let dict = newData[i]
                                 let businessModelObj = HomeDataBusinessModel()

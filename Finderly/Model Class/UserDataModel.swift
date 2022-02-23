@@ -69,3 +69,13 @@ class ResturantModel{
         
     }
 }
+class NotificationModel{
+    var title,discription,time: String?
+    var id: Int?
+    func notificationDict(dataDict: NSDictionary){
+        title = dataDict["title"] as? String ?? ""
+        discription = dataDict["description"] as? String ?? ""
+        time = dataDict["time"] as? String ?? ""
+        id = dataDict["id"] as? Int ?? 0
+    }
+}
