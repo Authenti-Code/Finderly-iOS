@@ -22,7 +22,6 @@ class NotificationVC: UIViewController {
         oNotificationTableView.delegate = self
         oNotificationTableView.dataSource = self
     }
- 
 }
 extension NotificationVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -2000,6 +2000,10 @@ text of the.</string>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="218" height="207"/>
                                         <connections>
+                                            <outlet property="oHookedDiscriptionLbl" destination="AXN-Kj-z6t" id="Tje-wi-fTR"/>
+                                            <outlet property="oHookedHeadingLbl" destination="orK-qk-1oq" id="O45-aR-8fB"/>
+                                            <outlet property="oHookedImageView" destination="PrY-g9-yYE" id="fEo-Vd-owe"/>
+                                            <outlet property="oHookedLocationLbl" destination="f9A-UN-czR" id="4MY-OD-n1z"/>
                                             <outlet property="oHookedMainView" destination="DjW-gi-hie" id="AmG-hO-33z"/>
                                         </connections>
                                     </collectionViewCell>
@@ -2966,6 +2970,11 @@ text of the.</string>
                                     <constraint firstAttribute="height" constant="160" id="hBe-5U-xzc"/>
                                     <constraint firstAttribute="width" constant="160" id="p2P-sn-8Fp"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="80"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5C-7i-Jlu">
                                 <rect key="frame" x="219.5" y="169.5" width="40" height="35"/>
@@ -3299,6 +3308,9 @@ text of the.</string>
                     </view>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="oEmailLabel" destination="AA3-Dx-aW2" id="XJa-AS-a8I"/>
+                        <outlet property="oNameLabel" destination="ai3-WT-bl5" id="mrw-GD-24S"/>
+                        <outlet property="oPhoneLabel" destination="cKI-CA-U4g" id="9ni-Kr-oN0"/>
                         <outlet property="oProfileTableView" destination="5sJ-ky-Xfy" id="swg-t5-2Ar"/>
                         <outlet property="oUserImageView" destination="GNo-Jd-R0b" id="eTZ-uk-x8b"/>
                         <outlet property="oView1" destination="adi-eO-uly" id="mKH-rs-uvx"/>
@@ -3365,6 +3377,11 @@ text of the.</string>
                                     <constraint firstAttribute="width" constant="160" id="8Hg-xF-dlt"/>
                                     <constraint firstAttribute="height" constant="160" id="biA-0s-ADi"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="80"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tG-n5-P6d">
                                 <rect key="frame" x="219.5" y="109.5" width="40" height="35"/>
@@ -3408,7 +3425,7 @@ text of the.</string>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LR2-CB-NSI">
                                                                 <rect key="frame" x="20" y="20" width="310" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -3422,7 +3439,7 @@ text of the.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dk-SC-AuJ">
                                                         <rect key="frame" x="0.0" y="190" width="345" height="60"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="abc@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hom-1D-ivQ">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="abc@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hom-1D-ivQ">
                                                                 <rect key="frame" x="20" y="20" width="310" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -3511,6 +3528,7 @@ text of the.</string>
                         <outlet property="oNameView" destination="nVq-yc-pLK" id="sjh-yH-9cK"/>
                         <outlet property="oPhoneTextField" destination="LR2-CB-NSI" id="We9-L9-vTB"/>
                         <outlet property="oPhoneView" destination="5MJ-gE-JJH" id="NWI-OL-ocy"/>
+                        <outlet property="oUserImageView" destination="bSj-Az-tyA" id="Ujq-Op-cLB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwU-dU-cob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

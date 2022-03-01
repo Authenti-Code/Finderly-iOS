@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SDWebImage
+import SVProgressHUD
 
 class ProfileVC: UIViewController {
     //MARK:-> IBOutlets
@@ -14,6 +16,10 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var oView2: UIView!
     @IBOutlet weak var oView3: UIView!
     @IBOutlet weak var oProfileTableView: UITableView!
+    @IBOutlet weak var oNameLabel: UILabel!
+    @IBOutlet weak var oEmailLabel: UILabel!
+    @IBOutlet weak var oPhoneLabel: UILabel!
+    var userModelObj = UserDataModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadItem()
@@ -24,6 +30,17 @@ class ProfileVC: UIViewController {
         self.oView3.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         oProfileTableView.delegate = self
         oProfileTableView.dataSource = self
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        userProfileData {
+            self.oNameLabel.text = self.userModelObj.userName
+            self.oEmailLabel.text = self.userModelObj.email
+            self.oPhoneLabel.text = self.userModelObj.phoneNumber
+            self.oUserImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            self.oUserImageView.sd_setImage(with: URL(string: "\(self.userModelObj.userProfile ?? "")"), placeholderImage: UIImage(named: "user-profile"))
+        }
     }
     @IBAction func editBtnAcn(_ sender: Any) {
         Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "EditProfileVCID", isAnimate: true, currentViewController: self)
@@ -49,5 +66,34 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource{
             cell.oNotifySwitch.isHidden = true
         }
         return cell
+    }
+}
+extension ProfileVC{
+    //MARK:- Hit User Profile Details Api Method
+    func userProfileData(completion:@escaping() -> Void)  {
+        SVProgressHUD.show()
+        let eduDetail = "\(Apis.KServerUrl)\(Apis.kGetProfile)"
+        let kURL = eduDetail.encodedURLString()
+        WebProxy.shared.postData(kURL, params: [:], showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    SVProgressHUD.dismiss()
+                    if let dataDict = JSON["data"] as? NSDictionary {
+                        print("Dict:",dataDict)
+                        self.userModelObj.userInfo(dataDict:dataDict)
+                    }
+                    completion()
+                    // Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                }
+            } else {
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+    //MARK:--> Image Update protocol
+    func updatedImage() {
+        viewWillAppear(true)
     }
 }

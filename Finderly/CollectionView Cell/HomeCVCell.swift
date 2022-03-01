@@ -22,4 +22,8 @@ class HomeCVCell: UICollectionViewCell {
     
     //MARK:-> Hooked Cell's Outlet
     @IBOutlet weak var oHookedMainView: UIView!
+    @IBOutlet weak var oHookedImageView: UIImageView!
+    @IBOutlet weak var oHookedHeadingLbl: UILabel!
+    @IBOutlet weak var oHookedDiscriptionLbl: UILabel!
+    @IBOutlet weak var oHookedLocationLbl: UILabel!
 }

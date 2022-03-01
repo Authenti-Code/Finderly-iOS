@@ -7,13 +7,16 @@
 
 import Foundation
 class UserDataModel {
-    var userName,phoneNumber,email,password,confirmPassword : String?
+    var userName,phoneNumber,email,password,confirmPassword,userProfile : String?
     var otp,userId: Int?
     var fromSignUp :Bool?
     func userInfo(dataDict: NSDictionary){
         otp = dataDict["otp"] as? Int
         userId = dataDict["id"] as? Int
         email = dataDict["email"] as? String ?? ""
+        userName = dataDict["user_name"] as? String ?? ""
+        phoneNumber = dataDict["mobile_number"] as? String ?? ""
+        userProfile = dataDict["user_profile"] as? String ?? ""
         if fromSignUp == true{
             accessToken = dataDict["token"] as? String ?? ""
         } else{
@@ -78,4 +81,17 @@ class NotificationModel{
         time = dataDict["time"] as? String ?? ""
         id = dataDict["id"] as? Int ?? 0
     }
+}
+class BuisnessHookedModel{
+    var phoneNumber,buisnessName,location,image: String?
+    var id,category_id: Int?
+    func hooked(dataDict: NSDictionary){
+        phoneNumber = dataDict["phone_number"] as? String ?? ""
+        buisnessName = dataDict["business_name"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        image = dataDict["business_image"] as? String ?? ""
+        category_id = dataDict["category_id"] as? Int ?? 0
+        id = dataDict["id"] as? Int ?? 0
+    }
+    
 }

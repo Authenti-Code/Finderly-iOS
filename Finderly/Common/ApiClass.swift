@@ -33,6 +33,10 @@ enum Apis{
     static let kCategory = "getCategorie"
     static let kGetCategoryBusinessLists = "getbusinessCategory"
     static let kNotification = "getNotifications"
+    static let kLogout = "logout"
+    static let kGetProfile = "getProfile"
+    static let kGetBusinessHooked = "getbusinessHooked"
+    static let kUpdateProfile = "updateProfile"
 }
 //MARK:- App Header
 func headers() ->  [String:String] {
