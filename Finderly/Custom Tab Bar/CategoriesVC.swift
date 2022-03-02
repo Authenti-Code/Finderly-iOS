@@ -39,11 +39,15 @@ extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         return CGSize(width: self.view.frame.width / 2.10, height: 180)
        }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 1{
-            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "RestaurantVCID", isAnimate: true, currentViewController: self)
-        }else{
-            print("Hello")
-        }
+        let categoryModelObj = categoryListAry[indexPath.row]
+        let vc = storyboardMain.instantiateViewController(withIdentifier: "RestaurantVCID") as! RestaurantVC
+        vc.categoryId = categoryModelObj.id ?? 0
+        self.navigationController?.pushViewController(vc,animated: true)
+//        if indexPath.row == 1{
+//            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "RestaurantVCID", isAnimate: true, currentViewController: self)
+//        }else{
+//            print("Hello")
+//        }
     }
 }
 extension CategoriesVC{

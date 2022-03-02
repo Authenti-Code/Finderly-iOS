@@ -20,6 +20,7 @@ class RestaurantVC: UIViewController {
         super.viewDidLoad()
         oRestaurantsCV.delegate = self
         oRestaurantsCV.dataSource = self
+        getBusinessCategory()
     }
     @IBAction func backBtnAcn(_ sender: Any) {
         self.pop()
@@ -32,11 +33,18 @@ extension RestaurantVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = oRestaurantsCV.dequeueReusableCell(withReuseIdentifier: "HomeCVCell", for:indexPath) as! HomeCVCell
+        let resturantModelObj = resturantModelAry[indexPath.row]
         cell.oHookedMainView.layer.shadowColor = appcolor.backgroundShadow.cgColor
         cell.oHookedMainView.layer.shadowOffset = .zero
         cell.oHookedMainView.layer.shadowRadius = 3
         cell.oHookedMainView.layer.shadowOpacity = 0.3
         cell.oHookedMainView.layer.masksToBounds = false
+        cell.oResturentHeadingLbl.text = resturantModelObj.name
+        let imgUrl = resturantModelObj.imageIcon
+        let removeSpace = imgUrl!.replacingOccurrences(of: " ", with: "%20")
+        cell.oResturentImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        cell.oResturentImageView.sd_setImage(with: URL.init(string: removeSpace), placeholderImage: UIImage(named: ""), options: .highPriority, context: [:])
+        cell.oReseturentLocationLbl.text = resturantModelObj.location
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -51,7 +59,7 @@ extension RestaurantVC{
         SVProgressHUD.show()
         var param = [String: String]()
         var categoryData = ""
-        categoryData = "\(Apis.KServerUrl)\(Apis.kCategory)"
+        categoryData = "\(Apis.KServerUrl)\(Apis.kGetCategoryBusinessLists)"
         param = ["category_id":"\(categoryId)","page_number":"1"]
         print("Param:\(param)")
         let kURL = categoryData.encodedURLString()

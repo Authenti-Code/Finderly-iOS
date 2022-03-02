@@ -38,6 +38,42 @@ class HomeDataBusinessModel {
         categoryId = dataDict["category_id"] as? Int ?? 0
     }
 }
+class IndividualModel {
+    var image,businessName,phoneNumber,location: String?
+    var id,categoryId: Int?
+    func businessData(dataDict: NSDictionary){
+        image = dataDict["business_image"] as? String ?? ""
+        businessName = dataDict["business_name"] as? String ?? ""
+        phoneNumber = dataDict["phone_number"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        id = dataDict["id"] as? Int ?? 0
+        categoryId = dataDict["category_id"] as? Int ?? 0
+    }
+}
+class TodaysRecommendModel {
+    var image,businessName,phoneNumber,location: String?
+    var id,categoryId: Int?
+    func businessData(dataDict: NSDictionary){
+        image = dataDict["business_image"] as? String ?? ""
+        businessName = dataDict["business_name"] as? String ?? ""
+        phoneNumber = dataDict["phone_number"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        id = dataDict["id"] as? Int ?? 0
+        categoryId = dataDict["category_id"] as? Int ?? 0
+    }
+}
+class Top10BusinessModel {
+    var image,businessName,phoneNumber,location: String?
+    var id,categoryId: Int?
+    func businessData(dataDict: NSDictionary){
+        image = dataDict["business_image"] as? String ?? ""
+        businessName = dataDict["business_name"] as? String ?? ""
+        phoneNumber = dataDict["phone_number"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        id = dataDict["id"] as? Int ?? 0
+        categoryId = dataDict["category_id"] as? Int ?? 0
+    }
+}
 class BannerModel{
     var bannerImage: String?
     var id: Int?
@@ -65,11 +101,10 @@ class ResturantModel{
         id = dataDict["id"] as? Int ?? 0
         name = dataDict["business_name"] as? String ?? ""
         phoneNumber = dataDict["phone_number"] as? String ?? ""
-        imageIcon = dataDict["business_icon"] as? String ?? ""
+        imageIcon = dataDict["business_image"] as? String ?? ""
         location = dataDict["location"] as? String ?? ""
+        print("Location",location as Any)
         categoryId = dataDict["category_id"] as? Int ?? 0
-        
-        
     }
 }
 class NotificationModel{

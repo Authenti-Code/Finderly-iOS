@@ -37,30 +37,19 @@ class SignUpVC: UIViewController {
     }
     //MARK:-> Load View
     func loadViewData(){
-        //view shadow
+        //MARK:-> view shadow
         self.validator = Validators()
         self.oUsernameVw.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oMailVw.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oPswrdVw.applyShadowWithCornerRadius(color:appcolor.backgroundShadow  , opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oconfirmPswrdVw.applyShadowWithCornerRadius(color:appcolor.backgroundShadow  , opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oPhoneVw.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
-        //set default image
-//        oimgVwMail.image = Images.imgEmpty
-//        oimgVwUsrNm.image = Images.imgEmpty
-//        oimgVwPhone.image = Images.imgEmpty
         oimgVwPswrd.image = Images.hidePswrd
         oimgVwConfrmPsrd.image = Images.hidePswrd
-        //delegate self
-//        otxtfldMail.delegate = self
-//        otxtfldUsrName.delegate = self
-//        otxtfldPhone.delegate = self
-//        otxtfldCnfrmPswrd.delegate = self
-//        otxtfldPswrd.delegate = self
-        
         otxtfldPswrd.isSecureTextEntry = true
         otxtfldCnfrmPswrd.isSecureTextEntry = true
     }
-    //MARK--> Button Actions
+    //MARK:--> Button Actions
     @IBAction func btnSignInAction(_ sender: Any){
         self.navigationController?.popViewController(animated: true)
     }
@@ -102,47 +91,7 @@ class SignUpVC: UIViewController {
         }
     }
 }
-//UITextFiled Delegate
-//extension SignUpVC: UITextFieldDelegate{
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == otxtfldUsrName && !Proxy.shared.isValidInput(otxtfldUsrName.text!){
-//            if otxtfldUsrName.text?.isBlank == true{
-//                //oimgVwUsrNm.image = Images.uncheck
-//                Proxy.shared.displayStatusCodeAlert(AppAlert.usrname)
-//            }else{
-//                //oimgVwUsrNm.image = Images.check
-//            }
-//        }else if textField == otxtfldPhone{
-//            if otxtfldPhone.text?.isBlank == true{
-//               // oimgVwPhone.image = Images.uncheck
-//                Proxy.shared.displayStatusCodeAlert(AppAlert.phone)
-//            }else{
-//               // oimgVwPhone.image = Images.check
-//            }
-//        }else if textField == otxtfldMail{
-//            if !Proxy.shared.isValidEmail(otxtfldMail.text!) && otxtfldMail.text?.isBlank == true{
-//               // oimgVwMail.image = Images.uncheck
-//                Proxy.shared.displayStatusCodeAlert(AppAlert.mail)
-//            }else{
-//               // oimgVwMail.image = Images.check
-//            }
-//        } else if textField == otxtfldPswrd{
-//            if otxtfldPswrd.text?.isBlank == true{
-//                //oimgVwPswrd.image = Images.uncheck
-//                Proxy.shared.displayStatusCodeAlert(AppAlert.passwrd)
-//            }else{
-//               // oimgVwPswrd.image = Images.check
-//            }
-//        } else if textField == otxtfldCnfrmPswrd{
-//            if otxtfldCnfrmPswrd.text?.isBlank == true && otxtfldPswrd.text != otxtfldCnfrmPswrd.text{
-//               // oimgVwConfrmPsrd.image = Images.uncheck
-//                Proxy.shared.displayStatusCodeAlert(AppAlert.confirmPswrd)
-//            }else{
-//               // oimgVwConfrmPsrd.image = Images.check
-//            }
-//        }
-//    }
-//}
+//MARK:-> Singup Api Method Handling
 extension SignUpVC{
     func signupApi(completion:@escaping() -> Void){
         SVProgressHUD.show()

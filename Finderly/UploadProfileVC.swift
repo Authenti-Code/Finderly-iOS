@@ -16,14 +16,17 @@ class UploadProfileVC: UIViewController {
     @IBOutlet weak var ousrImgVw: UIImageView!
     @IBOutlet weak var oTakePhotoBtn: UIButton!
     @IBOutlet weak var oGalleryBtn: UIButton!
+    //MARK:-> Variables
     let imagePickerCount = UIImagePickerController()
     var cameraIsSelected = Bool()
     var userImage: UIImage?
+    //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         ousrImgVw.roundedImage()
         imagePickerCount.delegate = self
     }
+    //MARK:-> Button Actions
     @IBAction func chooseFromGalleryBtnAcn(_ sender: Any) {
         if cameraIsSelected == true{
             self.oGalleryBtn.setTitle(constants.userLibrary, for: .normal)
@@ -48,6 +51,7 @@ class UploadProfileVC: UIViewController {
         }
     }
 }
+//MARK:-> Extension for Pop up delegate method Handling
 extension UploadProfileVC: profilePopUp{
     func removePopUp1(text: String) {
         Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "CustomTabBarID", isAnimate: true, currentViewController: self)
@@ -57,6 +61,7 @@ extension UploadProfileVC: profilePopUp{
     }
     
 }
+//MARK:-> Extension for Image Picker delegate Method
 extension UploadProfileVC: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var image : UIImage!

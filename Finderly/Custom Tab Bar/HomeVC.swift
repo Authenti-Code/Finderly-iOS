@@ -13,21 +13,24 @@ class HomeVC: UIViewController, PostDelegate {
     func selectedPost(post: IndexPath) {
         Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "TodayRecommededVCID", isAnimate: true, currentViewController: self)
     }
-    
     //MARK:-> IBOutlets
     @IBOutlet weak var oBannerCollectionView: UICollectionView!
     @IBOutlet weak var oListingTableView: UITableView!
-    //@IBOutlet weak var oTableViewHeight: NSLayoutConstraint!
+    //MARK:-> Varibles
     var homeBusinessAry = [HomeDataBusinessModel]()
+    var individualModelAry = [IndividualModel]()
+    var todaysModelAry = [TodaysRecommendModel]()
+    var top10ModelAry = [Top10BusinessModel]()
     var bannerModelAry = [BannerModel]()
-    //MARK:-> View's Life cycle
+    var listArray = ["Individual Business","Today's Recommended","Top 10 Business Sector"]
+    //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        getHomeProductsApi()
         oBannerCollectionView.delegate = self
         oBannerCollectionView.dataSource = self
         oListingTableView.delegate = self
         oListingTableView.dataSource = self
+        getHomeProductsApi()
         UserDefaults.standard.set(true, forKey: "logged_in")
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -58,15 +61,25 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        return constantsVaribales.homeTVArry.count
-        return homeBusinessAry.count
+        return listArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = oListingTableView.dequeueReusableCell(withIdentifier: "HomeTVCell") as! HomeTVCell
         // let businessModelObj = homeBusinessAry[indexPath.row]
-        cell.oHeadingLabel.text = "Business"
+        cell.oHeadingLabel.text = listArray[indexPath.row]
         cell.homeBuisnessAry = homeBusinessAry
         cell.delegateObj = self
-        // cell.oHeadingLabel.text = businessModelObj.headingTitle
+        cell.oListingCollectionView.tag = indexPath.row
+        if indexPath.row == 0{
+            cell.individualModelAry = individualModelAry
+            cell.oListingCollectionView.reloadData()
+        }else if indexPath.row == 1{
+            cell.todaysModelAry = todaysModelAry
+            cell.oListingCollectionView.reloadData()
+        }else{
+            cell.top10ModelAry = top10ModelAry
+            cell.oListingCollectionView.reloadData()
+        }
         cell.oSeeAllBtn.tag = indexPath.row
         cell.oSeeAllBtn.addTarget(self, action: #selector(connected(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
@@ -102,9 +115,25 @@ extension HomeVC{
                         if let newData = dataDict["individual_business"] as? NSArray{
                             for i in 0..<newData.count{
                                 let dict = newData[i]
-                                let businessModelObj = HomeDataBusinessModel()
-                                businessModelObj.businessData(dataDict: dict as! NSDictionary)
-                                self.homeBusinessAry.append(businessModelObj)
+                                let individualModelObj = IndividualModel()
+                                individualModelObj.businessData(dataDict: dict as! NSDictionary)
+                                self.individualModelAry.append(individualModelObj)
+                            }
+                        }
+                        if let newData = dataDict["todays_recommended"] as? NSArray{
+                            for i in 0..<newData.count{
+                                let dict = newData[i]
+                                let todaysRecommendModelObj = TodaysRecommendModel()
+                                todaysRecommendModelObj.businessData(dataDict: dict as! NSDictionary)
+                                self.todaysModelAry.append(todaysRecommendModelObj)
+                            }
+                        }
+                        if let newData = dataDict["top_10_business_sector"] as? NSArray{
+                            for i in 0..<newData.count{
+                                let dict = newData[i]
+                                let top10ModelObj = Top10BusinessModel()
+                                top10ModelObj.businessData(dataDict: dict as! NSDictionary)
+                                self.top10ModelAry.append(top10ModelObj)
                             }
                         }
                         if let bannerData = dataDict["banner"] as? NSArray{

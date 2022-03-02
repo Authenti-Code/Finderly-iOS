@@ -46,8 +46,11 @@ class ProfileVC: UIViewController {
         Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "EditProfileVCID", isAnimate: true, currentViewController: self)
     }
     @IBAction func logoutBtnAcn(_ sender: Any) {
-        self.navigationController?.backToViewController(viewController: LoginVC.self)
-        UserDefaults.standard.set(false, forKey: "logged_in")
+        logOut {
+            UserDefaults.standard.set(false, forKey: "logged_in")
+            let vc = storyboardMain.instantiateViewController(withIdentifier: "LoginVCID") as! LoginVC
+            self.navigationController?.pushViewController(vc,animated: true)
+        }
     }
 }
 //MARK:-> Extension for table view delegate and protocol method.
@@ -95,5 +98,32 @@ extension ProfileVC{
     //MARK:--> Image Update protocol
     func updatedImage() {
         viewWillAppear(true)
+    }
+}
+extension ProfileVC{
+    //logout
+    func logOut(completion:@escaping() -> Void)  {
+        SVProgressHUD.show()
+        let forgot = "\(Apis.KServerUrl)\(Apis.kLogout)"
+        let kURL = forgot.encodedURLString()
+        let param = [
+            "device_id":"\(UIDevice.current.identifierForVendor?.uuidString ?? "")"
+        ] as [String:String]
+        WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { [] (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    accessToken = ""
+                    completion()
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                }
+            } else {
+                SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
     }
 }

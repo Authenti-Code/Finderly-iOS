@@ -9,7 +9,7 @@ import UIKit
 import SVProgressHUD
 
 class OtpVC: UIViewController {
-    //Add all outlet in your code.
+    //MARK:-> IBOutlets
     @IBOutlet weak var otpbox1: UITextField!
     @IBOutlet weak var otpbox2: UITextField!
     @IBOutlet weak var otpbox3: UITextField!
@@ -18,11 +18,11 @@ class OtpVC: UIViewController {
     @IBOutlet weak var otpVw2: UIView!
     @IBOutlet weak var otpVw3: UIView!
     @IBOutlet weak var otpVw4: UIView!
-    
+    //MARK:-> Variables
     let userModelObj = UserDataModel()
     var otpVerifyVMObj = OtpVerifyVM()
     var sentOtp = String()
-    
+    //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         otpbox1?.delegate = self
@@ -38,7 +38,7 @@ class OtpVC: UIViewController {
         sentOtp = "\(userModelObj.otp ?? 0)"
         print("Sent Otp:->",sentOtp)
  
-        //view shadow
+        //MARK:-> view shadow
         self.otpVw1.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.otpVw2.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.otpVw3.applyShadowWithCornerRadius(color:appcolor.backgroundShadow  , opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
@@ -68,7 +68,7 @@ class OtpVC: UIViewController {
         }
     }
 }
-//TextField Delegate
+//MARK:-> TextField Delegate
 extension OtpVC: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range:NSRange, replacementString string: String) -> Bool {
         // Range.length == 1 means,clicking backspace
@@ -108,6 +108,7 @@ extension OtpVC: UITextFieldDelegate{
         return true
     }
 }
+//MARK:-> API Method for Verify Otp Screen
 extension OtpVC{
     func resendOtpApi(){
         SVProgressHUD.show()

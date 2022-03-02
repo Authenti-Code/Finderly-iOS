@@ -26,4 +26,10 @@ class HomeCVCell: UICollectionViewCell {
     @IBOutlet weak var oHookedHeadingLbl: UILabel!
     @IBOutlet weak var oHookedDiscriptionLbl: UILabel!
     @IBOutlet weak var oHookedLocationLbl: UILabel!
+    //MARK:-> Resturant Cell's Outlet
+    @IBOutlet weak var oResturentImageView: UIImageView!
+    @IBOutlet weak var oResturentHeadingLbl: UILabel!
+    @IBOutlet weak var oResturentDiscriptionLbl: UILabel!
+    @IBOutlet weak var oReseturentLocationLbl: UILabel!
+    
 }
