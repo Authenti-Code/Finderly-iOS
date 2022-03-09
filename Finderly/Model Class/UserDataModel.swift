@@ -39,38 +39,38 @@ class HomeDataBusinessModel {
     }
 }
 class IndividualModel {
-    var image,businessName,phoneNumber,location: String?
-    var id,categoryId: Int?
+    var image,businessName,phoneNumber,location,id: String?
+    var categoryId: Int?
     func businessData(dataDict: NSDictionary){
         image = dataDict["business_image"] as? String ?? ""
         businessName = dataDict["business_name"] as? String ?? ""
         phoneNumber = dataDict["phone_number"] as? String ?? ""
         location = dataDict["location"] as? String ?? ""
-        id = dataDict["id"] as? Int ?? 0
+        id = dataDict["id"] as? String ?? "0"
         categoryId = dataDict["category_id"] as? Int ?? 0
     }
 }
 class TodaysRecommendModel {
-    var image,businessName,phoneNumber,location: String?
-    var id,categoryId: Int?
+    var image,businessName,phoneNumber,location,id: String?
+    var categoryId: Int?
     func businessData(dataDict: NSDictionary){
         image = dataDict["business_image"] as? String ?? ""
         businessName = dataDict["business_name"] as? String ?? ""
         phoneNumber = dataDict["phone_number"] as? String ?? ""
         location = dataDict["location"] as? String ?? ""
-        id = dataDict["id"] as? Int ?? 0
+        id = dataDict["id"] as? String ?? "0"
         categoryId = dataDict["category_id"] as? Int ?? 0
     }
 }
 class Top10BusinessModel {
-    var image,businessName,phoneNumber,location: String?
-    var id,categoryId: Int?
+    var image,businessName,phoneNumber,location,id: String?
+    var categoryId: Int?
     func businessData(dataDict: NSDictionary){
         image = dataDict["business_image"] as? String ?? ""
         businessName = dataDict["business_name"] as? String ?? ""
         phoneNumber = dataDict["phone_number"] as? String ?? ""
         location = dataDict["location"] as? String ?? ""
-        id = dataDict["id"] as? Int ?? 0
+        id = dataDict["id"] as? String ?? "0"
         categoryId = dataDict["category_id"] as? Int ?? 0
     }
 }
@@ -81,7 +81,6 @@ class BannerModel{
     func bannerData(dataDict: NSDictionary){
         id = dataDict["id"] as? Int ?? 0
         bannerImage = dataDict["banner"] as? String ?? ""
-        print("Image:--->",bannerImage as Any)
     }
 }
 class CategoryModel{

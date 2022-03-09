@@ -56,6 +56,7 @@
 		5EF7EA0D277D79F900200C35 /* HomeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */; };
 		5EF7EA10277D7B4300200C35 /* HomeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */; };
 		5EF7EA12277DA3E300200C35 /* CategoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */; };
+		7757B20D27D5F83F00C575B3 /* TodayRecommededVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757B20C27D5F83F00C575B3 /* TodayRecommededVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		5EF7EA0C277D79F900200C35 /* HomeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCVCell.swift; sourceTree = "<group>"; };
 		5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVCell.swift; sourceTree = "<group>"; };
 		5EF7EA11277DA3E200200C35 /* CategoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVCell.swift; sourceTree = "<group>"; };
+		7757B20C27D5F83F00C575B3 /* TodayRecommededVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRecommededVM.swift; sourceTree = "<group>"; };
 		F919AA71C9C294DB767EC57A /* Pods_Finderly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finderly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -188,6 +190,7 @@
 				5E9BD8B9277C20130043DF52 /* Assets.xcassets */,
 				5E9BD8C7277C20680043DF52 /* LoginVC.swift */,
 				5EDB3F9127B4E895007914D8 /* Model Class */,
+				7757B20B27D5F82B00C575B3 /* View Model */,
 				5EBF701F2782BFE20083DFBC /* ForgotPasswordVC.swift */,
 				5EBF70212782C7B10083DFBC /* VerificationOtpVC.swift */,
 				5EBF70232782CC970083DFBC /* CreateNewPasswordVC.swift */,
@@ -255,6 +258,14 @@
 				5E5B348D2784228E0005A4CA /* RecommendedTVCell.swift */,
 			);
 			path = "TableView Cell";
+			sourceTree = "<group>";
+		};
+		7757B20B27D5F82B00C575B3 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				7757B20C27D5F83F00C575B3 /* TodayRecommededVM.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		923B429995CEC0EFF7C125A9 /* Frameworks */ = {
@@ -409,6 +420,7 @@
 				5EBF70202782BFE20083DFBC /* ForgotPasswordVC.swift in Sources */,
 				5EBF70222782C7B10083DFBC /* VerificationOtpVC.swift in Sources */,
 				5EBF70242782CC980083DFBC /* CreateNewPasswordVC.swift in Sources */,
+				7757B20D27D5F83F00C575B3 /* TodayRecommededVM.swift in Sources */,
 				5EBF702C278334180083DFBC /* RestaurantVC.swift in Sources */,
 				5EDB3F9327B4E8A5007914D8 /* UserDataModel.swift in Sources */,
 				5E2F6A0D27B63E6000207695 /* OtpVerifyVM.swift in Sources */,

@@ -37,6 +37,8 @@ enum Apis{
     static let kGetProfile = "getProfile"
     static let kGetBusinessHooked = "getbusinessHooked"
     static let kUpdateProfile = "updateProfile"
+    static let kNotificationStatus = "notificationStatus"
+    static let kTodayRecommended = "seeAllRecommended"
 }
 //MARK:- App Header
 func headers() ->  [String:String] {

@@ -20,6 +20,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var oEmailLabel: UILabel!
     @IBOutlet weak var oPhoneLabel: UILabel!
     var userModelObj = UserDataModel()
+    var isSelected = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadItem()
@@ -65,10 +66,32 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         if indexPath.row == 0{
             cell.oNotifySwitch.isHidden = false
-        }else{
+            if isSelected == 1{
+                cell.oNotifySwitch.isOn = true
+                cell.oNotifySwitch.tintColor = .blue
+            } else{
+                cell.oNotifySwitch.isOn = false
+                cell.oNotifySwitch.tintColor = .white
+            }
+        } else{
             cell.oNotifySwitch.isHidden = true
         }
+        cell.oNotifySwitch.tag = indexPath.row // for detect which row switch Changed
+        cell.oNotifySwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
         return cell
+    }
+    
+    //MARK:--> Switch
+    @objc func switchChanged(_ sender : UISwitch!){
+        print("table row switch Changed \(sender.tag)")
+        print("The switch is \(sender.isOn ? "ON" : "OFF")")
+        if isSelected == 1{
+            isSelected = 0
+        } else{
+            isSelected = 1
+        }
+        changeNotificationStatusApi(status: isSelected)
+        oProfileTableView.reloadData()
     }
 }
 extension ProfileVC{
@@ -79,25 +102,41 @@ extension ProfileVC{
         let kURL = eduDetail.encodedURLString()
         WebProxy.shared.postData(kURL, params: [:], showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
             if isSuccess {
+                SVProgressHUD.dismiss()
                 if JSON["success"] as? String == "true"{
                     SVProgressHUD.dismiss()
                     if let dataDict = JSON["data"] as? NSDictionary {
-                        print("Dict:",dataDict)
                         self.userModelObj.userInfo(dataDict:dataDict)
                     }
                     completion()
-                    // Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 }
             } else {
+                SVProgressHUD.dismiss()
                 Proxy.shared.displayStatusCodeAlert(message)
             }
         }
     }
-    //MARK:--> Image Update protocol
-    func updatedImage() {
-        viewWillAppear(true)
+    
+    //MARK:--> Change Notification Status Api
+    func changeNotificationStatusApi(status: Int){
+        SVProgressHUD.show()
+        let notificationUrl = "\(Apis.KServerUrl)\(Apis.kNotificationStatus)"
+        let kURL = notificationUrl.encodedURLString()
+        let param = ["status": "\(status)"]
+        WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                } else{
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                }
+                SVProgressHUD.dismiss()
+            } else {
+                SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
     }
 }
 extension ProfileVC{
@@ -111,13 +150,12 @@ extension ProfileVC{
         ] as [String:String]
         WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { [] (JSON, isSuccess, message) in
             if isSuccess {
+                SVProgressHUD.dismiss()
                 if JSON["success"] as? String == "true"{
                     accessToken = ""
                     completion()
-                    SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
-                    SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 }
             } else {

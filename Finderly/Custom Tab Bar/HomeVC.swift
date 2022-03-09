@@ -9,10 +9,8 @@ import UIKit
 import SVProgressHUD
 import SDWebImage
 
-class HomeVC: UIViewController, PostDelegate {
-    func selectedPost(post: IndexPath) {
-        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "TodayRecommededVCID", isAnimate: true, currentViewController: self)
-    }
+class HomeVC: UIViewController {
+  
     //MARK:-> IBOutlets
     @IBOutlet weak var oBannerCollectionView: UICollectionView!
     @IBOutlet weak var oListingTableView: UITableView!
@@ -22,7 +20,7 @@ class HomeVC: UIViewController, PostDelegate {
     var todaysModelAry = [TodaysRecommendModel]()
     var top10ModelAry = [Top10BusinessModel]()
     var bannerModelAry = [BannerModel]()
-    var listArray = ["Individual Business","Today's Recommended","Top 10 Business Sector"]
+    var listArray = ["Today's Recommended","Top 10 Business Sector","Individual Business"]
     //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +39,6 @@ class HomeVC: UIViewController, PostDelegate {
 //MARK:-> Extension for collection view delagate and datasource method
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Total Count:-->",bannerModelAry.count)
         return bannerModelAry.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -60,26 +57,34 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 //MARK:-> Extension for table view delagate and datasource method
 extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return constantsVaribales.homeTVArry.count
         return listArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = oListingTableView.dequeueReusableCell(withIdentifier: "HomeTVCell") as! HomeTVCell
-        // let businessModelObj = homeBusinessAry[indexPath.row]
         cell.oHeadingLabel.text = listArray[indexPath.row]
-        cell.homeBuisnessAry = homeBusinessAry
-        cell.delegateObj = self
         cell.oListingCollectionView.tag = indexPath.row
         if indexPath.row == 0{
-            cell.individualModelAry = individualModelAry
-            cell.oListingCollectionView.reloadData()
-        }else if indexPath.row == 1{
             cell.todaysModelAry = todaysModelAry
-            cell.oListingCollectionView.reloadData()
-        }else{
+            cell.callback = { (id) -> Void in
+                print(id)
+                self.selectedPost(id: id)
+            }
+        } else if indexPath.row == 1{
             cell.top10ModelAry = top10ModelAry
-            cell.oListingCollectionView.reloadData()
+            cell.todaysModelAry = todaysModelAry
+            cell.callback = { (id) -> Void in
+                print(id)
+                self.selectedPost(id: id)
+            }
+        } else if indexPath.row == 2{
+            cell.individualModelAry = individualModelAry
+            cell.todaysModelAry = todaysModelAry
+            cell.callback = { (id) -> Void in
+                print(id)
+                self.selectedPost(id: id)
+            }
         }
+        cell.oListingCollectionView.reloadData()
         cell.oSeeAllBtn.tag = indexPath.row
         cell.oSeeAllBtn.addTarget(self, action: #selector(connected(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
@@ -93,6 +98,12 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
             print("Hello")
         }
     }
+    //On Perticular Product Func
+    func selectedPost(id: Int) {
+        let nav = storyboardMain.instantiateViewController(withIdentifier: "TodayRecommededVCID") as! TodayRecommededVC
+        nav.postID = id
+        self.navigationController?.pushViewController(nav, animated: true)
+    }
 }
 //MARK:-> Extension For Home Api
 extension HomeVC{
@@ -104,7 +115,6 @@ extension HomeVC{
         param = ["":""]
         print("Param:\(param)")
         let kURL = homeData.encodedURLString()
-        print("kURL:->\(kURL)")
         WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
             if isSuccess {
                 if JSON["success"] as? String == "true"{
