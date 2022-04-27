@@ -100,8 +100,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     }
     //On Perticular Product Func
     func selectedPost(id: Int) {
-        let nav = storyboardMain.instantiateViewController(withIdentifier: "TodayRecommededVCID") as! TodayRecommededVC
-        nav.postID = id
+        let nav = storyboardMain.instantiateViewController(withIdentifier: "BusinessDetailVCID") as! BusinessDetailVC
+        nav.businessId = id
         self.navigationController?.pushViewController(nav, animated: true)
     }
 }

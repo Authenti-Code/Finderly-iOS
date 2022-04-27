@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class BusinessDetailVC: UIViewController {
 //MARK: -> IBOutlets
@@ -25,9 +26,11 @@ class BusinessDetailVC: UIViewController {
     @IBOutlet weak var oHookView: UIView!
     @IBOutlet weak var oSaveView: UIView!
     @IBOutlet weak var oSocialView: UIView!
+    var businessId:Int?
     //MARK: -> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        businessDetailApi{}
         self.loadItem()
     }
     //MARK:-> Custom Function
@@ -91,5 +94,31 @@ extension BusinessDetailVC: UICollectionViewDelegate, UICollectionViewDataSource
             return cell
         }
     }
-    
 }
+extension BusinessDetailVC{
+//MARK--> Hit Business DetailAPI
+func businessDetailApi(completion:@escaping() -> Void) {
+    let Url = "\(Apis.KServerUrl)\(Apis.kBusinessDetail)"
+    SVProgressHUD.show()
+    let param = [
+        "business_id": businessId as AnyObject
+    ] as [String : Any]
+    print("Params",param)
+    WebProxy.shared.postData(Url, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+        if isSuccess {
+            let statusRes = JSON["success"] as? String ?? ""
+            if statusRes == "true"{
+                completion()
+            } else{
+                Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+            }
+            SVProgressHUD.dismiss()
+        } else {
+            SVProgressHUD.dismiss()
+            Proxy.shared.displayStatusCodeAlert(message)
+        }
+    }
+}
+}
+
+

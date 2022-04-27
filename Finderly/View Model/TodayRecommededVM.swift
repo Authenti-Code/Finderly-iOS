@@ -44,18 +44,3 @@ class TodayRecommededVM{
 //    }
 }
 
-extension TodayRecommededVC: UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = oListingTableView.dequeueReusableCell(withIdentifier: "RecommendedTVCell") as! RecommendedTVCell
-        cell.selectionStyle = .none
-        cell.oMainView.layer.shadowColor = appcolor.backgroundShadow.cgColor
-        cell.oMainView.layer.shadowOffset = .zero
-        cell.oMainView.layer.shadowRadius = 3
-        cell.oMainView.layer.shadowOpacity = 0.3
-        cell.oMainView.layer.masksToBounds = false
-        return cell
-    }
-}

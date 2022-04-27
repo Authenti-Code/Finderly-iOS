@@ -39,7 +39,7 @@ class ProfileVC: UIViewController {
             self.oNameLabel.text = self.userModelObj.userName
             self.oEmailLabel.text = self.userModelObj.email
             self.oPhoneLabel.text = self.userModelObj.phoneNumber
-            self.oUserImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            self.oUserImageView.sd_imageIndicator = SDWebImageActivityIndicator.white
             self.oUserImageView.sd_setImage(with: URL(string: "\(self.userModelObj.userProfile ?? "")"), placeholderImage: UIImage(named: "user-profile"))
         }
     }

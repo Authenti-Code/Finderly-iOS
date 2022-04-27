@@ -188,6 +188,20 @@ extension UINavigationController {
         }
     }
 }
+extension UIImage {
+    func upOrientationImage() -> UIImage? {
+        switch imageOrientation {
+        case .up:
+            return self
+        default:
+            UIGraphicsBeginImageContextWithOptions(size, false, scale)
+            draw(in: CGRect(origin: .zero, size: size))
+            let result = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return result
+        }
+    }
+}
 extension UIView {
     //ROUNDED CORNER TOP VIEW
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
