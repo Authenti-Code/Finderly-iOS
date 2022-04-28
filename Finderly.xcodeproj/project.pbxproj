@@ -30,6 +30,7 @@
 		5E8787262786B21700C2385F /* BusinessDetailCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8787252786B21700C2385F /* BusinessDetailCVCell.swift */; };
 		5E8787282786C6A100C2385F /* SpecializationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8787272786C6A100C2385F /* SpecializationVC.swift */; };
 		5E87872A2786D08100C2385F /* RatingBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8787292786D08100C2385F /* RatingBusinessVC.swift */; };
+		5E8EC1C6281A6901006ECDDA /* SponsoredCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8EC1C5281A6901006ECDDA /* SponsoredCVCell.swift */; };
 		5E9BD8B1277C20100043DF52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9BD8B0277C20100043DF52 /* AppDelegate.swift */; };
 		5E9BD8B8277C20100043DF52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9BD8B6277C20100043DF52 /* Main.storyboard */; };
 		5E9BD8BA277C20130043DF52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E9BD8B9277C20130043DF52 /* Assets.xcassets */; };
@@ -84,6 +85,7 @@
 		5E8787252786B21700C2385F /* BusinessDetailCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailCVCell.swift; sourceTree = "<group>"; };
 		5E8787272786C6A100C2385F /* SpecializationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecializationVC.swift; sourceTree = "<group>"; };
 		5E8787292786D08100C2385F /* RatingBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBusinessVC.swift; sourceTree = "<group>"; };
+		5E8EC1C5281A6901006ECDDA /* SponsoredCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsoredCVCell.swift; sourceTree = "<group>"; };
 		5E9BD8AD277C20100043DF52 /* Finderly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finderly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9BD8B0277C20100043DF52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E9BD8B7277C20100043DF52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				5EF7EA0F277D7B4300200C35 /* HomeTVCell.swift */,
+				5E8EC1C5281A6901006ECDDA /* SponsoredCVCell.swift */,
 				5EBF70252782E3A40083DFBC /* NotificationTVCell.swift */,
 				5EBF7027278317BD0083DFBC /* ProfileTVCell.swift */,
 				5E5B348D2784228E0005A4CA /* RecommendedTVCell.swift */,
@@ -431,6 +434,7 @@
 				5E8787262786B21700C2385F /* BusinessDetailCVCell.swift in Sources */,
 				5E1DE65727C5184B0090013C /* NotificationAlert.swift in Sources */,
 				5E87872A2786D08100C2385F /* RatingBusinessVC.swift in Sources */,
+				5E8EC1C6281A6901006ECDDA /* SponsoredCVCell.swift in Sources */,
 				5EDB3F8E27B4DE24007914D8 /* WebProxy.swift in Sources */,
 				5E7FEF7D277C81A30038189F /* HookedVC.swift in Sources */,
 				5E7FEF79277C817C0038189F /* HomeVC.swift in Sources */,

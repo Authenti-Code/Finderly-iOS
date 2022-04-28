@@ -17,9 +17,11 @@ class CategoriesVC: UIViewController {
         super.viewDidLoad()
         oCategoryCollectionView.delegate = self
         oCategoryCollectionView.dataSource = self
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         self.getCategoryListApi()
     }
-
 }
 extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,13 +76,13 @@ extension CategoriesVC{
                             }
                     }
                     self.oCategoryCollectionView.reloadData()
-                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
-                    SVProgressHUD.dismiss()
+//                    SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
                 }
             } else {
-                SVProgressHUD.dismiss()
+//                SVProgressHUD.dismiss()
                 Proxy.shared.displayStatusCodeAlert(message)
             }
         }

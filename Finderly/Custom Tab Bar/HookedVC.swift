@@ -10,7 +10,6 @@ import SVProgressHUD
 import SDWebImage
 
 class HookedVC: UIViewController {
-
     @IBOutlet weak var oHookedCollectionView: UICollectionView!
     var hookedModelAry = [BuisnessHookedModel]()
     var pageNo: Int?
@@ -21,19 +20,15 @@ class HookedVC: UIViewController {
         getBusinessHookedApi()
         oHookedCollectionView.delegate = self
         oHookedCollectionView.dataSource = self
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
     }
-
 }
 extension HookedVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return hookedModelAry.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = oHookedCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeCVCell", for: indexPath) as! HomeCVCell
         let hookeModelObj = hookedModelAry[indexPath.row]

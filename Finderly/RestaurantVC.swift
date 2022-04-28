@@ -77,8 +77,8 @@ extension RestaurantVC{
                                 self.resturantModelAry.append(returantModelObj)
                             }
                     }
-                    self.oRestaurantsCV.reloadData()
-                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                     self.oRestaurantsCV.reloadData()
+//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")

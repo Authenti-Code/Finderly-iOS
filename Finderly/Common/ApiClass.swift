@@ -13,7 +13,6 @@ enum AppInfo {
     static let AppName = "Finderly"
     static let DeviceName =  UIDevice.current.name
     static let DeviceId =  UIDevice.current.identifierForVendor!.uuidString
-    
     //MARK:-> ADDED TEMPORARY
     static let Mode = "development"
     static let Version =  "1.0"
@@ -40,6 +39,10 @@ enum Apis{
     static let kNotificationStatus = "notificationStatus"
     static let kTodayRecommended = "seeAllRecommended"
     static let kBusinessDetail = "businessDetails"
+    static let kIndividualBusiness = "seeAllIndividual"
+    static let kLikebusiness = "likeBusiness"
+    static let kHookBusiness = "hookedBusiness"
+    static let kSpecialization = "getSpecialization"
 }
 //MARK:- App Header
 func headers() ->  [String:String] {

@@ -39,8 +39,8 @@ class HomeDataBusinessModel {
     }
 }
 class IndividualModel {
-    var image,businessName,phoneNumber,location,id: String?
-    var categoryId: Int?
+    var image,businessName,phoneNumber,location,id,description: String?
+    var categoryId,is_liked: Int?
     func businessData(dataDict: NSDictionary){
         image = dataDict["business_image"] as? String ?? ""
         businessName = dataDict["business_name"] as? String ?? ""
@@ -48,11 +48,13 @@ class IndividualModel {
         location = dataDict["location"] as? String ?? ""
         id = dataDict["id"] as? String ?? "0"
         categoryId = dataDict["category_id"] as? Int ?? 0
+        is_liked = dataDict["is_liked"] as? Int ?? 0
+        description = dataDict["description"] as? String ?? "0"
     }
 }
 class TodaysRecommendModel {
-    var image,businessName,phoneNumber,location,id: String?
-    var categoryId: Int?
+    var image,businessName,phoneNumber,location,id,description: String?
+    var categoryId,is_liked: Int?
     func businessData(dataDict: NSDictionary){
         image = dataDict["business_image"] as? String ?? ""
         businessName = dataDict["business_name"] as? String ?? ""
@@ -60,11 +62,13 @@ class TodaysRecommendModel {
         location = dataDict["location"] as? String ?? ""
         id = dataDict["id"] as? String ?? "0"
         categoryId = dataDict["category_id"] as? Int ?? 0
+        is_liked = dataDict["is_liked"] as? Int ?? 0
+        description = dataDict["description"] as? String ?? "0"
     }
 }
 class Top10BusinessModel {
-    var image,businessName,phoneNumber,location,id: String?
-    var categoryId: Int?
+    var image,businessName,phoneNumber,location,id,description: String?
+    var categoryId,is_liked: Int?
     func businessData(dataDict: NSDictionary){
         image = dataDict["business_image"] as? String ?? ""
         businessName = dataDict["business_name"] as? String ?? ""
@@ -72,6 +76,8 @@ class Top10BusinessModel {
         location = dataDict["location"] as? String ?? ""
         id = dataDict["id"] as? String ?? "0"
         categoryId = dataDict["category_id"] as? Int ?? 0
+        is_liked = dataDict["is_liked"] as? Int ?? 0
+        description = dataDict["description"] as? String ?? "0"
     }
 }
 class BannerModel{
@@ -124,6 +130,19 @@ class BuisnessHookedModel{
         buisnessName = dataDict["business_name"] as? String ?? ""
         location = dataDict["location"] as? String ?? ""
         image = dataDict["business_image"] as? String ?? ""
+        category_id = dataDict["category_id"] as? Int ?? 0
+        id = dataDict["id"] as? Int ?? 0
+    }
+}
+class BuisnessDetailModel{
+    var business_logo,buisnessName,location,created_at,description,email,first_name,last_name: String?
+    var id,category_id: Int?
+    func detail(dataDict: NSDictionary){
+        business_logo = dataDict["business_logo"] as? String ?? ""
+        buisnessName = dataDict["buisnessName"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        created_at = dataDict["created_at"] as? String ?? ""
+        description = dataDict["description"] as? String ?? ""
         category_id = dataDict["category_id"] as? Int ?? 0
         id = dataDict["id"] as? Int ?? 0
     }

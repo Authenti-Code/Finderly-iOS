@@ -27,6 +27,7 @@ class BusinessDetailVC: UIViewController {
     @IBOutlet weak var oSaveView: UIView!
     @IBOutlet weak var oSocialView: UIView!
     var businessId:Int?
+    
     //MARK: -> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,6 @@ class BusinessDetailVC: UIViewController {
         oCategoryCollectionView.delegate = self
         oPhotoCollectionView.dataSource = self
         oCategoryCollectionView.dataSource = self
-        
     }
     //MARK: -> Button Actions
     @IBAction func backBtnAcn(_ sender: Any) {
@@ -96,7 +96,7 @@ extension BusinessDetailVC: UICollectionViewDelegate, UICollectionViewDataSource
     }
 }
 extension BusinessDetailVC{
-//MARK--> Hit Business DetailAPI
+//MARK--> Hit Business Detail API
 func businessDetailApi(completion:@escaping() -> Void) {
     let Url = "\(Apis.KServerUrl)\(Apis.kBusinessDetail)"
     SVProgressHUD.show()
@@ -108,17 +108,64 @@ func businessDetailApi(completion:@escaping() -> Void) {
         if isSuccess {
             let statusRes = JSON["success"] as? String ?? ""
             if statusRes == "true"{
+                SVProgressHUD.dismiss()
+                if let newData = JSON["data"] as? NSDictionary{
+
+                }
                 completion()
             } else{
                 Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
             }
-            SVProgressHUD.dismiss()
         } else {
-            SVProgressHUD.dismiss()
+            
             Proxy.shared.displayStatusCodeAlert(message)
         }
     }
 }
+    //MARK--> Hit HookedBusiness API
+    func hookedBusinessApi(completion:@escaping() -> Void) {
+        let Url = "\(Apis.KServerUrl)\(Apis.kHookBusiness)"
+        SVProgressHUD.show()
+        let param = [
+            "business_id": businessId as AnyObject
+        ] as [String : Any]
+        print("Params",param)
+        WebProxy.shared.postData(Url, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                let statusRes = JSON["success"] as? String ?? ""
+                if statusRes == "true"{
+                    SVProgressHUD.dismiss()
+
+                    completion()
+                } else{
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+    //MARK--> Hit HookedBusiness API
+    func getSpecializationApi(completion:@escaping() -> Void) {
+        let Url = "\(Apis.KServerUrl)\(Apis.kSpecialization)"
+        SVProgressHUD.show()
+        let param = ["":""]
+        print("Params",param)
+        WebProxy.shared.postData(Url, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                let statusRes = JSON["success"] as? String ?? ""
+                if statusRes == "true"{
+                    SVProgressHUD.dismiss()
+
+                    completion()
+                } else{
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
 }
 
 

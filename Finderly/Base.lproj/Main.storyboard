@@ -1773,7 +1773,7 @@ been uploaded </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fuG-D4-I2k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4544.8000000000002" y="987.25637181409309"/>
+            <point key="canvasLocation" x="3761" y="840"/>
         </scene>
         <!--HookedVC-->
         <scene sceneID="aYh-ge-zQ0">
@@ -2029,7 +2029,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCz-Sd-uL7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5244" y="985.45727136431788"/>
+            <point key="canvasLocation" x="4388" y="840"/>
         </scene>
         <!--Custom Tab Bar-->
         <scene sceneID="3WP-Us-Pth">
@@ -2578,14 +2578,14 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVV-qd-DVh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3761" y="1683"/>
+            <point key="canvasLocation" x="3922" y="1683"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="bF7-zG-2Rc">
             <objects>
                 <viewController storyboardIdentifier="HomeVCID" id="B7m-DQ-Nta" customClass="HomeVC" customModule="Finderly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TJd-LW-SME">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7O-9B-BU5">
@@ -2595,17 +2595,17 @@ text of the.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gn5-gm-qbu">
-                                        <rect key="frame" x="20" y="40" width="265" height="45"/>
+                                        <rect key="frame" x="20" y="40" width="265" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location_Icon-Red" translatesAutoresizingMaskIntoConstraints="NO" id="X55-8v-hrd">
-                                                <rect key="frame" x="20" y="12.5" width="20" height="20"/>
+                                                <rect key="frame" x="20" y="15" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="QMm-NA-1JC"/>
                                                     <constraint firstAttribute="height" constant="20" id="ZXl-X8-2jY"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Delhi, India" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q5t-6A-cJZ">
-                                                <rect key="frame" x="50" y="5" width="205" height="35"/>
+                                                <rect key="frame" x="50" y="5" width="205" height="40"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -2617,7 +2617,7 @@ text of the.</string>
                                             <constraint firstItem="Q5t-6A-cJZ" firstAttribute="leading" secondItem="X55-8v-hrd" secondAttribute="trailing" constant="10" id="V6c-Yu-qkf"/>
                                             <constraint firstItem="X55-8v-hrd" firstAttribute="centerY" secondItem="gn5-gm-qbu" secondAttribute="centerY" id="YE6-74-zfq"/>
                                             <constraint firstItem="X55-8v-hrd" firstAttribute="leading" secondItem="gn5-gm-qbu" secondAttribute="leading" constant="20" id="ar5-H1-j0E"/>
-                                            <constraint firstAttribute="height" constant="45" id="jSf-Qi-6xL"/>
+                                            <constraint firstAttribute="height" constant="50" id="jSf-Qi-6xL"/>
                                             <constraint firstAttribute="bottom" secondItem="Q5t-6A-cJZ" secondAttribute="bottom" constant="5" id="wf3-Cx-gD4"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -2627,14 +2627,14 @@ text of the.</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew6-Kb-C5F">
-                                        <rect key="frame" x="305" y="37.5" width="50" height="50"/>
+                                        <rect key="frame" x="305" y="40" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Nw8-aP-psI"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="SearchIcon"/>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XyC-ag-lAI">
-                                        <rect key="frame" x="20" y="105" width="335" height="145"/>
+                                        <rect key="frame" x="20" y="110" width="335" height="140"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pj5-F9-gBf">
@@ -2645,7 +2645,7 @@ text of the.</string>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCVCell" id="N0V-Ff-z9p" customClass="HomeCVCell" customModule="Finderly" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="9.5" width="353" height="126"/>
+                                                <rect key="frame" x="0.0" y="7" width="353" height="126"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QA2-xy-dAA">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="126"/>
@@ -2712,18 +2712,18 @@ text of the.</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Gf-FM-jlt">
-                                <rect key="frame" x="0.0" y="270" width="375" height="397"/>
+                                <rect key="frame" x="0.0" y="270" width="375" height="630"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeTVCell" rowHeight="306" id="adi-w1-arX" customClass="HomeTVCell" customModule="Finderly" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="306"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeTVCell" rowHeight="256" id="adi-w1-arX" customClass="HomeTVCell" customModule="Finderly" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="256"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="adi-w1-arX" id="qGw-S2-sEO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="306"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQ1-KM-GWY">
-                                                    <rect key="frame" x="16" y="11" width="343" height="284"/>
+                                                    <rect key="frame" x="16" y="11" width="343" height="234"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's recommended " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmb-11-75P">
                                                             <rect key="frame" x="5" y="0.0" width="244" height="24.5"/>
@@ -2739,7 +2739,7 @@ text of the.</string>
                                                             </state>
                                                         </button>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="23o-gC-htL">
-                                                            <rect key="frame" x="0.0" y="34.5" width="343" height="244.5"/>
+                                                            <rect key="frame" x="0.0" y="34.5" width="343" height="194.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AAK-xX-E7y">
                                                                 <size key="itemSize" width="185" height="195"/>
@@ -2749,7 +2749,7 @@ text of the.</string>
                                                             </collectionViewFlowLayout>
                                                             <cells>
                                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCVCell" id="Rwo-rd-4Kl" customClass="HomeCVCell" customModule="Finderly" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="25" width="185" height="195"/>
+                                                                    <rect key="frame" x="0.0" y="-0.5" width="185" height="195"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Rtr-wT-wCo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="185" height="195"/>
@@ -2882,6 +2882,7 @@ text of the.</string>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <size key="customSize" width="185" height="195"/>
                                                                     <connections>
+                                                                        <outlet property="constimgVwheight" destination="6rm-DC-OQi" id="Fbg-ll-qO0"/>
                                                                         <outlet property="oDiscriptionLabel" destination="RF5-DT-J3Y" id="hZB-ja-Kbk"/>
                                                                         <outlet property="oLikeUnlikeBtn" destination="pkH-DX-LEV" id="aCV-LY-RuZ"/>
                                                                         <outlet property="oListImageView" destination="Hnz-g1-Swg" id="tl2-Yj-0dZ"/>
@@ -2938,6 +2939,7 @@ text of the.</string>
                             <constraint firstAttribute="bottom" secondItem="1Gf-FM-jlt" secondAttribute="bottom" id="y05-oY-qse"/>
                         </constraints>
                     </view>
+                    <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="oBannerCollectionView" destination="XyC-ag-lAI" id="RMX-ee-QBb"/>
                         <outlet property="oListingTableView" destination="1Gf-FM-jlt" id="ghG-W9-TmK"/>
@@ -2945,7 +2947,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNJ-ga-RTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3761" y="987"/>
+            <point key="canvasLocation" x="3134" y="945"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="4n3-DQ-e3o">
@@ -3321,7 +3323,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbf-qC-nvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6805.6000000000004" y="1021.889055472264"/>
+            <point key="canvasLocation" x="6578" y="1044"/>
         </scene>
         <!--Edit ProfileVC-->
         <scene sceneID="vrT-pk-8T4">
@@ -3537,7 +3539,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwU-dU-cob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7633" y="1022"/>
+            <point key="canvasLocation" x="7198" y="984"/>
         </scene>
         <!--RestaurantVC-->
         <scene sceneID="IH1-s7-F4s">
@@ -3997,12 +3999,13 @@ text of the.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="oCategoryNameLbl" destination="JBg-vi-d1P" id="qI8-ub-20m"/>
                         <outlet property="oListingTableView" destination="Zpa-Os-0Gl" id="go0-vG-ZFA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ZW-Dy-gQ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5264.8000000000002" y="1682.608695652174"/>
+            <point key="canvasLocation" x="5158" y="1683"/>
         </scene>
         <!--Business DetailVC-->
         <scene sceneID="roR-u0-84U">
@@ -4834,7 +4837,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWT-XS-NRY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6806" y="1770"/>
+            <point key="canvasLocation" x="6649" y="1770"/>
         </scene>
         <!--Rating BusinessVC-->
         <scene sceneID="gVk-T8-c02">
@@ -5040,7 +5043,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVZ-q8-X93" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7713" y="1770"/>
+            <point key="canvasLocation" x="7290" y="1756"/>
         </scene>
     </scenes>
     <resources>

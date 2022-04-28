@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeCVCell: UICollectionViewCell {
+    @IBOutlet weak var constimgVwheight: NSLayoutConstraint!
     // MARK:-> Banner Cell's Outlets
     @IBOutlet weak var oTopMainView: UIView!
     @IBOutlet weak var oTopImageView: UIImageView!
@@ -19,7 +20,6 @@ class HomeCVCell: UICollectionViewCell {
     @IBOutlet weak var oLikeUnlikeBtn: UIButton!
     @IBOutlet weak var oMainView: UIView!
     @IBOutlet weak var oLocationLabel: UILabel!
-    
     //MARK:-> Hooked Cell's Outlet
     @IBOutlet weak var oHookedMainView: UIView!
     @IBOutlet weak var oHookedImageView: UIImageView!

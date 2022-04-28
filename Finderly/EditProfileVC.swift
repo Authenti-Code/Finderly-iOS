@@ -175,29 +175,3 @@ extension EditProfileVC{
 }
 }
 
-//extension EditProfileVC{
-//    func userProfileDataApi(completion:@escaping() -> Void)  {
-//        let eduDetail = "\(Apis.KServerUrl)\(Apis.kUpdateProfile)"
-//        let kURL = eduDetail.encodedURLString()
-//        let params = [
-//            "user_name": oNameTextField.text ?? "",
-//            "mobile_number": oPhoneTextField.text ?? ""
-//        ] as [String:String]
-//
-//        WebProxy.shared.postData(kURL, params: params, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
-//            if isSuccess {
-//                if JSON["success"] as? String == "true"{
-//                    if let dataDict = JSON["data"] as? NSDictionary {
-//                        print("Dict:",dataDict)
-//                    }
-//                    completion()
-//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
-//                } else{
-//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
-//                }
-//            } else {
-//                Proxy.shared.displayStatusCodeAlert(message)
-//            }
-//        }
-//    }
-//}
