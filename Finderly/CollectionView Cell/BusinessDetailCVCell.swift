@@ -9,6 +9,7 @@ import UIKit
 
 class BusinessDetailCVCell: UICollectionViewCell {
     
+    @IBOutlet weak var ImgHeight: NSLayoutConstraint!
     @IBOutlet weak var oImageView: UIImageView!
     @IBOutlet weak var oCatMainView: UIView!
     @IBOutlet weak var oCatHeadingLabel: UILabel!

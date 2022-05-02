@@ -19,11 +19,13 @@ class HomeVC: UIViewController {
     var individualModelAry = [IndividualModel]()
     var todaysModelAry = [TodaysRecommendModel]()
     var top10ModelAry = [Top10BusinessModel]()
+    var sponsoredAry =  [SponsoreModel]()
     var bannerModelAry = [BannerModel]()
-    var listArray = ["Today's Recommended","Sponsored","Top 10 Business Sector","Individual Business"]
+    var listArray = ["Today's Recommended","Sponsored","Top 10 Business Sector"]
     //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        getHomeProductsApi()
         oBannerCollectionView.delegate = self
         oBannerCollectionView.dataSource = self
         oListingTableView.delegate = self
@@ -34,7 +36,6 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        getHomeProductsApi()
     }
 }
 //MARK:-> Extension for collection view delagate and datasource method
@@ -67,39 +68,34 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
             cell.oListingCollectionView.tag = indexPath.row
             cell.currentIndex = "0"
             cell.todaysModelAry = todaysModelAry
+            cell.oSeeAllBtn.isHidden = true
             cell.callback = { (id) -> Void in
                 print(id)
                 self.selectedPost(id: id)
             }
         }else if indexPath.row == 1{
             cell.oListingCollectionView.tag = indexPath.row
-            //                cell.todaysModelAry = todaysModelAry
-            //                cell.top10ModelAry = top10ModelAry
-            //                cell.todaysModelAry = todaysModelAry
-            //                cell.callback = { (id) -> Void in
-            //                    print(id)
-            //                    self.selectedPost(id: id)
-            //                }
+            cell.sponsoredAry = sponsoredAry
+            print(sponsoredAry.count)
+            cell.top10ModelAry = top10ModelAry
+            cell.todaysModelAry = todaysModelAry
+            cell.oSeeAllBtn.isHidden = false
+            cell.callbackspon = { (id) -> Void in
+                print(id)
+                self.selectedPostSpon(id: id)
+            }
         } else if indexPath.row == 2{
             cell.oListingCollectionView.tag = indexPath.row
             cell.currentIndex = "2"
             cell.top10ModelAry = top10ModelAry
             cell.todaysModelAry = todaysModelAry
-            cell.callback = { (id) -> Void in
-                print(id)
-                self.selectedPost(id: id)
-            }
-        } else if indexPath.row == 3{
-            cell.oListingCollectionView.tag = indexPath.row
-            cell.individualModelAry = individualModelAry
-            cell.todaysModelAry = todaysModelAry
+            cell.oSeeAllBtn.isHidden = true
             cell.callback = { (id) -> Void in
                 print(id)
                 self.selectedPost(id: id)
             }
         }
         cell.oListingCollectionView.reloadData()
-        //  cell.oSponsoredCollectionVw.reloadData()
         cell.oSeeAllBtn.tag = indexPath.row
         cell.oSeeAllBtn.addTarget(self, action: #selector(connected(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
@@ -107,17 +103,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     }
     @objc func connected(sender: UIButton){
         let buttonTag = sender.tag
-        if buttonTag == 0{
+        if buttonTag == 1{
             let nav = storyboardMain.instantiateViewController(withIdentifier: "TodayRecommededVCID") as! TodayRecommededVC
-            nav.isCommingfromRecommended  = true
-            nav.category = listArray[0]
-            self.navigationController?.pushViewController(nav, animated: true)
-            //            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "TodayRecommededVCID", isAnimate: true, currentViewController: self)
-        }
-        else if buttonTag == 3{
-            let nav = storyboardMain.instantiateViewController(withIdentifier: "TodayRecommededVCID") as! TodayRecommededVC
-            nav.isCommingfromIndividual = true
-            nav.category = listArray[3]
             self.navigationController?.pushViewController(nav, animated: true)
         }
     }
@@ -125,7 +112,10 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func selectedPost(id: Int) {
         let nav = storyboardMain.instantiateViewController(withIdentifier: "BusinessDetailVCID") as! BusinessDetailVC
         nav.businessId = id
+        print(id)
         self.navigationController?.pushViewController(nav, animated: true)
+    }
+    func selectedPostSpon(id: Int) {
     }
 }
 //MARK:-> Extension For Home Api
@@ -140,8 +130,9 @@ extension HomeVC{
         let kURL = homeData.encodedURLString()
         WebProxy.shared.postData(kURL, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
             if isSuccess {
+                SVProgressHUD.dismiss()
                 if JSON["success"] as? String == "true"{
-                    SVProgressHUD.dismiss()
+                   
                     if let dataDict = JSON["data"] as? NSDictionary{
                         self.homeBusinessAry.removeAll()
                         self.bannerModelAry.removeAll()
@@ -152,6 +143,15 @@ extension HomeVC{
                                 let individualModelObj = IndividualModel()
                                 individualModelObj.businessData(dataDict: dict as! NSDictionary)
                                 self.individualModelAry.append(individualModelObj)
+                            }
+                        }
+                        if let newData = dataDict["sponsored"] as? NSArray{
+                            self.sponsoredAry.removeAll()
+                            for i in 0..<newData.count{
+                                let dict = newData[i]
+                                let sponsoreModelObj = SponsoreModel()
+                                sponsoreModelObj.sponsored(dataDict: dict as! NSDictionary)
+                                self.sponsoredAry.append(sponsoreModelObj)
                             }
                         }
                         if let newData = dataDict["todays_recommended"] as? NSArray{
@@ -187,13 +187,13 @@ extension HomeVC{
                         self.oListingTableView.reloadData()
                         self.oBannerCollectionView.reloadData()
                     }
-                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
-//                    SVProgressHUD.dismiss()
+                    //                    SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
                 }
             } else {
-//                SVProgressHUD.dismiss()
+                //                SVProgressHUD.dismiss()
                 Proxy.shared.displayStatusCodeAlert(message)
             }
         }

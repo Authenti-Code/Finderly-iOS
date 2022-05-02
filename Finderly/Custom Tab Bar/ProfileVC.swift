@@ -80,7 +80,13 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource{
         cell.oNotifySwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 4{
+            let nav = storyboardMain.instantiateViewController(withIdentifier: "SavedBusinessesVC") as! SavedBusinessesVC
+//            nav.businessId = id
+            self.navigationController?.pushViewController(nav, animated: true)
+        }
+    }
     //MARK:--> Switch
     @objc func switchChanged(_ sender : UISwitch!){
         print("table row switch Changed \(sender.tag)")

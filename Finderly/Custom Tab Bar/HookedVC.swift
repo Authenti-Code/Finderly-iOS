@@ -10,21 +10,24 @@ import SVProgressHUD
 import SDWebImage
 
 class HookedVC: UIViewController {
+    //MARK:--> IBOutlets
     @IBOutlet weak var oHookedCollectionView: UICollectionView!
+    //MARK:--> Define variables
     var hookedModelAry = [BuisnessHookedModel]()
     var pageNo: Int?
     var totalPage: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         pageNo = 1
-        getBusinessHookedApi()
         oHookedCollectionView.delegate = self
         oHookedCollectionView.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        getBusinessHookedApi()
     }
 }
+//MARK:--> Collection view delegats
 extension HookedVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return hookedModelAry.count
@@ -39,12 +42,28 @@ extension HookedVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         cell.oHookedMainView.layer.masksToBounds = false
         let imgUrl = hookeModelObj.image
         let removeSpace = imgUrl!.replacingOccurrences(of: " ", with: "%20")
-        cell.oHookedImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        cell.oHookedImageView.sd_imageIndicator = SDWebImageActivityIndicator.white
         cell.oHookedImageView.sd_setImage(with: URL.init(string: removeSpace), placeholderImage: UIImage(named: ""), options: .highPriority, context: [:])
         cell.oHookedHeadingLbl.text = hookeModelObj.buisnessName
         cell.oHookedLocationLbl.text = hookeModelObj.location
+        cell.oHookedDiscriptionLbl.text = hookeModelObj.description
+        cell.oRatingLabell.text = "\(hookeModelObj.ratings ?? "") (\(hookeModelObj.ratings_count  ?? 0 ))"
+        if hookeModelObj.is_liked == 1{
+            cell.oLikebtn.setImage(UIImage(named: "liked_heart"), for: .normal)
+        }else{
+            cell.oLikebtn.setImage(UIImage(named: "Icon heart"), for: .normal)
+        }
+//        cell.oLikebtn.tag = indexPath.row
+//        cell.oLikebtn.addTarget(self, action: #selector(likeBtn), for: .touchUpInside)
         return cell
     }
+    //MARK:--> Like Buttton
+//    @objc func likeBtn( sender:UIButton){
+//        let hookeModelObj = hookedModelAry[sender.tag]
+//        businessLikeApi(id:hookeModelObj.id ?? ""){
+//            self.viewWillAppear(true)
+//        }
+//    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width / 2.12, height: 220)
        }
@@ -59,6 +78,7 @@ extension HookedVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         }
     }
 }
+//MARK:--> extension for hit GetBusiness and business Like Api
 extension HookedVC{
     func getBusinessHookedApi(){
         SVProgressHUD.show()
@@ -91,6 +111,32 @@ extension HookedVC{
                 }
             } else {
                 SVProgressHUD.dismiss()
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+    //MARK:--> Hit Business like and unlike Api
+    func businessLikeApi(id:String,completion:@escaping() -> Void)  {
+        let likeUrl = "\(Apis.KServerUrl)\(Apis.kLikebusiness)"
+        let kURL = likeUrl.encodedURLString()
+        let params = [
+            "business_id":  id as AnyObject
+        ]
+        WebProxy.shared.postData(kURL, params: params, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                if JSON["success"] as? String == "true"{
+                    if let dataDict = JSON["data"] as? NSDictionary {
+                        print("Dict:",dataDict)
+                    }
+                    completion()
+                    self.oHookedCollectionView.reloadData()
+                    self.oHookedCollectionView.delegate = self
+                    self.oHookedCollectionView.dataSource = self
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                }
+            } else {
                 Proxy.shared.displayStatusCodeAlert(message)
             }
         }

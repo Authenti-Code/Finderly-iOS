@@ -12,7 +12,11 @@ let AppName = "Findirly"
 let KAppDelegate = UIApplication.shared.delegate as! AppDelegate
 let storyboardMain = UIStoryboard(name: "Main", bundle: nil)
 let Defaults = UserDefaults.standard
-
+extension UIColor {
+    static var bbackgroundShadow: UIColor {
+        return UIColor(red: 0.1960784314, green: 0.6156862745, blue: 0.6117647059, alpha: 0.50)
+    }
+}
 //app colors
 enum appcolor{
     static let backgroundShadow = UIColor(red: 0.1960784314, green: 0.6156862745, blue: 0.6117647059, alpha: 0.50)

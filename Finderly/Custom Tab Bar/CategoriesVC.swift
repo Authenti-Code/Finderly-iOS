@@ -13,6 +13,7 @@ class CategoriesVC: UIViewController {
 
     @IBOutlet weak var oCategoryCollectionView: UICollectionView!
     var categoryListAry = [CategoryModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         oCategoryCollectionView.delegate = self
@@ -44,6 +45,7 @@ extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let categoryModelObj = categoryListAry[indexPath.row]
         let vc = storyboardMain.instantiateViewController(withIdentifier: "RestaurantVCID") as! RestaurantVC
         vc.categoryId = categoryModelObj.id ?? 0
+        vc.categoryName = categoryModelObj.name
         self.navigationController?.pushViewController(vc,animated: true)
 //        if indexPath.row == 1{
 //            Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "RestaurantVCID", isAnimate: true, currentViewController: self)
