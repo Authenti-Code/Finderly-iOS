@@ -53,20 +53,28 @@ extension HookedVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         }else{
             cell.oLikebtn.setImage(UIImage(named: "Icon heart"), for: .normal)
         }
-//        cell.oLikebtn.tag = indexPath.row
-//        cell.oLikebtn.addTarget(self, action: #selector(likeBtn), for: .touchUpInside)
+        //        cell.oLikebtn.tag = indexPath.row
+        //        cell.oLikebtn.addTarget(self, action: #selector(likeBtn), for: .touchUpInside)
         return cell
     }
     //MARK:--> Like Buttton
-//    @objc func likeBtn( sender:UIButton){
-//        let hookeModelObj = hookedModelAry[sender.tag]
-//        businessLikeApi(id:hookeModelObj.id ?? ""){
-//            self.viewWillAppear(true)
-//        }
-//    }
+    //    @objc func likeBtn( sender:UIButton){
+    //        let hookeModelObj = hookedModelAry[sender.tag]
+    //        businessLikeApi(id:hookeModelObj.id ?? ""){
+    //            self.viewWillAppear(true)
+    //        }
+    //    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if hookedModelAry.count > 0 {
+            let nav = storyboardMain.instantiateViewController(withIdentifier: "BusinessDetailVCID") as! BusinessDetailVC
+            let hookeModelObj = hookedModelAry[indexPath.row]
+            nav.businessId = Int(hookeModelObj.id ?? "0") ?? 0
+            self.navigationController?.pushViewController(nav, animated: true)
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width / 2.12, height: 220)
-       }
+    }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if hookedModelAry.count > 0{
             if indexPath.row == hookedModelAry.count - 1{
@@ -95,16 +103,16 @@ extension HookedVC{
                     SVProgressHUD.dismiss()
                     self.totalPage = JSON["total_pages"] as? Int
                     self.hookedModelAry.removeAll()
-                        if let newData = JSON["data"] as? NSArray{
-                            for i in 0..<newData.count{
-                                let dict = newData[i]
-                                let hookedModelObj = BuisnessHookedModel()
-                                hookedModelObj.hooked(dataDict: dict as! NSDictionary)
-                                self.hookedModelAry.append(hookedModelObj)
-                            }
+                    if let newData = JSON["data"] as? NSArray{
+                        for i in 0..<newData.count{
+                            let dict = newData[i]
+                            let hookedModelObj = BuisnessHookedModel()
+                            hookedModelObj.hooked(dataDict: dict as! NSDictionary)
+                            self.hookedModelAry.append(hookedModelObj)
+                        }
                     }
                     self.oHookedCollectionView.reloadData()
-                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
@@ -132,7 +140,7 @@ extension HookedVC{
                     self.oHookedCollectionView.reloadData()
                     self.oHookedCollectionView.delegate = self
                     self.oHookedCollectionView.dataSource = self
-                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 }

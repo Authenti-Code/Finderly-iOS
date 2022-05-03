@@ -16,7 +16,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var oListingTableView: UITableView!
     //MARK:-> Varibles
     var homeBusinessAry = [HomeDataBusinessModel]()
-    var individualModelAry = [IndividualModel]()
+    //    var individualModelAry = [IndividualModel]()
     var todaysModelAry = [TodaysRecommendModel]()
     var top10ModelAry = [Top10BusinessModel]()
     var sponsoredAry =  [SponsoreModel]()
@@ -26,17 +26,15 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getHomeProductsApi()
-        oBannerCollectionView.delegate = self
-        oBannerCollectionView.dataSource = self
-        oListingTableView.delegate = self
-        oListingTableView.dataSource = self
-        
         UserDefaults.standard.set(true, forKey: "logged_in")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+    //    override func viewDidDisappear(_ animated: Bool) {
+    //        todaysModelAry.removeAll()
+    //    }
 }
 //MARK:-> Extension for collection view delagate and datasource method
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -64,7 +62,12 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = oListingTableView.dequeueReusableCell(withIdentifier: "HomeTVCell") as! HomeTVCell
         cell.oHeadingLabel.text = listArray[indexPath.row]
+        
         if indexPath.row == 0{
+            cell.callbackLike = { (is_liked,indx) -> Void in
+                print("is_liked",indx)
+                self.todaysModelAry[indx].is_liked = is_liked
+            }
             cell.oListingCollectionView.tag = indexPath.row
             cell.currentIndex = "0"
             cell.todaysModelAry = todaysModelAry
@@ -85,6 +88,10 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
                 self.selectedPostSpon(id: id)
             }
         } else if indexPath.row == 2{
+            cell.callbackLike = { (is_liked,indx) -> Void in
+                print("is_liked",indx)
+                self.top10ModelAry[indx].is_liked = is_liked
+            }
             cell.oListingCollectionView.tag = indexPath.row
             cell.currentIndex = "2"
             cell.top10ModelAry = top10ModelAry
@@ -132,19 +139,18 @@ extension HomeVC{
             if isSuccess {
                 SVProgressHUD.dismiss()
                 if JSON["success"] as? String == "true"{
-                   
                     if let dataDict = JSON["data"] as? NSDictionary{
-                        self.homeBusinessAry.removeAll()
+                        //                        self.homeBusinessAry.removeAll()
                         self.bannerModelAry.removeAll()
-                        if let newData = dataDict["individual_business"] as? NSArray{
-                            self.individualModelAry.removeAll()
-                            for i in 0..<newData.count{
-                                let dict = newData[i]
-                                let individualModelObj = IndividualModel()
-                                individualModelObj.businessData(dataDict: dict as! NSDictionary)
-                                self.individualModelAry.append(individualModelObj)
-                            }
-                        }
+                        //                        if let newData = dataDict["individual_business"] as? NSArray{
+                        //                            self.individualModelAry.removeAll()
+                        //                            for i in 0..<newData.count{
+                        //                                let dict = newData[i]
+                        //                                let individualModelObj = IndividualModel()
+                        //                                individualModelObj.businessData(dataDict: dict as! NSDictionary)
+                        //                                self.individualModelAry.append(individualModelObj)
+                        //                            }
+                        //                        }
                         if let newData = dataDict["sponsored"] as? NSArray{
                             self.sponsoredAry.removeAll()
                             for i in 0..<newData.count{
@@ -173,6 +179,7 @@ extension HomeVC{
                             }
                         }
                         if let bannerData = dataDict["banner"] as? NSArray{
+                            self.bannerModelAry.removeAll()
                             for i in 0..<bannerData.count{
                                 let dict = bannerData[i]
                                 let bannerModelObj = BannerModel()
@@ -187,7 +194,7 @@ extension HomeVC{
                         self.oListingTableView.reloadData()
                         self.oBannerCollectionView.reloadData()
                     }
-//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                    //                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     //                    SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")

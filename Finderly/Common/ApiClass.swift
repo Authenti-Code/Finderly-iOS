@@ -44,6 +44,8 @@ enum Apis{
     static let kHookBusiness = "hookedBusiness"
     static let kSpecialization = "getSpecialization"
     static let kseeAllSponsore = "seeAllSponsored"
+    static let kSaveBusiness = "saveUnsaveBusiness"
+    static let kGetSavesBusiness = "savedBusinessGet"
 }
 //MARK:- App Header
 func headers() ->  [String:String] {

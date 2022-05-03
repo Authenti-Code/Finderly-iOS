@@ -25,13 +25,16 @@ class HomeTVCell: UITableViewCell {
     var callback: ((_ id: Int) -> Void)?
     var callbackspon: ((_ id: Int) -> Void)?
     var currentIndex = String()
+    var like:Int?
+    //    var callbackRecommended:((Bool) -> Void)?
+    var callbackLike: ((_ is_liked:Int,_ indx:Int) -> Void)?
     // var delegateObj: PostDelegate?
     //MARK:-> View's Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         oListingCollectionView.delegate = self
         oListingCollectionView.dataSource = self
-        oListingCollectionView.reloadData()
+        //        oListingCollectionView.reloadData()
     }
     //override func viewWillAppear(animated: Bool) {
     //
@@ -87,6 +90,8 @@ extension HomeTVCell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             cell.oLikeUnlikeBtn.tag = indexPath.row
             cell.oLikeUnlikeBtn.addTarget(self, action: #selector(RecommendedPostLikeButton), for: .touchUpInside)
         } else if oListingCollectionView.tag == 1{
+            cell.oMainView.layer.masksToBounds = false
+            layer.masksToBounds = true
             let sponsoredObj = sponsoredAry[indexPath.item]
             let imgUrl = sponsoredObj.image
             let removeSpace = imgUrl!.replacingOccurrences(of: " ", with: "%20")
@@ -123,6 +128,7 @@ extension HomeTVCell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             if top10ModelObj.is_liked == 1{
                 cell.oLikeUnlikeBtn.setImage(UIImage(named: "liked_heart"), for: .normal)
             }else{
+                //
                 cell.oLikeUnlikeBtn.setImage(UIImage(named: "Icon heart"), for: .normal)
             }
             cell.oLikeUnlikeBtn.tag = indexPath.row
@@ -133,11 +139,13 @@ extension HomeTVCell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     @objc func RecommendedPostLikeButton( sender:UIButton){
         let todayModelObj = todaysModelAry[sender.tag]
         businessLikeApi(id:todayModelObj.id ?? ""){
+            self.callbackLike?(Int(self.like ?? 0), sender.tag)
         }
     }
     @objc func TopBusinessSetorButton( sender:UIButton){
         let top10ModelObj = top10ModelAry[sender.tag]
         businessLikeApi(id:top10ModelObj.id ?? ""){
+            self.callbackLike?(Int(self.like ?? 0), sender.tag)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -180,6 +188,7 @@ extension HomeTVCell{
                 if JSON["success"] as? String == "true"{
                     if let dataDict = JSON["data"] as? NSDictionary {
                         print("Dict:",dataDict)
+                        self.like = Int(dataDict["islike"] as? String ?? "0")
                     }
                     completion()
                     self.oListingCollectionView.reloadData()

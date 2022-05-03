@@ -74,6 +74,7 @@ class TodaysRecommendModel {
         location = dataDict["location"] as? String ?? ""
         id = dataDict["id"] as? String ?? "0"
         categoryId = dataDict["category_id"] as? Int ?? 0
+    print("Like:", dataDict["is_liked"] as? Int ?? 0)
         is_liked = dataDict["is_liked"] as? Int ?? 0
         description = dataDict["description"] as? String ?? "0"
         ratings = dataDict["ratings"] as? String ?? "0"
@@ -145,6 +146,22 @@ class BuisnessHookedModel{
     var phoneNumber,buisnessName,location,image,description,ratings,id: String?
     var category_id,is_liked,ratings_count: Int?
     func hooked(dataDict: NSDictionary){
+        phoneNumber = dataDict["phone_number"] as? String ?? ""
+        buisnessName = dataDict["business_name"] as? String ?? ""
+        location = dataDict["location"] as? String ?? ""
+        image = dataDict["business_image"] as? String ?? ""
+        category_id = dataDict["category_id"] as? Int ?? 0
+        id = dataDict["id"] as? String ?? ""
+        description = dataDict["description"] as? String ?? ""
+        ratings = dataDict["ratings"] as? String ?? ""
+        is_liked = dataDict["is_liked"] as? Int ?? 0
+        ratings_count = dataDict["ratings_count"] as? Int ?? 0
+    }
+}
+class BusinessSavedModel{
+    var phoneNumber,buisnessName,location,image,description,ratings,id: String?
+    var category_id,is_liked,ratings_count: Int?
+    func saved(dataDict: NSDictionary){
         phoneNumber = dataDict["phone_number"] as? String ?? ""
         buisnessName = dataDict["business_name"] as? String ?? ""
         location = dataDict["location"] as? String ?? ""

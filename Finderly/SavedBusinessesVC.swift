@@ -7,57 +7,92 @@
 
 import UIKit
 import SDWebImage
+import SVProgressHUD
 
 class SavedBusinessesVC: UIViewController {
     @IBOutlet weak var oSavedCollectionView: UICollectionView!
+   var businesssavedAry =  [BusinessSavedModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        oSavedCollectionView.delegate = self
-        oSavedCollectionView.dataSource = self
+        
+       
     }
     @IBAction func backBtnAcn(_ sender: Any) {
         self.pop()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        getSaveBusinessApi{
+            self.oSavedCollectionView.delegate = self
+            self.oSavedCollectionView.dataSource = self
+            self.oSavedCollectionView.reloadData()
+        }
     }
 }
 //MARK:--> Collection view Delegate
 extension SavedBusinessesVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return businesssavedAry.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = oSavedCollectionView.dequeueReusableCell(withReuseIdentifier: "SavedBusinessCVCell", for:indexPath) as! SavedBusinessCVCell
-//        let resturantModelObj = resturantModelAry[indexPath.row]
-//        cell.oHookedMainView.layer.shadowColor = appcolor.backgroundShadow.cgColor
-//        cell.oHookedMainView.layer.shadowOffset = .zero
-//        cell.oHookedMainView.layer.shadowRadius = 3
-//        cell.oHookedMainView.layer.shadowOpacity = 0.3
-//        cell.oHookedMainView.layer.masksToBounds = false
-//        cell.oResturentHeadingLbl.text = resturantModelObj.name
-//        let imgUrl = resturantModelObj.imageIcon
-//        let removeSpace = imgUrl!.replacingOccurrences(of: " ", with: "%20")
-//        cell.oResturentImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//        cell.oResturentImageView.sd_setImage(with: URL.init(string: removeSpace), placeholderImage: UIImage(named: ""), options: .highPriority, context: [:])
-//        cell.oReseturentLocationLbl.text = resturantModelObj.location
-//        cell.oResturentDiscriptionLbl.text = resturantModelObj.description
-//        cell.oRatingLbl.text =  "\(resturantModelObj.ratings ?? "") (\(resturantModelObj.ratings_count  ?? 0 ))"
-//        if resturantModelObj.is_liked == 1{
-//            cell.oLikeBtn.setImage(UIImage(named: "liked_heart"), for: .normal)
-//        }else{
-//            cell.oLikeBtn.setImage(UIImage(named: "Icon heart"), for: .normal)
-//        }
-//        cell.oLikeBtn.tag = indexPath.row
-//        cell.oLikeBtn.addTarget(self, action: #selector(likeButton), for: .touchUpInside)
-        return cell
+        let savedModelObj = businesssavedAry[indexPath.row]
+        cell.oSavedVw.layer.shadowColor = appcolor.backgroundShadow.cgColor
+        cell.oSavedVw.layer.shadowOffset = .zero
+        cell.oSavedVw.layer.shadowRadius = 3
+        cell.oSavedVw.layer.shadowOpacity = 0.3
+        cell.oSavedVw.layer.masksToBounds = false
+        cell.obusinessNameLbl.text = savedModelObj.buisnessName
+        let imgUrl = savedModelObj.image
+        let removeSpace = imgUrl!.replacingOccurrences(of: " ", with: "%20")
+        cell.oSavedImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        cell.oSavedImageView.sd_setImage(with: URL.init(string: removeSpace), placeholderImage: UIImage(named: ""), options: .highPriority, context: [:])
+        cell.oLocationLbl.text = savedModelObj.location
+        cell.oDescriptionLbl.text = savedModelObj.description
+        cell.oRatingLbl.text =  "\(savedModelObj.ratings ?? "") (\(savedModelObj.ratings_count  ?? 0 ))"
+    return cell
     }
-//    @objc func likeButton( sender:UIButton){
-//        let resturantModelObj = resturantModelAry[sender.tag]
-//        businessLikeApi(id:resturantModelObj.id ?? ""){
-//            self.viewWillAppear(true)
-//        }
-//
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if businesssavedAry.count > 0 {
+            let nav = storyboardMain.instantiateViewController(withIdentifier: "BusinessDetailVCID") as! BusinessDetailVC
+            let savedModelObj = businesssavedAry[indexPath.row]
+            nav.businessId = Int(savedModelObj.id ?? "0") ?? 0
+            self.navigationController?.pushViewController(nav, animated: true)
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width / 2.12, height: 220)
     }
-    
+}
+extension SavedBusinessesVC{
+    //MARK--> Hit get Save Business Api
+    func getSaveBusinessApi(completion:@escaping() -> Void) {
+        let Url = "\(Apis.KServerUrl)\(Apis.kGetSavesBusiness)"
+        SVProgressHUD.show()
+        let param = ["page_number": "1" as AnyObject]
+        print("Params",param)
+        WebProxy.shared.postData(Url, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                let statusRes = JSON["success"] as? String ?? ""
+                if statusRes == "true"{
+                    SVProgressHUD.dismiss()
+                    if let newData = JSON["data"] as? NSArray{
+                        self.businesssavedAry.removeAll()
+                        for i in 0..<newData.count{
+                            let dict = newData[i]
+                            let savedModelObj = BusinessSavedModel()
+                            savedModelObj.saved(dataDict: dict as! NSDictionary)
+                            self.businesssavedAry.append(savedModelObj)
+                        }
+                }
+                    completion()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                } else{
+                    SVProgressHUD.dismiss()
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
 }

@@ -14,6 +14,8 @@ class BusinessDetailVC: UIViewController {
     @IBOutlet weak var oMainImgView: UIImageView!
     @IBOutlet weak var businessPhotoHeight: NSLayoutConstraint!
     @IBOutlet weak var oBusinessNameLabel: UILabel!
+    @IBOutlet weak var oHookLbl: UILabel!
+    @IBOutlet weak var oSaveLbl: UILabel!
     @IBOutlet weak var oDiscriptionLabel: UILabel!
     @IBOutlet weak var oLocationLbl: UILabel!
     @IBOutlet weak var oRatingLbl: UILabel!
@@ -38,18 +40,18 @@ class BusinessDetailVC: UIViewController {
     var businessAry = [BuisnessDetailModel]()
     var businessImgAry = [BusinessImagesModel]()
     var specilizationAry =  [specializationsModel]()
-    var  business_logo:String?
-    var  business_name:String?
-    var  location:String?
-    var  ratings:String?
-    var  descrip:String?
-    var  ratingCount:Int?
+    var business_logo:String?
+    var business_name:String?
+    var location:String?
+    var ratings:String?
+    var descrip:String?
+    var ratingCount:Int?
+    var business_hooked:Int?
+    var business_saved:Int?
     //MARK: -> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadItem()
-       
-        print(specilizationAry.count)
     }
     override func viewWillAppear(_ animated: Bool) {
         businessDetailApi{
@@ -66,8 +68,22 @@ class BusinessDetailVC: UIViewController {
                 self.oSpecilizationHeight.constant = 0
                 self.oSpecializationVw.isHidden = true
             }
+            if self.business_hooked == 0{
+                self.oHookLbl.text = "Hook"
+                self.oHookView.layer.backgroundColor = UIColor.white.cgColor
+                }
+            else{
+                self.oHookView.layer.backgroundColor = UIColor.bbackgroundShadow.cgColor
+                self.oHookLbl.text = "Hooked"
+                
+            }
+            if self.business_saved == 0{
+                self.oSaveLbl.text = "Save"
+                }
+            else{
+                self.oSaveLbl.text = "Saved"
+            }
             self.loaddata()
-            print("ratingCount",self.ratingCount ?? 0)
         }
     }
     func loaddata(){
@@ -96,10 +112,10 @@ class BusinessDetailVC: UIViewController {
         self.oShareView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oHookView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oSaveView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
-//        oPhotoCollectionView.delegate = self
-//        oCategoryCollectionView.delegate = self
-//        oPhotoCollectionView.dataSource = self
-//        oCategoryCollectionView.dataSource = self
+        //        oPhotoCollectionView.delegate = self
+        //        oCategoryCollectionView.delegate = self
+        //        oPhotoCollectionView.dataSource = self
+        //        oCategoryCollectionView.dataSource = self
     }
     //MARK: -> Button Actions
     @IBAction func backBtnAcn(_ sender: Any) {
@@ -111,29 +127,48 @@ class BusinessDetailVC: UIViewController {
     @IBAction func seeAllPhotoBtnAcn(_ sender: Any) {
     }
     @IBAction func contactBtnAcn(_ sender: Any) {
+       
     }
     @IBAction func whatsappBtnAcn(_ sender: Any) {
-    }
+        let urlWhats = "https://wa.me/numberWithCountryCode"
+           if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+               if let whatsappURL = URL(string: urlString) {
+                   if UIApplication.shared.canOpenURL(whatsappURL){
+                       if #available(iOS 10.0, *) {
+                           UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
+                       } else {
+                           UIApplication.shared.openURL(whatsappURL)
+                       }
+                   } else {
+//                       Alert(withMessage: "You do not have WhatsApp installed! \nPlease install first.").show(andCloseAfter: 2.0)
+                   }
+               }
+           }
+       }
     @IBAction func instagramBtnAcn(_ sender: Any) {
     }
     @IBAction func shareBtnAcn(_ sender: Any) {
-//        let image = UIImage(named: "Image")
-//               
-//               // set up activity view controller
-//               let imageToShare = [ image! ]
-//               let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-//               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-//               
-//               // exclude some activity types from the list (optional)
-//               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-//               
-//               // present the view controller
-//               self.present(activityViewController, animated: true, completion: nil)
-           }
+        do {
+            //Set the default sharing message.
+            let message = "Message goes here."
+            //Set the link to share.
+            if let link = NSURL(string: "http://yoururl.com"){
+                let objectsToShare = [message,link] as [Any]
+                let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+                self.present(activityVC, animated: true, completion: nil)
+            }
+        }
+    }
     @IBAction func hookBtnAcn(_ sender: Any) {
-        hookedBusinessApi{}
+        hookedBusinessApi{
+            self.viewWillAppear(true)
+        }
     }
     @IBAction func saveBtnAcn(_ sender: Any) {
+        saveBusinessApi{
+            self.viewWillAppear(true)
+        }
     }
     @IBAction func rateBusinessBtnAcn(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RatingBusinessVCID") as! RatingBusinessVC
@@ -146,15 +181,15 @@ extension BusinessDetailVC: UICollectionViewDelegate, UICollectionViewDataSource
         if collectionView == oCategoryCollectionView{
             AryCount = specilizationAry.count
         }
-            else if collectionView == oPhotoCollectionView{
-                AryCount = businessImgAry.count
-            }
-            return AryCount
+        else if collectionView == oPhotoCollectionView{
+            AryCount = businessImgAry.count
+        }
+        return AryCount
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cellMain = UICollectionViewCell()
         if collectionView == oCategoryCollectionView{
-           
+            
             let cell = oCategoryCollectionView.dequeueReusableCell(withReuseIdentifier: "SpeciliCategortCVCell", for: indexPath) as! SpeciliCategortCVCell
             let specilizationObj = specilizationAry[indexPath.item]
             cell.oCategoryName.text = specilizationObj.name
@@ -170,17 +205,14 @@ extension BusinessDetailVC: UICollectionViewDelegate, UICollectionViewDataSource
             cell.oImageView.sd_setImage(with: URL.init(string: removeSpace ?? ""), placeholderImage: UIImage(named: ""), options: .highPriority, context: [:])
             cellMain =  cell
         }
-     return cellMain
-}
+        return cellMain
+    }
 }
 extension BusinessDetailVC{
-   
     //MARK--> Hit Business Detail API
     func businessDetailApi(completion:@escaping() -> Void) {
-       
         let Url = "\(Apis.KServerUrl)\(Apis.kBusinessDetail)"
-      
-            SVProgressHUD.show()
+        SVProgressHUD.show()
         let param = [
             "business_id": businessId as AnyObject
         ] as [String : Any]
@@ -197,7 +229,9 @@ extension BusinessDetailVC{
                         self.location = dataDict["location"] as? String ?? ""
                         self.ratings = dataDict["ratings"] as? String ?? ""
                         self.ratingCount = dataDict["ratings_count"] as? Int
-                        print("ratingCount",self.ratingCount)
+                        self.business_hooked = dataDict["business_hooked"] as? Int
+                        print("business_hooked",self.business_hooked)
+                        self.business_saved = dataDict["business_saved"] as? Int
                         if let imgAry = dataDict["business_image"] as? NSArray{
                             self.businessImgAry.removeAll()
                             for i in 0..<imgAry.count{
@@ -205,7 +239,6 @@ extension BusinessDetailVC{
                                 let bImageObj = BusinessImagesModel()
                                 bImageObj.bImage(dataDict:dict as! NSDictionary)
                                 self.businessImgAry.append(bImageObj)
-                                //print("ArrayCount",self.businessImgAry.count)
                             }
                         }
                         if let specializAry =  dataDict["specialization"] as? NSArray{
@@ -243,7 +276,7 @@ extension BusinessDetailVC{
                 if statusRes == "true"{
                     SVProgressHUD.dismiss()
                     completion()
-                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
                 }
@@ -252,7 +285,7 @@ extension BusinessDetailVC{
             }
         }
     }
-    //MARK--> Hit HookedBusiness API
+    //MARK--> Hit getSpecialization API
     func getSpecializationApi(completion:@escaping() -> Void) {
         let Url = "\(Apis.KServerUrl)\(Apis.kSpecialization)"
         SVProgressHUD.show()
@@ -263,8 +296,28 @@ extension BusinessDetailVC{
                 let statusRes = JSON["success"] as? String ?? ""
                 if statusRes == "true"{
                     SVProgressHUD.dismiss()
-                    
                     completion()
+                } else{
+                    Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+                }
+            } else {
+                Proxy.shared.displayStatusCodeAlert(message)
+            }
+        }
+    }
+    //MARK--> Hit saveBusiness/Unsaved API
+    func saveBusinessApi(completion:@escaping() -> Void) {
+        let Url = "\(Apis.KServerUrl)\(Apis.kSaveBusiness)"
+        SVProgressHUD.show()
+        let param = ["business_id": businessId as AnyObject]
+        print("Params",param)
+        WebProxy.shared.postData(Url, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+            if isSuccess {
+                let statusRes = JSON["success"] as? String ?? ""
+                if statusRes == "true"{
+                    SVProgressHUD.dismiss()
+                    completion()
+                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
                 }

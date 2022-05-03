@@ -124,7 +124,6 @@ extension ProfileVC{
             }
         }
     }
-    
     //MARK:--> Change Notification Status Api
     func changeNotificationStatusApi(status: Int){
         SVProgressHUD.show()

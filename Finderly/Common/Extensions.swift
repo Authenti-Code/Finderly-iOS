@@ -83,9 +83,7 @@ enum AIEdge:Int {
 }
 extension UIView {
     func applyShadowWithCornerRadius(color:UIColor, opacity:Float, radius: CGFloat, edge:AIEdge, shadowSpace:CGFloat, cornerRadius: CGFloat)    {
-        
         var sizeOffset:CGSize = CGSize.zero
-        
         switch edge {
         case .Top:
             sizeOffset = CGSize(width: 0, height: -shadowSpace)
@@ -110,7 +108,6 @@ extension UIView {
         case .None:
             sizeOffset = CGSize.zero
         }
-        
         self.layer.cornerRadius = cornerRadius
         self.layer.masksToBounds = true
         

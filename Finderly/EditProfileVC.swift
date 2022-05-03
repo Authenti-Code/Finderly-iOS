@@ -37,7 +37,6 @@ class EditProfileVC: UIViewController {
             self.oUserImageView.sd_imageIndicator = SDWebImageActivityIndicator.white
             self.oUserImageView.sd_setImage(with: URL(string: "\(self.userDataModelObj.userProfile ?? "")"), placeholderImage: UIImage(named: "user-profile"))
         }
-       
     }
     func loadItem(){
         self.oNameView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
@@ -76,16 +75,12 @@ class EditProfileVC: UIViewController {
        
     }
     @IBAction func saveBtnAcn(_ sender: Any) {
-        if oNameTextField.text?.isEmpty == true{
-        Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.fullName)
-        return
-        }else if oPhoneTextField.text?.isEmpty == true{
-            Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.phoneNumber)
-            return
-        }else{
-            profileUpdate()
-
-        }
+//        if oNameTextField.text?.isEmpty == true{
+//        Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.fullName)
+//        }else if oPhoneTextField.text?.isEmpty == true{
+//            Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.phoneNumber)
+//        }
+          profileUpdate()
     }
 }
 //  MARK:--> extention for Image Picker
@@ -142,6 +137,7 @@ extension EditProfileVC{
         parameters = ["user_name": oNameTextField.text as AnyObject,
                       "mobile_number": oPhoneTextField.text as AnyObject] as [String : AnyObject]
         let URL = "\(Apis.KServerUrl)\(Apis.kUpdateProfile)"
+        print("Update Profile",URL)
         requestWith(endUrl: URL, imagedata: userImage?.jpegData(compressionQuality: 1.0), parameters: parameters)
     }
     func requestWith(endUrl: String, imagedata: Data?, parameters: [String : AnyObject]){
@@ -162,8 +158,9 @@ extension EditProfileVC{
                     if response.response?.statusCode == 200 {
                         SVProgressHUD.dismiss()
                  print("JSON data:-->",JSON)
-                    self.navigationController?.popViewController(animated: true)
+                        self.pop()
                         Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                    }
                 } else {
                     if response.data != nil {
                         debugPrint(NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)!)
@@ -173,5 +170,5 @@ extension EditProfileVC{
         }
     }
 }
-}
+
 

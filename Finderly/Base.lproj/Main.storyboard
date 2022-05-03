@@ -576,7 +576,7 @@ in your email address.</string>
                                     <constraint firstAttribute="height" constant="80" id="bfU-b7-cSI"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h26-zK-bTy" userLabel="Don't have an account?">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn’t receive the code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h26-zK-bTy" userLabel="Don't have an account?">
                                 <rect key="frame" x="72" y="488" width="181.5" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -828,7 +828,7 @@ in your email address.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4g3-D4-gaL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2518" y="841"/>
+            <point key="canvasLocation" x="2326" y="840"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SJW-Vn-3TB">
@@ -1612,7 +1612,7 @@ been uploaded </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gG9-3b-22t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4474" y="27"/>
+            <point key="canvasLocation" x="4329" y="28"/>
         </scene>
         <!--CategoriesVC-->
         <scene sceneID="8V7-jE-XlE">
@@ -1774,7 +1774,7 @@ been uploaded </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fuG-D4-I2k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3761" y="840"/>
+            <point key="canvasLocation" x="3566" y="840"/>
         </scene>
         <!--HookedVC-->
         <scene sceneID="aYh-ge-zQ0">
@@ -2033,7 +2033,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCz-Sd-uL7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4388" y="840"/>
+            <point key="canvasLocation" x="4218" y="840"/>
         </scene>
         <!--Custom Tab Bar-->
         <scene sceneID="3WP-Us-Pth">
@@ -2048,7 +2048,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKd-hB-v7Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5686" y="42"/>
+            <point key="canvasLocation" x="4967" y="28"/>
         </scene>
         <!--NotificationVC-->
         <scene sceneID="5UI-ih-vw9">
@@ -2225,7 +2225,7 @@ dummy text.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ps-Z1-ce3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4996" y="840"/>
+            <point key="canvasLocation" x="4870" y="841"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FFL-Y2-Fo1">
@@ -2771,7 +2771,7 @@ text of the.</string>
                                                                                         </constraints>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                                <real key="value" value="10"/>
+                                                                                                <real key="value" value="8"/>
                                                                                             </userDefinedRuntimeAttribute>
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </imageView>
@@ -2894,19 +2894,9 @@ text of the.</string>
                                                                             <constraint firstAttribute="bottom" secondItem="teS-s3-u5l" secondAttribute="bottom" constant="5" id="oWe-RU-nlc"/>
                                                                             <constraint firstItem="teS-s3-u5l" firstAttribute="leading" secondItem="Rtr-wT-wCo" secondAttribute="leading" constant="5" id="vfe-9d-VSf"/>
                                                                         </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                <real key="value" value="8"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
                                                                     </collectionViewCellContentView>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <size key="customSize" width="185" height="195"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="8"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <outlet property="constimgVwheight" destination="6rm-DC-OQi" id="Fbg-ll-qO0"/>
                                                                         <outlet property="oDiscriptionLabel" destination="RF5-DT-J3Y" id="hZB-ja-Kbk"/>
@@ -2976,7 +2966,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNJ-ga-RTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3133.5999999999999" y="944.52773613193415"/>
+            <point key="canvasLocation" x="2946" y="945"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="4n3-DQ-e3o">
@@ -3352,7 +3342,7 @@ text of the.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbf-qC-nvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5625" y="900"/>
+            <point key="canvasLocation" x="5542" y="900"/>
         </scene>
         <!--Edit ProfileVC-->
         <scene sceneID="vrT-pk-8T4">
@@ -3823,14 +3813,15 @@ text of the.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKo-DY-ptc">
-                                        <rect key="frame" x="305" y="40" width="50" height="50"/>
+                                        <rect key="frame" x="305" y="45" width="50" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="gI8-uQ-HHb"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="1wL-wv-Vhg"/>
+                                            <constraint firstAttribute="height" constant="40" id="fC2-no-kaa"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="SearchIcon"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved Businesses" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rty-1a-jBu">
-                                        <rect key="frame" x="20" y="130" width="335" height="24.5"/>
+                                        <rect key="frame" x="20" y="125" width="335" height="24.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -4947,6 +4938,7 @@ text of the.</string>
                         <outlet property="oCategoryCollectionView" destination="5eG-Ph-9qY" id="I8g-iv-oB9"/>
                         <outlet property="oContactView" destination="BIM-25-eWp" id="kE1-sh-8qV"/>
                         <outlet property="oDiscriptionLabel" destination="sRV-C0-3Yp" id="Yvy-ZP-a1B"/>
+                        <outlet property="oHookLbl" destination="nnF-mt-TMm" id="gmX-cz-BrO"/>
                         <outlet property="oHookView" destination="Laf-3t-zkA" id="ow1-iB-brB"/>
                         <outlet property="oInstagramView" destination="ddd-wa-laX" id="fQM-ZH-U1o"/>
                         <outlet property="oLocationLbl" destination="LJZ-UR-OXn" id="JTB-CS-yoa"/>
@@ -4958,6 +4950,7 @@ text of the.</string>
                         <outlet property="oPhotoVw" destination="hP5-si-2Hk" id="dtO-ef-u2J"/>
                         <outlet property="oRatingLbl" destination="LV0-V7-E35" id="vM5-2q-84s"/>
                         <outlet property="oRatingView" destination="Xsl-uZ-DET" id="Vj8-Sd-K7F"/>
+                        <outlet property="oSaveLbl" destination="mbx-2u-gaa" id="cy1-u8-Zdg"/>
                         <outlet property="oSaveView" destination="27n-CD-3z9" id="9c2-0x-eiH"/>
                         <outlet property="oShareView" destination="vI5-r5-SB6" id="ehC-z1-IU7"/>
                         <outlet property="oSocialView" destination="FCH-0t-XwH" id="XSK-Sv-jN1"/>

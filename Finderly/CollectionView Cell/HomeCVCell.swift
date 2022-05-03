@@ -39,8 +39,8 @@ class HomeCVCell: UICollectionViewCell {
     @IBOutlet weak var oRatingLbl: UILabel!
     @IBOutlet weak var oLikeBtn: UIButton!
     
-    override func awakeFromNib() {
-    super.awakeFromNib()
-    
-}
+//    override func awakeFromNib() {
+//    super.awakeFromNib()
+//    
+//}
 }
