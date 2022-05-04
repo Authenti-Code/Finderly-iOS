@@ -108,6 +108,7 @@ extension LoginVC{
                 SVProgressHUD.dismiss()
                 if JSON["success"] as? String == "true"{
                     if let dataDict = JSON["data"] as? NSDictionary {
+                        accessToken = dataDict["token"] as? String ?? ""
                         let userDataObj = UserDataModel()
                         userDataObj.userInfo(dataDict: dataDict)
                         print("DataDict:",dataDict)

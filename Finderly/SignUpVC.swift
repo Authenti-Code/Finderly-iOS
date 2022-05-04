@@ -61,8 +61,12 @@ class SignUpVC: UIViewController {
                 Proxy.shared.displayStatusCodeAlert(constants.password)
                 return
             }else {
-                signupApi {
-                    Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "OtpVC", isAnimate: true, currentViewController: self)
+                if otxtfldPhone.text?.count == 10 {
+                    signupApi {
+                        Proxy.shared.pushNaviagtion(stryboard: storyboardMain, identifier: "OtpVC", isAnimate: true, currentViewController: self)
+                    }
+                }else{
+                    Proxy.shared.displayStatusCodeAlert(constants.phone)
                 }
             }
             return
@@ -102,6 +106,7 @@ extension SignUpVC{
             if isSuccess {
                 if JSON["success"] as? String == "true"{
                     if let dataDict = JSON["data"] as? NSDictionary{
+                        accessToken = dataDict["token"] as? String ?? ""
                         print("DataDict:",dataDict)
                         let userDataObj = UserDataModel()
                         userDataObj.fromSignUp = true

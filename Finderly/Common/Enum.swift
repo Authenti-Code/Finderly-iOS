@@ -66,4 +66,5 @@ enum constants{
     static let userCamera = "Take A Photo"
     static let galleryCam = "Please Select an Option"
     static let password = "Password should be minimum of 8 character!"
+    static let phone = "Please enter valid phone number"
 }

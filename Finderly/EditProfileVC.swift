@@ -75,12 +75,13 @@ class EditProfileVC: UIViewController {
        
     }
     @IBAction func saveBtnAcn(_ sender: Any) {
-//        if oNameTextField.text?.isEmpty == true{
-//        Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.fullName)
-//        }else if oPhoneTextField.text?.isEmpty == true{
-//            Proxy.shared.displayStatusCodeAlert(AppAlerts.titleValue.phoneNumber)
-//        }
-          profileUpdate()
+        if oPhoneTextField.text?.count == 10{
+            profileUpdate()
+        }else
+        {
+            Proxy.shared.displayStatusCodeAlert(constants.phone)
+        }
+         
     }
 }
 //  MARK:--> extention for Image Picker

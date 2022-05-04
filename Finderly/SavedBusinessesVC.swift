@@ -10,15 +10,21 @@ import SDWebImage
 import SVProgressHUD
 
 class SavedBusinessesVC: UIViewController {
+    //MARK--> Outlets
     @IBOutlet weak var oSavedCollectionView: UICollectionView!
-   var businesssavedAry =  [BusinessSavedModel]()
+    //MARK--> Define variable
+    var businesssavedAry =  [BusinessSavedModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
     }
+    //MARK--> Back Button Action
     @IBAction func backBtnAcn(_ sender: Any) {
         self.pop()
+    }
+    //MARK-->   Search Button Action
+    @IBAction func SearchBtnAcn(_ sender: Any) {
+        let vc = storyboardMain.instantiateViewController(withIdentifier: "SearchSavedBusinessVC") as! SearchSavedBusinessVC
+        navigationController?.pushViewController(vc,animated: false)
     }
     override func viewWillAppear(_ animated: Bool) {
         getSaveBusinessApi{
@@ -42,14 +48,14 @@ extension SavedBusinessesVC: UICollectionViewDelegate, UICollectionViewDataSourc
         cell.oSavedVw.layer.shadowOpacity = 0.3
         cell.oSavedVw.layer.masksToBounds = false
         cell.obusinessNameLbl.text = savedModelObj.buisnessName
-        let imgUrl = savedModelObj.image
+        let imgUrl = savedModelObj.business_logo
         let removeSpace = imgUrl!.replacingOccurrences(of: " ", with: "%20")
         cell.oSavedImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         cell.oSavedImageView.sd_setImage(with: URL.init(string: removeSpace), placeholderImage: UIImage(named: ""), options: .highPriority, context: [:])
         cell.oLocationLbl.text = savedModelObj.location
         cell.oDescriptionLbl.text = savedModelObj.description
         cell.oRatingLbl.text =  "\(savedModelObj.ratings ?? "") (\(savedModelObj.ratings_count  ?? 0 ))"
-    return cell
+        return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if businesssavedAry.count > 0 {
@@ -63,6 +69,7 @@ extension SavedBusinessesVC: UICollectionViewDelegate, UICollectionViewDataSourc
         return CGSize(width: self.view.frame.width / 2.12, height: 220)
     }
 }
+//MARK-->   extension class for hit Api's
 extension SavedBusinessesVC{
     //MARK--> Hit get Save Business Api
     func getSaveBusinessApi(completion:@escaping() -> Void) {
@@ -83,9 +90,8 @@ extension SavedBusinessesVC{
                             savedModelObj.saved(dataDict: dict as! NSDictionary)
                             self.businesssavedAry.append(savedModelObj)
                         }
-                }
+                    }
                     completion()
-                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")

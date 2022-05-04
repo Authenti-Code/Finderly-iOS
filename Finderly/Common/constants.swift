@@ -30,3 +30,12 @@ enum AppAlert{
     static let otpVerify = "Enter OTP for verify."
     static let emailTaken = "Email has taken already"
 }
+// Declaration accesstoken
+var accesstoken: String{
+    get {
+        return UserDefaults.standard.value(forKey: "accesstoken") as? String ?? ""
+    }
+    set {
+        UserDefaults.standard.setValue(newValue, forKey:"accesstoken")
+    }
+}

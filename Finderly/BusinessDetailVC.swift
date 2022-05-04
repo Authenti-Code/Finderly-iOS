@@ -10,7 +10,7 @@ import SVProgressHUD
 import SDWebImage
 
 class BusinessDetailVC: UIViewController {
-    //MARK: -> IBOutlets
+    //MARK: --> IBOutlets
     @IBOutlet weak var oMainImgView: UIImageView!
     @IBOutlet weak var businessPhotoHeight: NSLayoutConstraint!
     @IBOutlet weak var oBusinessNameLabel: UILabel!
@@ -34,8 +34,10 @@ class BusinessDetailVC: UIViewController {
     @IBOutlet weak var oInstagramView: UIView!
     @IBOutlet weak var oShareView: UIView!
     @IBOutlet weak var oHookView: UIView!
+    @IBOutlet weak var oHookIcon: UIImageView!
     @IBOutlet weak var oSaveView: UIView!
     @IBOutlet weak var oSocialView: UIView!
+    //MARK: --> Define variable
     var businessId:Int?
     var businessAry = [BuisnessDetailModel]()
     var businessImgAry = [BusinessImagesModel]()
@@ -71,15 +73,18 @@ class BusinessDetailVC: UIViewController {
             if self.business_hooked == 0{
                 self.oHookLbl.text = "Hook"
                 self.oHookView.layer.backgroundColor = UIColor.white.cgColor
-                }
+                self.oHookLbl.textColor = UIColor.black
+                self.oHookIcon.image = UIImage(named: "Hook")
+            }
             else{
                 self.oHookView.layer.backgroundColor = UIColor.bbackgroundShadow.cgColor
                 self.oHookLbl.text = "Hooked"
-                
+                self.oHookLbl.textColor = UIColor.white
+                self.oHookIcon.image = UIImage(named: "whiteHook")
             }
             if self.business_saved == 0{
                 self.oSaveLbl.text = "Save"
-                }
+            }
             else{
                 self.oSaveLbl.text = "Saved"
             }
@@ -112,10 +117,6 @@ class BusinessDetailVC: UIViewController {
         self.oShareView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oHookView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
         self.oSaveView.applyShadowWithCornerRadius(color: appcolor.backgroundShadow, opacity: 0.3, radius: 15, edge: AIEdge.All, shadowSpace: 25, cornerRadius: 20)
-        //        oPhotoCollectionView.delegate = self
-        //        oCategoryCollectionView.delegate = self
-        //        oPhotoCollectionView.dataSource = self
-        //        oCategoryCollectionView.dataSource = self
     }
     //MARK: -> Button Actions
     @IBAction func backBtnAcn(_ sender: Any) {
@@ -127,26 +128,49 @@ class BusinessDetailVC: UIViewController {
     @IBAction func seeAllPhotoBtnAcn(_ sender: Any) {
     }
     @IBAction func contactBtnAcn(_ sender: Any) {
-       
+        let text = "This is some text that I want to share."
+                // set up activity view controller
+                let textToShare = [ text ]
+                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+
+                // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+
+                // present the view controller
+                self.present(activityViewController, animated: true, completion: nil)
     }
     @IBAction func whatsappBtnAcn(_ sender: Any) {
         let urlWhats = "https://wa.me/numberWithCountryCode"
-           if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
-               if let whatsappURL = URL(string: urlString) {
-                   if UIApplication.shared.canOpenURL(whatsappURL){
-                       if #available(iOS 10.0, *) {
-                           UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
-                       } else {
-                           UIApplication.shared.openURL(whatsappURL)
-                       }
-                   } else {
-//                       Alert(withMessage: "You do not have WhatsApp installed! \nPlease install first.").show(andCloseAfter: 2.0)
-                   }
-               }
-           }
-       }
-    @IBAction func instagramBtnAcn(_ sender: Any) {
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+            if let whatsappURL = URL(string: urlString) {
+                if UIApplication.shared.canOpenURL(whatsappURL){
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
+                    } else {
+                        UIApplication.shared.openURL(whatsappURL)
+                    }
+                } else {
+                    //                       Alert(withMessage: "You do not have WhatsApp installed! \nPlease install first.").show(andCloseAfter: 2.0)
+                }
+            }
+        }
     }
+    //MARK: --> Instagram Button Action
+    @IBAction func instagramBtnAcn(_ sender: Any) {
+        let Username =  "instagram" // Your Instagram Username here
+           let appURL = URL(string: "instagram://user?username=\(Username)")!
+           let application = UIApplication.shared
+
+           if application.canOpenURL(appURL) {
+               application.open(appURL)
+           } else {
+               // if Instagram app is not installed, open URL inside Safari
+               let webURL = URL(string: "https://instagram.com/\(Username)")!
+               application.open(webURL)
+           }
+    }
+    //MARK: --> More share Button Action
     @IBAction func shareBtnAcn(_ sender: Any) {
         do {
             //Set the default sharing message.
@@ -160,21 +184,26 @@ class BusinessDetailVC: UIViewController {
             }
         }
     }
+    //MARK: --> Hook Button Action
     @IBAction func hookBtnAcn(_ sender: Any) {
         hookedBusinessApi{
             self.viewWillAppear(true)
         }
     }
+    //MARK: --> Save Button Action
     @IBAction func saveBtnAcn(_ sender: Any) {
         saveBusinessApi{
             self.viewWillAppear(true)
         }
     }
+    //MARK: --> Rating Button Action
     @IBAction func rateBusinessBtnAcn(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RatingBusinessVCID") as! RatingBusinessVC
+        vc.businessID = businessId
         self.present(vc, animated: true, completion: nil)
     }
 }
+//MARK: --> tableView delegate
 extension BusinessDetailVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var AryCount = Int()
@@ -208,6 +237,7 @@ extension BusinessDetailVC: UICollectionViewDelegate, UICollectionViewDataSource
         return cellMain
     }
 }
+//MARK: -->extension class for hit Api's
 extension BusinessDetailVC{
     //MARK--> Hit Business Detail API
     func businessDetailApi(completion:@escaping() -> Void) {
@@ -276,7 +306,7 @@ extension BusinessDetailVC{
                 if statusRes == "true"{
                     SVProgressHUD.dismiss()
                     completion()
-//                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                    //                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
                 }

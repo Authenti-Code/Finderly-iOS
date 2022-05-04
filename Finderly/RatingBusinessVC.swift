@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class RatingBusinessVC: UIViewController {
 //MARK:-> IBOutlets
@@ -15,27 +16,125 @@ class RatingBusinessVC: UIViewController {
     @IBOutlet weak var oButton3: UIButton!
     @IBOutlet weak var oButton4: UIButton!
     @IBOutlet weak var oButton5: UIButton!
+    @IBOutlet weak var oDescriptionTVw: UITextView!
+    //MARK:-> Define variable
+    var businessID:Int?
+    var rate:Int?
+    var btn1 = false
+    var btn2 = false
+    var btn3 = false
+    var btn4 = false
+    var btn5 = false
     //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.oMainView.roundCorners([.topLeft,.topRight], radius: 30)
     }
-//MARK:-> Method for Toches any where screen to call this
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.dismiss(animated: true, completion: nil)
+    override func viewWillAppear(_ animated: Bool) {
     }
-    //MARK:-> Button Actions
+    //MARK:-> Button1 Actions
     @IBAction func button1Action(_ sender: Any) {
+         btn1 = true
+         btn2 = false
+         btn3 = false
+         btn4 = false
+         btn5 = false
+        self.rate = 1
+        oButton1.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton2.setImage(UIImage(named: "star-gray"), for: .normal)
+        oButton3.setImage(UIImage(named: "star-gray"), for: .normal)
+        oButton4.setImage(UIImage(named: "star-gray"), for: .normal)
+        oButton5.setImage(UIImage(named: "star-gray"), for: .normal)
     }
+    //MARK:-> Button2 Actions
     @IBAction func button2Action(_ sender: Any) {
+        btn1 = true
+        btn2 = true
+        btn3 = false
+        btn4 = false
+        btn5 = false
+       self.rate = 2
+        oButton1.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton2.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton3.setImage(UIImage(named: "star-gray"), for: .normal)
+        oButton4.setImage(UIImage(named: "star-gray"), for: .normal)
+        oButton5.setImage(UIImage(named: "star-gray"), for: .normal)
     }
+    //MARK:-> Button3 Actions
     @IBAction func button3Action(_ sender: Any) {
+        btn1 = true
+        btn2 = true
+        btn3 = true
+        btn4 = false
+        btn5 = false
+        self.rate = 3
+        oButton1.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton2.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton3.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton4.setImage(UIImage(named: "star-gray"), for: .normal)
+        oButton5.setImage(UIImage(named: "star-gray"), for: .normal)
     }
+    //MARK:-> Button4 Actions
     @IBAction func button4Action(_ sender: Any) {
+        btn1 = true
+        btn2 = true
+        btn3 = true
+        btn4 = true
+        btn5 = false
+        self.rate = 4
+        oButton1.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton2.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton3.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton4.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton5.setImage(UIImage(named: "star-gray"), for: .normal)
     }
+    //MARK:-> Button5 Actions
     @IBAction func button5Action(_ sender: Any) {
+        btn1 = true
+        btn2 = true
+        btn3 = true
+        btn4 = true
+        btn5 = true
+        self.rate = 5
+        oButton1.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton2.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton3.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton4.setImage(UIImage(named: "star-yellow"), for: .normal)
+        oButton5.setImage(UIImage(named: "star-yellow"), for: .normal)
     }
     @IBAction func submitBtnAcn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        businessRatingApi{
+            self.dismiss(animated: true, completion: nil)
+        }
     }
+        @IBAction func downBtnAcn(_ sender: Any) {
+            self.dismiss(animated: true, completion: nil)
+    }
+}
+extension RatingBusinessVC{
+//MARK--> Hit business Rating Api
+func businessRatingApi(completion:@escaping() -> Void) {
+    let Url = "\(Apis.KServerUrl)\(Apis.kBusinessRating)"
+    SVProgressHUD.show()
+    let param = ["business_id": businessID as AnyObject ,
+                 "rating": rate as AnyObject,
+                 "description": oDescriptionTVw.text as AnyObject] as [String : Any]
+    print("Params",param)
+    WebProxy.shared.postData(Url, params: param, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+        if isSuccess {
+            let statusRes = JSON["success"] as? String ?? ""
+            if statusRes == "true"{
+                SVProgressHUD.dismiss()
+                completion()
+                self.viewWillAppear(true)
+            } else{
+                SVProgressHUD.dismiss()
+                NotificationAlert().NotificationAlert(titles: JSON["errorMessage"] as? String ?? "")
+                Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")
+            }
+        } else {
+            Proxy.shared.displayStatusCodeAlert(message)
+        }
+    }
+}
 }

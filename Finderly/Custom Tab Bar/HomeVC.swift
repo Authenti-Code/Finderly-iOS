@@ -28,13 +28,14 @@ class HomeVC: UIViewController {
         getHomeProductsApi()
         UserDefaults.standard.set(true, forKey: "logged_in")
     }
+    @IBAction func oSearchbtnAction(_ sender: Any) {
+        let nav = storyboardMain.instantiateViewController(withIdentifier: "SearchHomeVC") as! SearchHomeVC
+        self.navigationController?.pushViewController(nav, animated: false)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    //    override func viewDidDisappear(_ animated: Bool) {
-    //        todaysModelAry.removeAll()
-    //    }
 }
 //MARK:-> Extension for collection view delagate and datasource method
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -125,6 +126,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func selectedPostSpon(id: Int) {
     }
 }
+
 //MARK:-> Extension For Home Api
 extension HomeVC{
     func getHomeProductsApi(){

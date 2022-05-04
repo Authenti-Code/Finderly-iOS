@@ -29,7 +29,7 @@ class OtpVC: UIViewController {
         otpbox2?.delegate = self
         otpbox3?.delegate = self
         otpbox4?.delegate = self
-        
+
         otpVw1.backgroundColor = appcolor.backgroundShadow
         otpVw2.backgroundColor = appcolor.backgroundShadow
         otpVw3.backgroundColor = appcolor.backgroundShadow

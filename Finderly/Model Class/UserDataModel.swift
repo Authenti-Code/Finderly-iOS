@@ -17,13 +17,13 @@ class UserDataModel {
         userName = dataDict["user_name"] as? String ?? ""
         phoneNumber = dataDict["mobile_number"] as? String ?? ""
         userProfile = dataDict["user_profile"] as? String ?? ""
-        if fromSignUp == true{
-            accessToken = dataDict["token"] as? String ?? ""
-        } else{
-            if accessToken == "" {
-                accessToken = dataDict["token"] as? String ?? ""
-            }
-        }
+//        if fromSignUp == true{
+//            accessToken = dataDict["token"] as? String ?? ""
+//        } else{
+//            if accessToken == "" {
+//                accessToken = dataDict["token"] as? String ?? ""
+//            }
+//        }
     }
 }
 class HomeDataBusinessModel {
@@ -159,13 +159,13 @@ class BuisnessHookedModel{
     }
 }
 class BusinessSavedModel{
-    var phoneNumber,buisnessName,location,image,description,ratings,id: String?
+    var phoneNumber,buisnessName,location,description,ratings,id,business_logo: String?
     var category_id,is_liked,ratings_count: Int?
     func saved(dataDict: NSDictionary){
         phoneNumber = dataDict["phone_number"] as? String ?? ""
         buisnessName = dataDict["business_name"] as? String ?? ""
         location = dataDict["location"] as? String ?? ""
-        image = dataDict["business_image"] as? String ?? ""
+        business_logo = dataDict["business_logo"] as? String ?? ""
         category_id = dataDict["category_id"] as? Int ?? 0
         id = dataDict["id"] as? String ?? ""
         description = dataDict["description"] as? String ?? ""
