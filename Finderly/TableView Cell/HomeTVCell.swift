@@ -34,7 +34,6 @@ class HomeTVCell: UITableViewCell {
         super.awakeFromNib()
         oListingCollectionView.delegate = self
         oListingCollectionView.dataSource = self
-        //        oListingCollectionView.reloadData()
     }
     //override func viewWillAppear(animated: Bool) {
     //
@@ -42,7 +41,7 @@ class HomeTVCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-}
+    }
 //MARK:-> Extension for collection view delegate and datasource method
 extension HomeTVCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

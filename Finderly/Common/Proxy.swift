@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 class Proxy {
 //    var businessdetailObj = BuisnessDetailModel()
-    
+//    var ratingObj = ratingModel()
     static var shared: Proxy {
         return Proxy()
     }

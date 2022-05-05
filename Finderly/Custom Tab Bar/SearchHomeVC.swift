@@ -20,10 +20,11 @@ class SearchHomeVC: UIViewController {
     //MARK:-> View's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        oSearchTableView.isHidden = true
+        oEmptyLabel.isHidden = true
         oSearchField.delegate = self
         oSearchField.becomeFirstResponder()
-        //        getHomeProductsApi{}
+        self.oSearchTableView.delegate = self
+        self.oSearchTableView.dataSource = self
         UserDefaults.standard.set(true, forKey: "logged_in")
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +39,9 @@ class SearchHomeVC: UIViewController {
         }else{
             oSearchField.text = ""
         }
+    }
+    @IBAction func backBtnAction(_ sender: Any) {
+        pop()
     }
 }
 //MARK:-> Extension for table view delegate and protocol method.
@@ -56,12 +60,35 @@ extension SearchHomeVC: UITableViewDelegate, UITableViewDataSource{
         let removeSpace = imgUrl!.replacingOccurrences(of: " ", with: "%20")
         cell.businessImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
         cell.businessImg.sd_setImage(with: URL.init(string: removeSpace), placeholderImage: UIImage(named: ""), options: .highPriority, context: [:])
+        cell.mainVw.layer.shadowColor = appcolor.backgroundShadow.cgColor
+        cell.mainVw.layer.shadowOffset = .zero
+        cell.mainVw.layer.shadowRadius = 2.5
+        cell.mainVw.layer.shadowOpacity = 0.3
+        cell.mainVw.layer.masksToBounds = false
+        
+        if businessObj.is_liked == 1{
+            cell.likeBtn.setImage(UIImage(named: "liked_heart"), for: .normal)
+        }else{
+            cell.likeBtn.setImage(UIImage(named: "Icon heart"), for: .normal)
+        }
+        cell.likeBtn.tag = indexPath.row
+        cell.likeBtn.addTarget(self, action: #selector(BusinessLikeButton), for: .touchUpInside)
         return cell
     }
+    @objc func BusinessLikeButton( sender:UIButton){
+        let businessObj = todaysModelAry[sender.tag]
+        businessLikeApi(id:businessObj.id ?? ""){
+            self.viewWillAppear(true)
+        }
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 4{
-            let nav = storyboardMain.instantiateViewController(withIdentifier: "SavedBusinessesVC") as! SavedBusinessesVC
-            //            nav.businessId = id
+        if todaysModelAry.count > 0{
+            let nav = storyboardMain.instantiateViewController(withIdentifier: "BusinessDetailVCID") as! BusinessDetailVC
+            let businessObj = todaysModelAry[indexPath.row]
+            nav.businessId = Int(businessObj.id ?? "0") ?? 0
             self.navigationController?.pushViewController(nav, animated: true)
         }
     }
@@ -110,7 +137,6 @@ extension SearchHomeVC:UITextFieldDelegate{
     }
     //MARK:--> Empty Product
     func emptyproductFunc(){
-        
         todaysModelAry.removeAll()
         oSearchTableView.isHidden = true
         oEmptyLabel.isHidden = false
@@ -135,7 +161,7 @@ extension SearchHomeVC{
             if isSuccess {
                 SVProgressHUD.dismiss()
                 if JSON["success"] as? String == "true"{
-                    if let dataDict = JSON["data"] as? NSDictionary{
+                    if let dataDict = JSON["data"] as? NSArray{
                             self.todaysModelAry.removeAll()
                             for i in 0..<dataDict.count{
                                 let dict = dataDict[i]
@@ -145,9 +171,11 @@ extension SearchHomeVC{
                                 print("todaysModelAry",self.todaysModelAry.count)
                             }
                         }
-                        self.oSearchTableView.delegate = self
-                        self.oSearchTableView.dataSource = self
-                        self.oSearchTableView.reloadData()
+                    if self.todaysModelAry.count == 0  {
+                        self.emptyproductFunc()
+                    } else{
+                        self.productFunc()
+                    }
                     completion()
                 } else{
                     SVProgressHUD.dismiss()
@@ -159,4 +187,31 @@ extension SearchHomeVC{
             }
         }
     }
-}
+    //MARK:-> Business like Api
+        func businessLikeApi(id:String,completion:@escaping() -> Void)  {
+            let likeUrl = "\(Apis.KServerUrl)\(Apis.kLikebusiness)"
+            let kURL = likeUrl.encodedURLString()
+            let params = [
+                "business_id":  id as AnyObject
+            ]
+            WebProxy.shared.postData(kURL, params: params, showIndicator: true, methodType: .post) { (JSON, isSuccess, message) in
+                if isSuccess {
+                    if JSON["success"] as? String == "true"{
+                        if let dataDict = JSON["data"] as? NSDictionary {
+                            print("Dict:",dataDict)
+//                            self.like = Int(dataDict["islike"] as? String ?? "0")
+                        }
+                        completion()
+                        self.oSearchTableView.reloadData()
+                        self.oSearchTableView.delegate = self
+                        self.oSearchTableView.dataSource = self
+                        Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                    } else{
+                        Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
+                    }
+                } else {
+                    Proxy.shared.displayStatusCodeAlert(message)
+                }
+            }
+        }
+    }

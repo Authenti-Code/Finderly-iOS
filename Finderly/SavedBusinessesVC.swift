@@ -12,6 +12,7 @@ import SVProgressHUD
 class SavedBusinessesVC: UIViewController {
     //MARK--> Outlets
     @IBOutlet weak var oSavedCollectionView: UICollectionView!
+    var isCommingfromRating = Bool()
     //MARK--> Define variable
     var businesssavedAry =  [BusinessSavedModel]()
     override func viewDidLoad() {

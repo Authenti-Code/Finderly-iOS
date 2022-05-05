@@ -34,6 +34,11 @@ class HomeVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//    callbackRating = { (rating,indx) -> Void in
+//                    self.todaysModelAry[indx].ratings = String(rating as? String ?? "0")
+//                print("Rating",rating)
+//                }
+                    //Do what you want in here
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 }
@@ -63,8 +68,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = oListingTableView.dequeueReusableCell(withIdentifier: "HomeTVCell") as! HomeTVCell
         cell.oHeadingLabel.text = listArray[indexPath.row]
-        
         if indexPath.row == 0{
+            
             cell.callbackLike = { (is_liked,indx) -> Void in
                 print("is_liked",indx)
                 self.todaysModelAry[indx].is_liked = is_liked

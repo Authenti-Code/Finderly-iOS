@@ -205,3 +205,16 @@ class specializationsModel{
         updated_at = dataDict["updated_at"] as? String ?? ""
     }
 }
+//class ratingModel{
+//    var description,created_at,id,updated_at,rating: String?
+//    var business_id,user_id:Int?
+//    func rat(dataDict: NSDictionary){
+//        description = dataDict["description"] as? String ?? ""
+//        created_at = dataDict["created_at"] as? String ?? ""
+//        id = dataDict["id"] as? String ?? ""
+//        updated_at = dataDict["updated_at"] as? String ?? ""
+//        business_id = dataDict["business_id"] as? Int ?? 0
+//        rating = dataDict["rating"] as?  String ?? ""
+//        user_id = dataDict["user_id"] as?  Int ?? 0
+//    }
+//}

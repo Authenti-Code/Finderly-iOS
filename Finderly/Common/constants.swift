@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-
 let AppName = "Findirly"
 let KAppDelegate = UIApplication.shared.delegate as! AppDelegate
 let storyboardMain = UIStoryboard(name: "Main", bundle: nil)
@@ -39,3 +38,5 @@ var accesstoken: String{
         UserDefaults.standard.setValue(newValue, forKey:"accesstoken")
     }
 }
+
+
