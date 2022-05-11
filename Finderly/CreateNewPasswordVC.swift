@@ -27,6 +27,7 @@ class CreateNewPasswordVC: UIViewController {
         
     }
     func loadItem(){
+        
         oPassEyeImgVw.image = Images.hidePswrd
         oConfirmEyeImgVw.image = Images.hidePswrd
         oPasswordTF.isSecureTextEntry = true

@@ -12,4 +12,10 @@ class CategoryCVCell: UICollectionViewCell {
     @IBOutlet weak var oMainView: UIView!
     @IBOutlet weak var oImageView: UIImageView!
     @IBOutlet weak var oHeadingLabel: UILabel!
+    @IBOutlet weak var oCategoryVw: UIView!
+    // MARK:--> Define variables
+    override func awakeFromNib() {
+        super.awakeFromNib()
+       
+    }
 }

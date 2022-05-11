@@ -15,6 +15,9 @@ extension UIColor {
     static var bbackgroundShadow: UIColor {
         return UIColor(red: 0.1960784314, green: 0.6156862745, blue: 0.6117647059, alpha: 0.50)
     }
+//        static var bbackgroundRedShadow: UIColor {
+//            return UIColor(red: 242, green: 113, blue: 113, alpha: 0.50)
+//    }
 }
 //app colors
 enum appcolor{

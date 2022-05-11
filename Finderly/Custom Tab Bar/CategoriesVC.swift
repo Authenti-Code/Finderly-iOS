@@ -39,7 +39,7 @@ extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width / 2.10, height: 180)
+        return CGSize(width: self.view.frame.width / 2.18, height: 180)
        }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let categoryModelObj = categoryListAry[indexPath.row]

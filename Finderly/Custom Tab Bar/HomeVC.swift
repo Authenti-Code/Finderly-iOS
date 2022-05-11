@@ -21,6 +21,8 @@ class HomeVC: UIViewController {
     var top10ModelAry = [Top10BusinessModel]()
     var sponsoredAry =  [SponsoreModel]()
     var bannerModelAry = [BannerModel]()
+    
+    var rat:Int?
     var listArray = ["Today's Recommended","Sponsored","Top 10 Business Sector"]
     //MARK:-> View's Life Cycle
     override func viewDidLoad() {
@@ -34,11 +36,11 @@ class HomeVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//    callbackRating = { (rating,indx) -> Void in
-//                    self.todaysModelAry[indx].ratings = String(rating as? String ?? "0")
-//                print("Rating",rating)
-//                }
-                    //Do what you want in here
+        //    callbackRating = { (rating,indx) -> Void in
+        //                    self.todaysModelAry[indx].ratings = String(rating as? String ?? "0")
+        //                print("Rating",rating)
+        //                }
+        //Do what you want in here
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 }
@@ -201,7 +203,6 @@ extension HomeVC{
                         self.oListingTableView.reloadData()
                         self.oBannerCollectionView.reloadData()
                     }
-                    //                    Proxy.shared.displayStatusCodeAlert(JSON["message"] as? String ?? "")
                 } else{
                     //                    SVProgressHUD.dismiss()
                     Proxy.shared.displayStatusCodeAlert(JSON["errorMessage"] as? String ?? "")

@@ -35,6 +35,7 @@ public class SOTabBar: UIView {
         stackView.alignment = .center
         stackView.clipsToBounds = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         return stackView
     }()
     
@@ -79,7 +80,6 @@ public class SOTabBar: UIView {
         layer.shadowOffset = CGSize(width: 0, height: -2)
         layer.shadowRadius = 3
     }
-    
     private func drawTabs() {
         for vc in viewControllers {
             let barView = SOTabBarItem(tabBarItem: vc.tabBarItem)
@@ -89,7 +89,6 @@ public class SOTabBar: UIView {
             self.stackView.addArrangedSubview(barView)
         }
     }
-    
     private func drawConstraint() {
         addSubview(stackView)
         addSubview(innerCircleView)
@@ -103,7 +102,6 @@ public class SOTabBar: UIView {
         outerCircleView.layer.cornerRadius = (innerCircleView.frame.size.height - 10) / 2
         
         stackView.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-        
         var constraints = [
             outerCircleView.centerYAnchor.constraint(equalTo: self.innerCircleView.centerYAnchor),
             outerCircleView.centerXAnchor.constraint(equalTo: self.innerCircleView.centerXAnchor),
@@ -181,7 +179,6 @@ private extension SOTabBar {
     var tabWidth: CGFloat {
         return UIScreen.main.bounds.width / CGFloat(viewControllers.count)
     }
-
     var circlePath: CGPath {
         let startPoint_X = CGFloat(previousSelectedIndex) * CGFloat(tabWidth) - (tabWidth * 0.5)
         let endPoint_X = CGFloat(selectedIndex ) * CGFloat(tabWidth) - (tabWidth * 0.5)

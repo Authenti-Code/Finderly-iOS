@@ -9,7 +9,12 @@ import UIKit
 import SVProgressHUD
 import SDWebImage
 
-class BusinessDetailVC: UIViewController {
+class BusinessDetailVC: UIViewController, RatingBusinessProtocol {
+    func ratingBusinessObjPop(rating: Int?) {
+        let nav = storyboardMain.instantiateViewController(withIdentifier: "CustomTabBarID") as! CustomTabBar
+        self.navigationController?.pushViewController(nav, animated: false)
+    }
+    
     //MARK: --> IBOutlets
     @IBOutlet weak var oMainImgView: UIImageView!
     @IBOutlet weak var businessPhotoHeight: NSLayoutConstraint!
@@ -199,6 +204,7 @@ class BusinessDetailVC: UIViewController {
     //MARK: --> Rating Button Action
     @IBAction func rateBusinessBtnAcn(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RatingBusinessVCID") as! RatingBusinessVC
+        vc.ratingBusinessObj = self
         vc.businessID = businessId
         self.present(vc, animated: true, completion: nil)
     }

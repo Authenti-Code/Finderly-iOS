@@ -14,7 +14,8 @@ class CustomTabBar: SOTabBarController {
         super.loadView()
         SOTabBarSetting.tabBarTintColor = .clear 
         SOTabBarSetting.tabBarCircleSize = CGSize(width: 60, height: 60)
-       // SOTabBarSetting.tabBarItemtintSize = UIFont(name: "Montserrat Bold 700", size: 12)!
+//        SOTabBarSetting.tabBarItemtintSize = UIFont(name: "Montserrat Bold 700", size: 12)!
+//        tabBarItem.title.font = UIFont.systemFont(ofSize: 12)
         
         
        
@@ -22,6 +23,7 @@ class CustomTabBar: SOTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        
         let homeStoryboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVCID")
         let chatStoryboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoriesVCID")
         let sleepStoryboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HookedVCID")
@@ -35,10 +37,11 @@ class CustomTabBar: SOTabBarController {
         meStoryboard.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "Profile-Inactive"), selectedImage: UIImage(named: "Profile-Active"))
            
         viewControllers = [homeStoryboard, chatStoryboard,sleepStoryboard,musicStoryboard,meStoryboard]
+        
     }
 //    override class func awakeFromNib() {
 //        super.awakeFromNib()
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat Bold 700", size: 10)!], for: .normal)
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat Bold 700", size: 48)!], for: .normal)
 //        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat Bold 700", size: 10)!], for: .selected)
 //    }
 }

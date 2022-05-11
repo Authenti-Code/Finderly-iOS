@@ -9,7 +9,11 @@ import UIKit
 import SDWebImage
 import SVProgressHUD
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, areYouSureProtocol {
+    func removeAreYouSureObjPop(addres: String) {
+        let vc = storyboardMain.instantiateViewController(withIdentifier: "ResetPasswordVC") as! ResetPasswordVC
+        self.navigationController?.pushViewController(vc,animated: true)
+    }
     //MARK:-> IBOutlets
     @IBOutlet weak var oUserImageView: UIImageView!
     @IBOutlet weak var oView1: UIView!
@@ -83,8 +87,12 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4{
             let nav = storyboardMain.instantiateViewController(withIdentifier: "SavedBusinessesVC") as! SavedBusinessesVC
-//            nav.businessId = id
             self.navigationController?.pushViewController(nav, animated: true)
+        }
+        if indexPath.row == 5{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AreYouSurePopUpVC") as! AreYouSurePopUpVC
+            vc.areYouSureObj = self
+            self.present(vc, animated: true, completion: nil)
         }
     }
     //MARK:--> Switch
